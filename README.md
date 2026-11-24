@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.0-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.2-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -18,13 +18,22 @@ Application mobile d'épargne par projets, en FCFA — gratuite, privée et util
 
 ## ✨ Présentation
 
-**Tirelire** aide à épargner pour des projets concrets (télé, voiture, voyage, maison…) et à répartir son salaire chaque mois entre charges et projets. Une fois l'argent réuni, on **réalise** le projet : il est archivé avec tout son historique.
+**Tirelire** aide à épargner pour des projets concrets (télé, voiture, voyage, maison…). Tout part de la **caisse** : on y enregistre l'argent réel reçu (paie, don, prime…), puis on le répartit entre charges et projets. Une fois l'argent réuni, on **réalise** le projet : il est archivé avec tout son historique.
 
 Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de publicité. Les données restent **sur votre téléphone**.
 
 ---
 
 ## 📱 Fonctionnalités
+
+### 💰 Caisse
+- 🏦 La **caisse** contient l'argent réel disponible : tout versement vers un projet ou une charge en sort
+- ➕ **Encaisser** par source : Paie, Don, Prime, Vente, Remboursement, Solde de départ, Autre
+- ➖ **Dépenser** hors projet (ex. 500 F pour un jus) avec catégorie et motif, conservé dans l'historique
+- 🔒 Impossible de verser à un projet plus que ce que contient la caisse
+- ↩️ Un retrait de projet **retourne dans la caisse** ; un transfert entre projets ne touche pas la caisse
+- 🧾 Historique clair avec filtres **Tout / Entrées / Sorties**
+- 👥 Les versements d'un autre participant d'une cagnotte partagée ne touchent pas votre caisse
 
 ### 🎯 Projets d'épargne
 - 🏷️ Un projet = un nom, un objectif, une échéance, une **couleur** et une **icône** (10 palettes, plus de 70 icônes)
@@ -47,8 +56,9 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 
 ### 💼 Paie et charges
 - 🧾 **Charges fixes** (loyer, eau, transport…) avec icône et catégorie
-- 💵 **Gérer la paie** : répartir le salaire entre charges et projets, voir ce qu'il « reste pour moi »
-- 🕘 Historique des paies, avec annulation des versements associés
+- 💵 **Gérer la paie** : disponible seulement pour une entrée de caisse de source « Paie », et **une seule fois par paie**
+- 🧮 Impossible de répartir plus que la paie ; le reste demeure dans la caisse
+- 🕘 Historique des paies ; supprimer une répartition rend l'argent à la caisse et la paie redevient disponible
 
 ### 🏁 Défis d'épargne
 - 📅 52 semaines, 30 jours, 12 mois, 26 semaines, 100 jours, 90 jours — ou un défi **personnalisé**
@@ -107,7 +117,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 | | |
 |---|---|
 | 📍 **Où ?** | Dans le `localStorage` du navigateur, sur l'appareil — rien n'est envoyé sur Internet |
-| 📤 **Exporter** | **JSON** (sauvegarde complète : projets, charges, paies, catégories, transferts) et **CSV** (mouvements, lisible dans Excel) |
+| 📤 **Exporter** | **JSON** (sauvegarde complète : projets, charges, paies, caisse, catégories, transferts) et **CSV** (mouvements, lisible dans Excel) |
 | 📥 **Importer** | JSON, y compris les **anciens fichiers** des versions précédentes |
 | 🗑️ **Effacer** | Réglages → *Tout effacer* (double confirmation) |
 
@@ -133,12 +143,13 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 - [x] 📴 Service worker et installation hors ligne
 - [x] 🔁 Vrais transferts entre projets
 - [x] 🗃️ Catégories dans les exports JSON et CSV
+- [x] 💰 Caisse : entrées par source, dépenses libres, paie liée à la caisse
 - [ ] 📊 Statistiques globales (dépenses par catégorie, tendance mensuelle)
 - [ ] ✅ Suivi par période pour les défis (case cochée à chaque semaine ou jour payé)
 - [ ] 🔎 Recherche et filtres dans l'historique
 - [ ] ☁️ Sauvegarde et synchronisation Google Drive
 - [ ] 💡 Budget mensuel par catégorie, avec alerte de dépassement
-- [ ] 🐞 Corrections mineures : icône « école » manquante, mise à jour du participant à l'édition d'un mouvement
+- [x] 🐞 Corrections mineures : icône « école », participant modifiable à l'édition d'un mouvement, nettoyage du code PIN
 
 ---
 
@@ -146,6 +157,8 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 
 | Version | Nouveautés |
 |---|---|
+| **2.2** | 💰 Caisse (entrées par source, dépenses libres, historique) · 🔒 Paie utilisable une seule fois, versements limités à la caisse · 📤 Caisse dans les exports JSON/CSV |
+| **2.1** | 🐞 Icône « école » ajoutée · le participant d'un mouvement s'affiche et se modifie à l'édition · doublon de code supprimé |
 | **2.0** | 🔁 Transferts entre projets · 🗃️ Catégories et transferts dans le JSON/CSV · 📥 Import rétrocompatible des anciens fichiers |
 | **1.9** | 🏆 « Réaliser le projet » et onglet *Réalisés* · 📴 Service worker, manifest et installation |
 | **1.8** | 🧩 Catégories de dépenses |

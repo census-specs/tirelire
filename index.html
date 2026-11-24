@@ -471,6 +471,31 @@ input,select{font-family:inherit;}
 [data-theme="dark"] .btn-transfer{color:#7FC79E;}
 .btn-transfer:active{transform:scale(.975);}
 .d-actions .btn-secondary,.d-actions .btn-primary,.d-actions .btn-transfer{padding-left:8px;padding-right:8px;font-size:14.5px;}
+
+/* ═══════ v2.2 : CAISSE ═══════ */
+.cash-card{background:var(--card);border:1px solid rgba(14,42,28,.05);border-radius:var(--radius);padding:15px;margin-bottom:12px;box-shadow:var(--shadow);}
+.cash-top{display:flex;align-items:center;gap:13px;cursor:pointer;}
+.cash-ic{width:46px;height:46px;border-radius:14px;background:var(--mint-100);color:var(--forest-500);display:grid;place-items:center;flex:none;}
+.cash-info{flex:1;min-width:0;}
+.cash-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);}
+.cash-val{font-size:23px;font-weight:700;letter-spacing:-.6px;margin-top:1px;}
+.cash-sub{font-size:12.5px;color:var(--muted);margin-top:1px;}
+.cash-chev{color:var(--muted);flex:none;}
+.cash-btns{display:flex;gap:10px;margin-top:13px;}
+.cash-btn{flex:1;padding:11px 8px;border-radius:13px;font-size:14px;font-weight:650;transition:transform .12s;}
+.cash-btn:active{transform:scale(.96);}
+.cash-btn.in{background:var(--mint-100);color:var(--forest-700);}
+.cash-btn.out{background:var(--danger-bg);color:var(--danger);}
+[data-theme="dark"] .cash-btn.in{color:#7FC79E;}
+.cash-hero{background:linear-gradient(155deg,#2E7D52,#123B27);}
+.cash-actions{display:flex;gap:10px;margin:14px 0 4px;}
+.cash-actions .btn-primary,.cash-actions .btn-secondary{padding:14px;font-size:15px;}
+.cash-filter{margin:20px 0 12px;}
+.cash-hint{font-size:12.5px;color:var(--muted);margin:-4px 2px 14px;line-height:1.45;}
+.cash-more{width:100%;margin-top:12px;padding:13px;border-radius:14px;background:var(--mint-100);color:var(--forest-700);font-size:13.5px;font-weight:650;}
+.cash-empty{line-height:1.55;}
+.badge-mini{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--mint-100);color:var(--forest-700);margin-left:6px;vertical-align:middle;}
+.chip.sel{background:var(--forest-500);color:#fff;border-color:transparent;}
 </style>
 </head>
 <body>
@@ -596,6 +621,14 @@ input,select{font-family:inherit;}
     <button type="button" role="tab" data-tab="active" class="sel">En cours <span class="tab-count" id="tabCountActive">0</span></button>
     <button type="button" role="tab" data-tab="done">Réalisés <span class="tab-count" id="tabCountDone">0</span></button>
   </div>
+  <div class="cash-card" id="cashCard">
+    <div class="cash-top" id="cashTop">
+      <div class="cash-ic"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.7"/><path d="M6 9.6v.01M18 14.4v.01"/></svg></div>
+      <div class="cash-info"><div class="cash-label">Caisse</div><div class="cash-val" id="cashVal">0 FCFA</div><div class="cash-sub" id="cashSub"></div></div>
+      <svg class="cash-chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </div>
+    <div class="cash-btns"><button type="button" class="cash-btn in" data-cashact="in">+ Encaisser</button><button type="button" class="cash-btn out" data-cashact="out">− Dépenser</button></div>
+  </div>
   <div class="payroll-card" id="payrollCard">
     <div class="payroll-card-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a3 3 0 0 1 3-3h11l3 3v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Z"/><path d="M3 9h16"/><circle cx="16" cy="14" r="1.3" fill="currentColor"/></svg></div>
     <div class="payroll-card-info">
@@ -643,6 +676,14 @@ input,select{font-family:inherit;}
   <div class="d-actions"><button class="btn-realize" id="btnRealize"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8v6a4 4 0 0 1-8 0Z"/><path d="M8 5H4v2a4 4 0 0 0 4 4M16 5h4v2a4 4 0 0 1-4 4"/><path d="M12 13v5M8 21h8M9 18h6"/></svg>Réaliser le projet</button><button class="btn-realize" id="btnReopen" style="display:none">Rouvrir le projet</button><button class="btn-secondary" id="btnRemove">Retirer</button><button class="btn-transfer" id="btnTransfer">Transférer</button><button class="btn-primary" id="btnAdd">Ajouter</button></div>
 </div>
 
+<div class="screen" id="cashScreen">
+  <div class="d-head">
+    <button class="icon-btn" id="cashBackBtn" aria-label="Retour"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="d-title">Caisse</div>
+  </div>
+  <div class="d-body" id="cashBody"></div>
+</div>
+
 <div class="screen" id="paiesScreen">
   <div class="d-head">
     <button class="icon-btn" id="paiesBackBtn" aria-label="Retour"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
@@ -680,6 +721,7 @@ input,select{font-family:inherit;}
   <h2 id="txTitle">Ajouter de l'argent</h2>
   <div class="amount-wrap"><input id="txAmount" type="text" inputmode="numeric" placeholder="0"><span>FCFA</span></div>
   <div class="chips" id="chips"></div>
+  <div class="cash-hint" id="txCashHint" style="display:none"></div>
   <div class="field"><label for="txDate">Date du mouvement</label><input id="txDate" type="date"></div>
   <div class="field" id="txCatField" style="display:none"><label>Catégorie de la dépense</label><div class="cat-picker" id="txCatPicker"></div></div>
   <div class="field" id="contribField" style="display:none"><label>Participant</label><div class="contrib-picker" id="contribPicker"></div></div>
@@ -718,11 +760,26 @@ input,select{font-family:inherit;}
   <div id="chargesTab"><div id="chargesList"></div><button class="btn-primary btn-block" id="addChargeBtn" style="margin-top:14px;">+ Ajouter une charge</button></div>
 </div>
 
+<div class="sheet" id="cashSheet">
+  <div class="grabber"></div>
+  <h2 id="cashTitle">Encaisser</h2>
+  <div class="amount-wrap"><input id="cashAmount" type="text" inputmode="numeric" placeholder="0"><span>FCFA</span></div>
+  <div class="chips" id="cashChips"></div>
+  <div class="field" id="cashSrcField"><label>Source de l'argent</label><div class="cat-picker" id="cashSrcPicker"></div></div>
+  <div class="field" id="cashCatField" style="display:none"><label>Catégorie</label><div class="cat-picker" id="cashCatPicker"></div></div>
+  <div class="field"><label for="cashNote" id="cashNoteLbl">Note (optionnel)</label><input id="cashNote" type="text" maxlength="50" autocomplete="off"></div>
+  <div class="field"><label for="cashDate">Date</label><input id="cashDate" type="date"></div>
+  <div class="cash-hint" id="cashHint"></div>
+  <div id="cashWarn"></div>
+  <button class="btn-primary btn-block" id="saveCash">Enregistrer</button>
+</div>
+
 <div class="sheet" id="payrollSheet">
   <div class="grabber"></div>
   <h2>Gérer la paie</h2>
-  <div class="field"><label for="payrollAmount">Montant de la paie reçue (FCFA)</label><div class="amount-wrap"><input id="payrollAmount" type="text" inputmode="numeric" placeholder="0"><span>FCFA</span></div></div>
-  <div class="chips" id="payrollChips"></div>
+  <div class="field"><label>Paie à répartir</label><div class="chips" id="payrollChips" style="margin-bottom:10px"></div><div class="amount-wrap" style="margin-bottom:0"><input id="payrollAmount" type="text" inputmode="numeric" placeholder="0" readonly><span>FCFA</span></div></div>
+  <div id="payrollEmpty"></div>
+  <div class="cash-hint" id="payrollCashHint" style="margin-top:10px"></div>
   <div class="payroll-section-title">Charges <span id="chargesTotalLabel" style="color:var(--danger);font-weight:700;">0 FCFA</span></div>
   <div id="payrollChargesList"></div>
   <div class="payroll-section-title">Projets <span id="projectsTotalLabel" style="color:var(--forest-700);font-weight:700;">0 FCFA</span></div>
@@ -851,6 +908,7 @@ const ICONS = {
   chart:'<path d="M3 21V3M3 21h18"/><path d="M7 16l4-5 4 3 5-7"/>',
   dog:'<circle cx="8" cy="7" r="2"/><circle cx="16" cy="7" r="2"/><path d="M5 6 3 3l4 1M19 6l2-3-4 1"/><path d="M8 13a4 4 0 0 0 8 0M6 12v3a6 6 0 0 0 12 0v-3"/><circle cx="10" cy="14" r=".5" fill="currentColor"/><circle cx="14" cy="14" r=".5" fill="currentColor"/>',
   cat:'<path d="M4 8 3 3l5 3M20 8l1-5-5 3"/><path d="M4 8a6 6 0 0 0 0 8 6 6 0 0 0 6 5h4a6 6 0 0 0 6-5 6 6 0 0 0 0-8"/><circle cx="9" cy="13" r=".8" fill="currentColor"/><circle cx="15" cy="13" r=".8" fill="currentColor"/><path d="M11 17h2"/>',
+  school:'<path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6M12 5V2h3"/>',
   graduation:'<path d="M12 4 2 9l10 5 10-5Z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 9v5"/>',
   apple:'<path d="M12 7c-1-2-4-3-6-2-3 1-4 5-2 9 1 3 4 5 6 5s3-1 4-1 2 1 4 1 5-2 6-5c1-2 1-5-1-7-2-1-4-1-6 1-2 2-3 2-5-1Z"/><path d="M12 7c0-2 1-4 3-4"/>',
   coffee:'<path d="M3 9h14v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M17 11h2a2 2 0 0 1 0 4h-2M6 5v2M10 5v2M14 5v2"/>',
@@ -890,7 +948,7 @@ function iconSvg(k,s){const b=ICONS[k]||ICONS.bag;return '<svg viewBox="0 0 24 2
 
 const STORAGE_KEY='tirelire.v2';
 const nf=new Intl.NumberFormat('fr-FR');
-let state={projects:[],charges:[],payrolls:[],settings:{theme:'auto',onboardingDone:false,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0}};
+let state={projects:[],charges:[],payrolls:[],cash:[],settings:{theme:'auto',onboardingDone:false,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0}};
 let currentProjectId=null,pendingMode='in',selectedIcon='bag',selectedColor='#2E7D52',selectedPalette=0,pendingContributorId=null,pendingTxId=null,projectEditMode=false,existingChallenge=null,pinBuffer='';
 let obSlideIdx=0,obScrollPending=false,editingChargeId=null,chargeIcon='card',chargeCategoryId='logement';
 let homeTab='active';
@@ -927,18 +985,27 @@ function challengeInfo(p){
   for(let k=0;k<done;k++)targetByNow+=amounts[k];
   return {name:ch.name||null,unit:ch.unit,mode:ch.mode,totalUnit:ch.total,doneUnit:done,targetByNow,totalTarget:amounts.reduce((a,b)=>a+b,0),base:ch.base,increment:ch.increment||0};
 }
-function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:t.date||new Date().toISOString(),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||''})):[],realized:normalizeRealized(p.realized),created:p.created||Date.now()};}
+function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:t.date||new Date().toISOString(),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||'',cashId:t.cashId||null})):[],realized:normalizeRealized(p.realized),created:p.created||Date.now()};}
 function normalizeCharge(c){return {id:c.id||uid(),name:c.name||'Charge',amount:Number(c.amount)||0,icon:c.icon||'card',categoryId:resolveCat(c.categoryId,c.categoryLabel),created:c.created||Date.now()};}
+const CASH_KINDS=['in','spend','project','charge'];
+function normalizeCash(e){
+  e=e||{};
+  const kind=CASH_KINDS.includes(e.kind)?e.kind:(Number(e.amount)>=0?'in':'spend');
+  return {id:e.id||uid(),kind,amount:Math.round(Number(e.amount)||0),date:e.date||new Date().toISOString(),note:e.note||'',
+    source:kind==='in'?resolveSource(e.source,e.sourceLabel):null,categoryId:resolveCat(e.categoryId,e.categoryLabel),
+    projectId:e.projectId||null,txId:e.txId||null,payrollId:e.payrollId||null,chargeId:e.chargeId||null,ref:e.ref||'',managed:!!e.managed};
+}
 function load(){
   try{const raw=localStorage.getItem(STORAGE_KEY);if(raw){const parsed=JSON.parse(raw);
     if(parsed&&Array.isArray(parsed.projects)){
       state.projects=parsed.projects.map(normalizeProject);
       state.charges=Array.isArray(parsed.charges)?parsed.charges.map(normalizeCharge):[];
       state.payrolls=Array.isArray(parsed.payrolls)?parsed.payrolls:[];
+      state.cash=Array.isArray(parsed.cash)?parsed.cash.map(normalizeCash):[];
       state.settings=Object.assign({theme:'auto',onboardingDone:false,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0},parsed.settings||{});
     }
   }}catch(e){}
-  if(state.projects.length>0||state.charges.length>0||state.payrolls.length>0) state.settings.onboardingDone=true;
+  if(state.projects.length>0||state.charges.length>0||state.payrolls.length>0||state.cash.length>0) state.settings.onboardingDone=true;
 }
 function save(){state.settings.lastChange=Date.now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
 function getProject(id){return state.projects.find(p=>p.id===id);}
@@ -1042,21 +1109,14 @@ function renderList(){
   const n=activeProjects().length,nd=doneProjects().length;
   count.textContent=(n===0&&nd===0?'Aucun projet':(n===0?'Aucun projet en cours':(n===1?'1 projet':n+' projets')))+(nd>0?' · '+nd+' réalisé'+(nd>1?'s':''):'');
   renderHomeStats();
+  renderCashCard();
   const pc=document.getElementById('payrollCardTitle');
   const ps=document.getElementById('payrollCardSub');
-  if(state.payrolls.length>0){
-    const last=state.payrolls[0];
-    const d=new Date(last.date);
-    const dateStr=d.toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
-    pc.textContent='Gérer la paie';
-    ps.textContent='Dernière paie le '+dateStr+' · reste '+money(last.reste)+' pour vous';
-  } else if(state.charges.length===0&&state.projects.length===0){
-    pc.textContent='Gérer la paie';
-    ps.textContent='Ajoutez d\'abord des charges ou des projets';
-  } else {
-    pc.textContent='Gérer la paie';
-    ps.textContent='Répartissez votre salaire entre charges et projets';
-  }
+  const pend=pendingPaies();
+  pc.textContent='Gérer la paie';
+  if(pend.length===1)ps.textContent='Paie de '+money(pend[0].amount)+' à répartir';
+  else if(pend.length>1)ps.textContent=pend.length+' paies à répartir';
+  else ps.textContent='Aucune paie à répartir · ajoutez-la d\'abord dans la caisse';
   renderTabs();
   if(homeTab==='done'){renderDoneList(list,empty,head);return;}
   document.getElementById('listHeadTitle').textContent='Mes projets';
@@ -1201,12 +1261,25 @@ async function deleteCharge(id){
   state.charges=state.charges.filter(x=>x.id!==id);save();renderChargesList();renderList();showToast('Charge supprimée');
 }
 
+let payrollEntryId=null;
 function openPayrollSheet(){
-  document.getElementById('payrollAmount').value='';
-  document.getElementById('payrollChips').innerHTML=[50000,75000,100000,150000,200000,250000].map(v=>'<button type="button" class="chip" data-val="'+v+'">'+fmt(v)+'</button>').join('');
+  const list=pendingPaies();
+  payrollEntryId=list.length?list[0].id:null;
+  renderPayrollPicker();
   renderPayrollSheet();
   openSheet('payrollSheet');
-  setTimeout(()=>{const i=document.getElementById('payrollAmount');if(i)i.focus();},300);
+}
+function renderPayrollPicker(){
+  const list=pendingPaies(),box=document.getElementById('payrollChips'),inp=document.getElementById('payrollAmount'),em=document.getElementById('payrollEmpty');
+  if(!list.length){
+    box.innerHTML='';inp.value='';
+    em.innerHTML='<div class="payroll-warning" style="background:var(--mint-100);color:var(--forest-700)">Aucune paie à répartir.<br>Ajoutez d\'abord votre paie dans la caisse (source « Paie »). Chaque paie ne peut être répartie qu\'une seule fois.</div><button type="button" class="btn-primary btn-block" id="payrollGoCash" style="margin-bottom:14px">Ajouter une paie à la caisse</button>';
+    return;
+  }
+  em.innerHTML='';
+  if(!list.some(e=>e.id===payrollEntryId))payrollEntryId=list[0].id;
+  box.innerHTML=list.map(e=>'<button type="button" class="chip'+(e.id===payrollEntryId?' sel':'')+'" data-eid="'+e.id+'">'+dShort(e.date)+' · '+fmt(e.amount)+'</button>').join('');
+  inp.value=fmt(cashOf(payrollEntryId).amount);
 }
 function renderPayrollSheet(){
   const cList=document.getElementById('payrollChargesList');
@@ -1228,39 +1301,51 @@ function renderPayrollSheet(){
   updatePayrollSummary();
 }
 function updatePayrollSummary(){
-  const salary=parseAmount(document.getElementById('payrollAmount').value);
+  const entry=cashOf(payrollEntryId);
+  const salary=entry&&!entry.managed?entry.amount:0;
   let chargeTotal=0;
   document.querySelectorAll('.pcl-input').forEach(inp=>{chargeTotal+=parseAmount(inp.value);});
   let projectTotal=0;
   document.querySelectorAll('.pa-input').forEach(inp=>{projectTotal+=parseAmount(inp.value);});
-  const reste=salary-chargeTotal-projectTotal;
-  const resteNeg=reste<0;
+  const total=chargeTotal+projectTotal,reste=salary-total,resteNeg=reste<0;
+  const caisse=cashBalance();
   document.getElementById('chargesTotalLabel').textContent='-'+fmt(chargeTotal)+' FCFA';
   document.getElementById('projectsTotalLabel').textContent='-'+fmt(projectTotal)+' FCFA';
-  const w=document.getElementById('payrollWarning');
-  w.innerHTML=resteNeg?'<div class="payroll-warning">Attention : vous allouez plus que le salaire reçu. Vérifiez vos montants.</div>':'';
+  let warn='';
+  if(!entry)warn='';
+  else if(resteNeg)warn='Vous répartissez plus que la paie ('+money(-reste)+' de trop).';
+  else if(total>caisse)warn='La caisse ne contient que '+money(caisse)+' : une partie de cette paie a déjà été dépensée.';
+  document.getElementById('payrollWarning').innerHTML=warn?'<div class="payroll-warning">'+warn+'</div>':'';
   document.getElementById('payrollSummary').innerHTML=
-    '<div class="payroll-summary-row"><span class="lbl">Salaire reçu</span><span class="val in">'+money(salary)+'</span></div>'+
+    '<div class="payroll-summary-row"><span class="lbl">Paie à répartir</span><span class="val in">'+money(salary)+'</span></div>'+
     '<div class="payroll-summary-row"><span class="lbl">Total charges</span><span class="val out">−'+fmt(chargeTotal)+' FCFA</span></div>'+
     '<div class="payroll-summary-row"><span class="lbl">Total projets</span><span class="val out">−'+fmt(projectTotal)+' FCFA</span></div>'+
-    '<div class="payroll-summary-total"><span>Reste pour moi</span><span class="val'+(resteNeg?' neg':'')+'">'+money(reste)+'</span></div>';
+    '<div class="payroll-summary-total"><span>Reste pour moi (en caisse)</span><span class="val'+(resteNeg?' neg':'')+'">'+money(reste)+'</span></div>';
+  const ch=document.getElementById('payrollCashHint');if(ch)ch.textContent=entry?'Les montants répartis sortent de la caisse. Le reste y demeure.':'';
+  document.getElementById('savePayroll').disabled=!entry||total<=0||resteNeg||total>caisse;
 }
 async function savePayroll(){
-  const salary=parseAmount(document.getElementById('payrollAmount').value);
-  if(salary<=0){const i=document.getElementById('payrollAmount');i.style.borderColor='var(--danger)';setTimeout(()=>i.style.borderColor='',1500);i.focus();return;}
+  const entry=cashOf(payrollEntryId);
+  if(!entry||entry.kind!=='in'||entry.managed){showToast('Aucune paie à répartir.');return;}
+  const salary=entry.amount;
   const chargeAllocations=[];let chargeTotal=0;
   document.querySelectorAll('.pcl-input').forEach(inp=>{const id=inp.dataset.chargeId;const c=state.charges.find(x=>x.id===id);const val=parseAmount(inp.value);if(c&&val>0){chargeAllocations.push({chargeId:c.id,name:c.name,amount:val});chargeTotal+=val;}});
   const projectAllocations=[];let projectTotal=0;
   document.querySelectorAll('.pa-input').forEach(inp=>{const id=inp.dataset.projectId;const p=getProject(id);const val=parseAmount(inp.value);if(p&&val>0){projectAllocations.push({projectId:p.id,name:p.name,amount:val});projectTotal+=val;}});
-  const reste=salary-chargeTotal-projectTotal;
-  if(reste<0){const r=await askModal({title:'Dépassement',msg:'Le total alloué dépasse le salaire (reste négatif : '+money(reste)+').\n\nEnregistrer quand même ?',okLabel:'Enregistrer',okTone:'danger'});if(!r||!r.ok)return;}
-  const date=new Date().toISOString();
-  const dateLabel=new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});
+  const total=chargeTotal+projectTotal;
+  if(total<=0){showToast('Saisissez au moins un montant à répartir.');return;}
+  if(total>salary){await infoModal('Dépassement','Le total réparti ('+money(total)+') dépasse la paie ('+money(salary)+').');return;}
+  if(total>cashBalance()){await infoModal('Caisse insuffisante','La caisse ne contient que '+money(cashBalance())+'.');return;}
+  const reste=salary-total;
+  const now=new Date().toISOString();
+  const dateLabel=dShort(entry.date);
   const prId=uid();
-  projectAllocations.forEach(a=>{const p=getProject(a.projectId);if(p){const before=balance(p);p.transactions.push({id:uid(),amount:a.amount,note:'Paie du '+dateLabel,date,contributorId:null,payrollId:prId});celebrateProgress(p,before);}});
-  state.payrolls.unshift({id:prId,date,salary,chargeAllocations,projectAllocations,totalCharges:chargeTotal,totalProjects:projectTotal,reste});
+  projectAllocations.forEach(a=>{const p=getProject(a.projectId);if(p){const before=balance(p);const t={id:uid(),amount:a.amount,note:'Paie du '+dateLabel,date:now,contributorId:null,payrollId:prId};p.transactions.push(t);linkTxToCash(p,t);celebrateProgress(p,before);}});
+  chargeAllocations.forEach(a=>{const c=state.charges.find(x=>x.id===a.chargeId);addCash({kind:'charge',amount:-a.amount,date:now,note:a.name,payrollId:prId,chargeId:a.chargeId,categoryId:c?c.categoryId:null});});
+  entry.managed=true;entry.payrollId=prId;
+  state.payrolls.unshift({id:prId,date:entry.date,salary,chargeAllocations,projectAllocations,totalCharges:chargeTotal,totalProjects:projectTotal,reste,cashId:entry.id});
   save();closeAllSheets();renderList();buzz([15,30,25]);
-  showToast('Paie enregistrée · Reste pour moi : '+money(reste));
+  showToast('Paie répartie · Reste en caisse : '+money(reste));
 }
 
 function openChargesSheet(){renderChargesList();openSheet('chargesSheet');}
@@ -1361,15 +1446,16 @@ function openProjectSheet(edit){
 }
 
 const CHIPS=[1000,2000,5000,10000,25000,50000];
-let pendingCategoryId=null;
+let pendingCategoryId=null,txLinked=true;
 function openTxSheet(mode,txId){
   pendingMode=mode;pendingContributorId=null;pendingTxId=txId||null;pendingCategoryId=null;
   const sheet=document.getElementById('txSheet');
   const projForEdit=getProject(currentProjectId);
   let editTx=null;
   if(pendingTxId&&projForEdit){editTx=projForEdit.transactions.find(x=>x.id===pendingTxId);}
-  if(editTx){pendingMode=editTx.amount<0?'out':'in';}
+  if(editTx){pendingMode=editTx.amount<0?'out':'in';pendingContributorId=editTx.contributorId||null;}
   else{pendingTxId=null;editTx=null;pendingMode=mode==='out'?'out':'in';}
+  txLinked=!editTx||!!editTx.cashId;
   if(editTx&&editTx.categoryId&&catById(editTx.categoryId))pendingCategoryId=editTx.categoryId;
   sheet.classList.toggle('out',pendingMode==='out');
   document.getElementById('txTitle').textContent=pendingTxId?'Modifier le mouvement':(pendingMode==='in'?"Ajouter de l'argent":"Retirer de l'argent");
@@ -1386,7 +1472,7 @@ function openTxSheet(mode,txId){
   if(notePh)notePh.placeholder=pendingMode==='out'&&!pendingTxId?'Ex : Achat du scooter':'Ex : Épargne du mois';
   document.getElementById('chips').innerHTML=CHIPS.map(v=>'<button type="button" class="chip" data-val="'+v+'">'+fmt(v)+'</button>').join('');
   const p=getProject(currentProjectId),field=document.getElementById('contribField');
-  if(p&&p.shared&&p.participants.length>0){field.style.display='block';document.getElementById('contribPicker').innerHTML='<button type="button" class="contrib-opt sel" data-cid="">Moi</button>'+p.participants.map(pa=>'<button type="button" class="contrib-opt" data-cid="'+pa.id+'">'+esc(pa.name)+'</button>').join('');}
+  if(p&&p.shared&&p.participants.length>0){field.style.display='block';const selC=pendingContributorId&&p.participants.some(x=>x.id===pendingContributorId)?pendingContributorId:'';pendingContributorId=selC||null;document.getElementById('contribPicker').innerHTML='<button type="button" class="contrib-opt'+(selC===''?' sel':'')+'" data-cid="">Moi</button>'+p.participants.map(pa=>'<button type="button" class="contrib-opt'+(pa.id===selC?' sel':'')+'" data-cid="'+pa.id+'">'+esc(pa.name)+'</button>').join('');}
   else{field.style.display='none';document.getElementById('contribPicker').innerHTML='';}
   const catField=document.getElementById('txCatField');
   if(catField){
@@ -1400,6 +1486,7 @@ function openTxSheet(mode,txId){
       document.getElementById('txCatPicker').innerHTML='';
     }
   }
+  updateTxHint();
   openSheet('txSheet');
 }
 
@@ -1488,17 +1575,6 @@ function startSplash(){
   },holdMs);
 }
 /* ═══════ HACHAGE PIN & MIGRATION ═══════ */
-async function hashPin(p){
-  try{
-    if(window.crypto&&crypto.subtle){
-      const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('tirelire.v2:'+p));
-      return 'sha:'+Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-    }
-  }catch(e){}
-  let h=2166136261>>>0;
-  for(let i=0;i<p.length;i++){h^=p.charCodeAt(i);h=Math.imul(h,16777619)>>>0;}
-  return 'fb:'+h.toString(16);
-}
 async function migratePin(){
   const s=state.settings;
   if(!s.pin||s.pinHashed)return;
@@ -1772,9 +1848,10 @@ function saveTransfer(){
 /* ═══════ v2.0 : EXPORTS ENRICHIS ═══════ */
 function buildExportObject(){
   const copy=JSON.parse(JSON.stringify(state));
-  copy.meta={app:'Tirelire',version:'2.0',exportedAt:new Date().toISOString()};
+  copy.meta={app:'Tirelire',version:'2.2',exportedAt:new Date().toISOString()};
   copy.projects.forEach(p=>p.transactions.forEach(t=>{const cl=catLabelOf(t.categoryId);if(cl)t.categoryLabel=cl;}));
   copy.charges.forEach(c=>{const cl=catLabelOf(c.categoryId);if(cl)c.categoryLabel=cl;});
+  copy.cash.forEach(e=>{const cl=catLabelOf(e.categoryId);if(cl)e.categoryLabel=cl;if(e.source){const sl=sourceById(e.source);if(sl)e.sourceLabel=sl.name;}});
   return copy;
 }
 function exportCSV(){
@@ -1789,6 +1866,12 @@ function exportCSV(){
     else if(t.realization)type=t.categoryId==='reliquat'?'Reliquat libéré':'Réalisation';
     csv+=[q(p.name),p.color||'',isNaN(d)?'':d.toISOString().slice(0,10),type,t.amount,q(t.note||''),q(pa?pa.name:''),q(catLabelOf(t.categoryId)),q(t.transferName||''),p.realized?'Réalisé':'En cours'].join(',')+'\n';
   });});
+  state.cash.filter(e=>e.kind!=='project'||!e.txId).slice().sort((a,b)=>new Date(a.date)-new Date(b.date)).forEach(e=>{
+    const d=new Date(e.date);
+    const type=e.kind==='in'?'Entrée de caisse':(e.kind==='spend'?'Dépense de caisse':(e.kind==='charge'?'Charge payée':'Retour de projet supprimé'));
+    const cat=e.kind==='in'?((sourceById(e.source)||{}).name||''):catLabelOf(e.categoryId);
+    csv+=[q('(Caisse)'),'',isNaN(d)?'':d.toISOString().slice(0,10),type,e.amount,q(e.note||''),q(''),q(cat),q(e.ref||''),''].join(',')+'\n';
+  });
   download('tirelire-'+new Date().toISOString().slice(0,10)+'.csv',csv,'text/csv;charset=utf-8');
 }
 function exportJSON(){
@@ -1802,7 +1885,7 @@ function importJSON(file){
     try{const data=JSON.parse(e.target.result);if(!data||!Array.isArray(data.projects))throw new Error('bad');
       const r=await askModal({title:'Importer les données',msg:'Remplacer toutes les données actuelles par le contenu du fichier ?',okLabel:'Remplacer',okTone:'danger'});
       if(!r||!r.ok)return;
-      state={projects:data.projects.map(normalizeProject),charges:Array.isArray(data.charges)?data.charges.map(normalizeCharge):[],payrolls:Array.isArray(data.payrolls)?data.payrolls:[],settings:Object.assign({theme:'auto',onboardingDone:true,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0},data.settings||{})};
+      state={projects:data.projects.map(normalizeProject),charges:Array.isArray(data.charges)?data.charges.map(normalizeCharge):[],payrolls:Array.isArray(data.payrolls)?data.payrolls:[],cash:Array.isArray(data.cash)?data.cash.map(normalizeCash):[],settings:Object.assign({theme:'auto',onboardingDone:true,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0},data.settings||{})};
       await migratePin();
       save();applyTheme();renderList();closeAllSheets();
       await infoModal('Import réussi',state.projects.length+' projet(s), '+state.charges.length+' charge(s), '+state.payrolls.length+' paie(s).');
@@ -1878,7 +1961,7 @@ function renderHomeStats(){
 function fmtAgo(ts){const days=Math.max(0,Math.floor((Date.now()-ts)/86400000));return days>1?(days+' jours'):'environ un jour';}
 function updateBackupBanner(){
   const el=document.getElementById('backupBanner');if(!el)return;
-  const hasData=state.projects.length>0||state.charges.length>0||state.payrolls.length>0;
+  const hasData=state.projects.length>0||state.charges.length>0||state.payrolls.length>0||state.cash.length>0;
   const last=Number(state.settings.lastExport)||0;
   const stale=!last||Date.now()-last>30*86400000;
   const snoozed=state.settings.backupSnooze&&Date.now()<Number(state.settings.backupSnooze);
@@ -1933,6 +2016,7 @@ function renderTabs(){
   tabs.querySelectorAll('button').forEach(b=>{const on=b.dataset.tab===homeTab;b.classList.toggle('sel',on);b.setAttribute('aria-selected',on?'true':'false');});
   const done=homeTab==='done';
   const pc=document.getElementById('payrollCard');if(pc)pc.style.display=done?'none':'';
+  const cc=document.getElementById('cashCard');if(cc)cc.style.display=done?'none':'';
   if(done){const mc=document.getElementById('monthCard');if(mc)mc.style.display='none';}
   const fab=document.getElementById('fabNew');if(fab)fab.style.display=done?'none':'';
 }
@@ -2048,7 +2132,7 @@ async function saveRealize(){
   const r=await askModal({title:'Réaliser « '+p.name+' » ?',msg:'Montant payé : '+money(amt)+(rest>0?'\nReliquat libéré : '+money(rest):'')+'\n\nLe projet passera dans « Réalisés » en lecture seule.',okLabel:'Réaliser',okTone:'primary'});
   if(!r||!r.ok)return;
   p.transactions.push({id:uid(),amount:-amt,note:note||'Réalisation du projet',date:when,contributorId:null,payrollId:null,categoryId:'realisation',realization:true});
-  if(rest>0)p.transactions.push({id:uid(),amount:-rest,note:'Reliquat libéré',date:when,contributorId:null,payrollId:null,categoryId:'reliquat',realization:true});
+  if(rest>0){const rt={id:uid(),amount:-rest,note:'Reliquat libéré',date:when,contributorId:null,payrollId:null,categoryId:'reliquat',realization:true};p.transactions.push(rt);linkTxToCash(p,rt);}
   p.realized={date:when,spent:amt,released:rest>0?rest:0,note};
   save();closeSheet('realizeSheet');closeDetail();
   burstConfetti(80);buzz([30,40,80]);
@@ -2059,6 +2143,10 @@ async function reopenProject(){
   const back=p.transactions.filter(t=>t.realization).reduce((s,t)=>s-t.amount,0);
   const r=await askModal({title:'Rouvrir le projet',msg:'« '+p.name+' » redeviendra un projet en cours. Le paiement sera annulé et le solde de '+money(back)+' rétabli.',okLabel:'Rouvrir',okTone:'primary'});
   if(!r||!r.ok)return;
+  const linkedCash=p.transactions.filter(t=>t.realization&&t.cashId).map(t=>cashOf(t.cashId)).filter(Boolean);
+  const needBack=linkedCash.reduce((a,e)=>a+e.amount,0);
+  if(cashBalance()-needBack<0){await infoModal('Réouverture impossible','Le reliquat de '+money(needBack)+' retourné dans la caisse a déjà été utilisé.');return;}
+  linkedCash.forEach(e=>removeCash(e.id));
   p.transactions=p.transactions.filter(t=>!t.realization);p.realized=null;
   homeTab='active';save();renderDetail();renderList();showToast('Projet rouvert');
 }
@@ -2092,6 +2180,177 @@ if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){
   });
 }
 
+
+/* ═══════ v2.2 : CAISSE ═══════ */
+const CASH_SOURCES=[
+  {id:'paie',name:'Paie',icon:'briefcase'},{id:'don',name:'Don',icon:'gift'},{id:'prime',name:'Prime',icon:'star'},
+  {id:'vente',name:'Vente',icon:'bag'},{id:'remboursement',name:'Remboursement',icon:'card'},
+  {id:'depart',name:'Solde de départ',icon:'money'},{id:'autre',name:'Autre',icon:'coins'}
+];
+function sourceById(id){return CASH_SOURCES.find(x=>x.id===id)||null;}
+function resolveSource(id,label){
+  if(id&&sourceById(id))return id;
+  if(label){const l=String(label).trim().toLowerCase();const f=CASH_SOURCES.find(x=>x.name.toLowerCase()===l);if(f)return f.id;}
+  return 'autre';
+}
+function dShort(iso){const d=new Date(iso);return isNaN(d)?'':d.toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});}
+function cashBalance(){return state.cash.reduce((a,e)=>a+(Number(e.amount)||0),0);}
+function cashOf(id){return state.cash.find(e=>e.id===id)||null;}
+function addCash(e){const en=Object.assign({id:uid(),kind:'in',amount:0,date:new Date().toISOString(),note:'',source:null,categoryId:null,projectId:null,txId:null,payrollId:null,chargeId:null,ref:'',managed:false},e);state.cash.push(en);return en;}
+function removeCash(id){state.cash=state.cash.filter(e=>e.id!==id);}
+function pendingPaies(){return state.cash.filter(e=>e.kind==='in'&&e.source==='paie'&&!e.managed&&e.amount>0).sort((a,b)=>new Date(b.date)-new Date(a.date));}
+function linkTxToCash(p,t){
+  const e=addCash({kind:'project',amount:-t.amount,date:t.date,note:t.note||'',projectId:p.id,ref:p.name,txId:t.id,payrollId:t.payrollId||null,categoryId:t.categoryId||null});
+  t.cashId=e.id;return e;
+}
+function updateTxHint(){
+  const el=document.getElementById('txCashHint');if(!el)return;
+  if(!txLinked){el.style.display='none';return;}
+  el.style.display='block';
+  if(pendingContributorId){el.textContent="Versement d'un participant : la caisse n'est pas concernée.";return;}
+  el.textContent=pendingMode==='in'?'Caisse disponible : '+money(cashBalance())+' · le montant sera prélevé sur la caisse.':'Le montant retiré retourne dans la caisse.';
+}
+function monthStartMs(){const d=new Date();return new Date(d.getFullYear(),d.getMonth(),1).getTime();}
+function cashMonthStats(){
+  const m=monthStartMs();let inn=0,out=0;
+  state.cash.forEach(e=>{if(new Date(e.date).getTime()<m)return;if(e.kind==='in')inn+=e.amount;else if(e.kind==='spend'||e.kind==='charge')out+=-e.amount;});
+  return {inn,out};
+}
+function renderCashCard(){
+  const v=document.getElementById('cashVal'),sub=document.getElementById('cashSub');if(!v)return;
+  v.textContent=money(cashBalance());
+  const pend=pendingPaies();
+  if(state.cash.length===0)sub.textContent="Ajoutez l'argent que vous recevez";
+  else if(pend.length)sub.textContent=pend.length===1?'1 paie à répartir':pend.length+' paies à répartir';
+  else{const ms=cashMonthStats();sub.textContent=ms.out>0?'Dépensé ce mois : '+money(ms.out):'Argent disponible à répartir';}
+}
+let cashFilter='all',cashLimit=40;
+function openCashScreen(){cashFilter='all';cashLimit=40;renderCashScreen();document.getElementById('cashScreen').classList.add('open');}
+function closeCashScreen(){document.getElementById('cashScreen').classList.remove('open');renderList();}
+function cashEntryView(e){
+  let title,sub,icon;const d=dShort(e.date);
+  if(e.kind==='in'){
+    const s=sourceById(e.source)||sourceById('autre');
+    title=e.note||s.name;icon=s.icon;
+    const st=e.source==='paie'?(e.managed?'répartie · ':'à répartir · '):'';
+    sub=(e.note?s.name+' · ':'')+st+d;
+  }else if(e.kind==='spend'){
+    const c=catById(e.categoryId);title=e.note||(c?c.name:'Dépense');icon=c?c.icon:'coins';
+    sub=(e.note&&c?c.name+' · ':'')+d;
+  }else if(e.kind==='charge'){
+    const ch=state.charges.find(x=>x.id===e.chargeId);title=e.note||'Charge';icon=ch?ch.icon:'card';sub='Charge · '+d;
+  }else{
+    icon='coins';
+    if(e.categoryId==='reliquat'){title='Reliquat de « '+e.ref+' »';}
+    else if(e.txId==null&&e.amount>0){title='Projet supprimé « '+e.ref+' »';}
+    else title=(e.amount<0?'Versé à « ':'Retiré de « ')+e.ref+' »';
+    sub=d+(e.txId&&e.note&&e.categoryId!=='reliquat'?' · '+e.note:'');
+  }
+  return {title,sub,icon};
+}
+function renderCashScreen(){
+  const el=document.getElementById('cashBody');if(!el)return;
+  const bal=cashBalance(),ms=cashMonthStats();
+  let h='<div class="hero cash-hero"><div class="hero-label">Disponible en caisse</div><div class="hero-bal'+(bal<0?' neg':'')+'">'+money(bal)+'</div><div class="hero-sub">Reçu ce mois : '+money(ms.inn)+' · Dépensé : '+money(ms.out)+'</div></div>';
+  h+='<div class="cash-actions"><button type="button" class="btn-primary" id="cashScrIn">+ Encaisser</button><button type="button" class="btn-secondary" id="cashScrOut">− Dépenser</button></div>';
+  if(state.cash.length===0){
+    h+='<div class="empty-tx cash-empty" style="margin-top:18px">Votre caisse est vide.<br>Ajoutez l\'argent réel que vous recevez (paie, don, prime…). C\'est cet argent que vous répartissez ensuite dans vos projets et vos charges.<br><br>Les montants déjà présents dans vos projets restent inchangés.</div>';
+    el.innerHTML=h;return;
+  }
+  h+='<div class="segmented cash-filter" id="cashFilter">'+[['all','Tout'],['in','Entrées'],['out','Sorties']].map(f=>'<button type="button" data-f="'+f[0]+'" class="'+(cashFilter===f[0]?'sel':'')+'">'+f[1]+'</button>').join('')+'</div>';
+  let rows=state.cash.map((e,i)=>({e,i})).sort((a,b)=>(new Date(b.e.date)-new Date(a.e.date))||(b.i-a.i)).map(x=>x.e);
+  if(cashFilter==='in')rows=rows.filter(e=>e.amount>0);else if(cashFilter==='out')rows=rows.filter(e=>e.amount<0);
+  if(!rows.length){h+='<div class="empty-tx">Aucun mouvement.</div>';el.innerHTML=h;return;}
+  const shown=rows.slice(0,cashLimit);
+  h+='<div class="tx-list">'+shown.map(e=>{
+    const v=cashEntryView(e),inn=e.amount>0;
+    return '<div class="tx" data-cid="'+e.id+'"><div class="tx-ico '+(inn?'in':'out')+'">'+iconSvg(v.icon,17)+'</div><div class="tx-info"><div class="tx-note">'+esc(v.title)+'</div><div class="tx-date">'+esc(v.sub)+'</div></div><div class="tx-amt '+(inn?'in':'out')+'">'+(inn?'+':'−')+fmt(Math.abs(e.amount))+'</div></div>';
+  }).join('')+'</div>';
+  if(rows.length>shown.length)h+='<button type="button" class="cash-more" id="cashMore">Afficher plus ('+(rows.length-shown.length)+')</button>';
+  el.innerHTML=h;
+}
+function refreshCash(){renderList();if(document.getElementById('cashScreen').classList.contains('open'))renderCashScreen();}
+let cashMode='in',cashEditId=null,cashSrc='paie',cashCat='autre';
+function renderCashPickers(){
+  document.getElementById('cashSrcPicker').innerHTML=CASH_SOURCES.map(s=>'<button type="button" class="cat-opt'+(s.id===cashSrc?' sel':'')+'" data-src="'+s.id+'">'+iconSvg(s.icon,15)+'<span>'+esc(s.name)+'</span></button>').join('');
+  document.getElementById('cashCatPicker').innerHTML=categoryPicker(CATEGORIES,cashCat);
+  const hint=document.getElementById('cashHint');
+  if(cashMode==='in')hint.textContent=cashSrc==='paie'?'Cette paie pourra ensuite être répartie dans vos charges et projets, une seule fois.':'Cet argent sera disponible dans la caisse.';
+  else hint.textContent='Disponible en caisse : '+money(cashBalance());
+}
+function openCashSheet(mode,preset,editId){
+  cashMode=mode==='out'?'out':'in';cashEditId=editId||null;
+  const e=cashEditId?cashOf(cashEditId):null;
+  cashSrc=e&&e.source?e.source:(preset||'paie');
+  cashCat=e&&e.categoryId&&catById(e.categoryId)?e.categoryId:'autre';
+  document.getElementById('cashTitle').textContent=e?(cashMode==='in'?"Modifier l'entrée":'Modifier la dépense'):(cashMode==='in'?'Encaisser de l\'argent':'Dépenser de la caisse');
+  document.getElementById('cashAmount').value=e?fmt(Math.abs(e.amount)):'';
+  document.getElementById('cashChips').innerHTML=(cashMode==='in'?[25000,50000,100000,150000,200000]:[500,1000,2000,5000,10000]).map(v=>'<button type="button" class="chip" data-val="'+v+'">'+fmt(v)+'</button>').join('');
+  document.getElementById('cashSrcField').style.display=cashMode==='in'?'block':'none';
+  document.getElementById('cashCatField').style.display=cashMode==='out'?'block':'none';
+  const nl=document.getElementById('cashNoteLbl'),ni=document.getElementById('cashNote');
+  nl.textContent=cashMode==='in'?'Note (optionnel)':'Motif (optionnel)';
+  ni.placeholder=cashMode==='in'?'Ex : Paie de novembre':'Ex : Jus';
+  ni.value=e?(e.note||''):'';
+  const dt=e&&!isNaN(new Date(e.date))?new Date(e.date):null;
+  document.getElementById('cashDate').value=dt?(dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0')):todayStr();
+  document.getElementById('cashWarn').innerHTML='';
+  document.getElementById('saveCash').textContent=e?'Enregistrer':(cashMode==='in'?"Ajouter à la caisse":'Retirer de la caisse');
+  renderCashPickers();
+  openSheet('cashSheet');
+  setTimeout(()=>{const i=document.getElementById('cashAmount');if(i)i.focus();},300);
+}
+function cashWarn(msg){document.getElementById('cashWarn').innerHTML='<div class="payroll-warning">'+msg+'</div>';}
+function saveCash(){
+  const amtEl=document.getElementById('cashAmount'),amt=parseAmount(amtEl.value);
+  if(amt<=0){amtEl.focus();return;}
+  const note=document.getElementById('cashNote').value.trim();
+  const dv=new Date(document.getElementById('cashDate').value+'T12:00:00');
+  const when=isNaN(dv)?new Date().toISOString():dv.toISOString();
+  const e=cashEditId?cashOf(cashEditId):null;
+  if(cashMode==='in'){
+    if(e){
+      if(cashBalance()+(amt-e.amount)<0){cashWarn("Impossible : une partie de cet argent a déjà été utilisée. Disponible : "+money(cashBalance())+'.');return;}
+      e.amount=amt;e.source=cashSrc;e.note=note;e.date=when;
+    }else{
+      addCash({kind:'in',amount:amt,source:cashSrc,note,date:when});
+    }
+    showToast(cashSrc==='paie'&&!e?'Paie ajoutée · répartissez-la avec « Gérer la paie »':'+'+money(amt)+' en caisse');
+  }else{
+    if(e){
+      if(cashBalance()+(-amt-e.amount)<0){cashWarn('Caisse insuffisante. Disponible : '+money(cashBalance())+'.');return;}
+      e.amount=-amt;e.categoryId=cashCat;e.note=note;e.date=when;
+    }else{
+      if(amt>cashBalance()){cashWarn('Caisse insuffisante. Disponible : '+money(cashBalance())+'.');return;}
+      addCash({kind:'spend',amount:-amt,categoryId:cashCat,note,date:when});
+    }
+    showToast('−'+money(amt)+' · '+(note||catLabelOf(cashCat)));
+  }
+  save();closeSheet('cashSheet');buzz(15);refreshCash();
+}
+async function onCashRow(id){
+  const e=cashOf(id);if(!e)return;
+  const v=cashEntryView(e),act=(e.amount>0?'+':'−')+fmt(Math.abs(e.amount))+' FCFA · '+dShort(e.date);
+  if(e.kind==='project'){
+    await infoModal(v.title,act+'\n\n'+(e.txId?'Ce mouvement est géré depuis le projet « '+e.ref+' ». Modifiez-le ou supprimez-le depuis le projet.':'Argent revenu dans la caisse à la suppression du projet.'));return;
+  }
+  if(e.kind==='charge'){
+    await infoModal(v.title,act+'\n\nPrélevé lors de la répartition d\'une paie. Pour l\'annuler, supprimez la répartition depuis l\'historique des paies.');return;
+  }
+  if(e.kind==='in'&&e.managed){
+    await infoModal(v.title,act+'\n\nCette paie a déjà été répartie. Pour la modifier, supprimez d\'abord la répartition depuis l\'historique des paies.');return;
+  }
+  const r=await askModal({title:v.title,msg:act,okLabel:'Modifier',okTone:'primary',cancelLabel:'Supprimer',cancelTone:'danger'});
+  if(!r)return;
+  if(r.ok){openCashSheet(e.kind==='in'?'in':'out',null,e.id);return;}
+  if(r.click){
+    const c=await askModal({title:'Supprimer cette ligne ?',msg:act+'\n\nLe solde de la caisse sera recalculé.',okLabel:'Supprimer',okTone:'danger'});
+    if(!c||!c.ok)return;
+    if(e.amount>0&&cashBalance()-e.amount<0){await infoModal('Suppression impossible','Cet argent a déjà été utilisé (dépense ou répartition). Disponible : '+money(cashBalance())+'.');return;}
+    removeCash(e.id);save();refreshCash();showToast('Ligne supprimée');
+  }
+}
+
 /* ═══════ HISTORIQUE DES PAIES (plein écran) ═══════ */
 function closePaies(){document.getElementById('paiesScreen').classList.remove('open');}
 function revertPayroll(pr){
@@ -2108,6 +2367,7 @@ function revertPayroll(pr){
     });
     removed+=before-p.transactions.length;
   });
+  state.cash=state.cash.filter(e=>e.payrollId!==pr.id||e.kind==='in');
   return removed;
 }
 async function deletePayroll(id){
@@ -2117,7 +2377,7 @@ async function deletePayroll(id){
   const r=await askModal({title:'Supprimer la paie',msg:'Paie du '+dateStr+' ('+money(pr.salary)+').\n\n"Supprimer" annule en plus les versements créés dans les projets.',okLabel:'Supprimer avec versements',cancelLabel:'Supprimer sans les versements',okTone:'danger'});
   if(!r)return;
   let removed=0;
-  if(r.ok)removed=revertPayroll(pr);
+  if(r.ok){removed=revertPayroll(pr);const en=pr.cashId?cashOf(pr.cashId):null;if(en){en.managed=false;en.payrollId=null;}}
   state.payrolls=state.payrolls.filter(x=>x.id!==id);
   save();renderPaiesScreen();renderList();
   showToast(removed>0?('Paie supprimée · '+removed+' versement(s) annulé(s)'):'Paie supprimée');
@@ -2180,9 +2440,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('backBtn').addEventListener('click',closeDetail);
   document.getElementById('delBtn').addEventListener('click',async()=>{
     const p=getProject(currentProjectId);if(!p)return;
-    const r=await askModal({title:'Supprimer le projet',msg:'« '+p.name+' » et tout son historique ('+money(balance(p))+' épargnés) seront supprimés définitivement.',okLabel:'Supprimer',okTone:'danger'});
+    const r=await askModal({title:'Supprimer le projet',msg:'« '+p.name+' » et tout son historique ('+money(balance(p))+' épargnés) seront supprimés définitivement.'+(balance(p)>0?'\n\nLes '+money(balance(p))+' reviennent dans la caisse.':''),okLabel:'Supprimer',okTone:'danger'});
     if(!r||!r.ok)return;
-    state.projects=state.projects.filter(x=>x.id!==p.id);save();closeDetail();showToast('Projet supprimé');
+    const backBal=balance(p);
+    if(backBal>0)addCash({kind:'project',amount:backBal,note:'Projet supprimé',ref:p.name});
+    state.projects=state.projects.filter(x=>x.id!==p.id);save();closeDetail();showToast('Projet supprimé'+(backBal>0?' · '+money(backBal)+' dans la caisse':''));
   });
   document.getElementById('editBtn').addEventListener('click',()=>openProjectSheet(true));
   document.getElementById('dBody').addEventListener('click',async e=>{
@@ -2226,6 +2488,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(r.click){
       const c=await askModal({title:'Supprimer le mouvement',msg:desc+'.\n\nCette action est définitive.',okLabel:'Supprimer',okTone:'danger'});
       if(!c||!c.ok)return;
+      if(t.cashId){
+        const ce=cashOf(t.cashId);
+        if(ce&&cashBalance()-ce.amount<0){await infoModal('Suppression impossible',"Cette somme est déjà sortie de la caisse (dépense ou répartition). Supprimez d'abord les sorties concernées.");return;}
+        removeCash(t.cashId);
+      }
       p.transactions=p.transactions.filter(x=>x.id!==t.id);save();renderDetail();showToast('Mouvement supprimé');
     }
   });
@@ -2243,6 +2510,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('installBtn').addEventListener('click',handleInstall);
 
   document.getElementById('payrollCard').addEventListener('click',openPayrollSheet);
+  document.getElementById('payrollEmpty').addEventListener('click',e=>{if(e.target.closest('#payrollGoCash')){closeSheet('payrollSheet');setTimeout(()=>openCashSheet('in','paie'),250);}});
+  document.getElementById('cashCard').addEventListener('click',e=>{const b=e.target.closest('button[data-cashact]');if(b){openCashSheet(b.dataset.cashact==='out'?'out':'in');return;}openCashScreen();});
+  document.getElementById('cashBackBtn').addEventListener('click',closeCashScreen);
+  document.getElementById('cashBody').addEventListener('click',e=>{
+    if(e.target.closest('#cashScrIn')){openCashSheet('in');return;}
+    if(e.target.closest('#cashScrOut')){openCashSheet('out');return;}
+    const f=e.target.closest('#cashFilter button');if(f){cashFilter=f.dataset.f;cashLimit=40;renderCashScreen();return;}
+    if(e.target.closest('#cashMore')){cashLimit+=40;renderCashScreen();return;}
+    const row=e.target.closest('.tx[data-cid]');if(row)onCashRow(row.dataset.cid);
+  });
+  document.getElementById('cashAmount').addEventListener('input',e=>{const el=e.target;const raw=el.value.replace(/[^0-9]/g,'');const v=raw?fmt(Number(raw)):'';if(el.value!==v)el.value=v;document.getElementById('cashWarn').innerHTML='';});
+  document.getElementById('cashChips').addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip)return;document.getElementById('cashAmount').value=fmt(Number(chip.dataset.val));buzz(8);});
+  document.getElementById('cashSrcPicker').addEventListener('click',e=>{const b=e.target.closest('[data-src]');if(!b)return;cashSrc=b.dataset.src;buzz(8);renderCashPickers();});
+  document.getElementById('cashCatPicker').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;cashCat=b.dataset.cat;buzz(8);renderCashPickers();});
+  document.getElementById('saveCash').addEventListener('click',saveCash);
   document.getElementById('chargesBtn').addEventListener('click',()=>openChargesSheet('charges'));
 
   document.getElementById('addChargeBtn').addEventListener('click',()=>openChargeSheet(null));
@@ -2265,7 +2547,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('chargeCancel').addEventListener('click',()=>{document.getElementById('chargeSheet').classList.remove('open');if(!document.querySelector('.sheet.open'))document.getElementById('backdrop').classList.remove('open');});
   document.getElementById('chargeConfirm').addEventListener('click',saveCharge);
   document.getElementById('payrollAmount').addEventListener('input',updatePayrollSummary);
-  document.getElementById('payrollChips').addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip)return;document.getElementById('payrollAmount').value=fmt(Number(chip.dataset.val));buzz(8);updatePayrollSummary();});
+  document.getElementById('payrollChips').addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip||!chip.dataset.eid)return;payrollEntryId=chip.dataset.eid;buzz(8);renderPayrollPicker();updatePayrollSummary();});
   ['txAmount','payrollAmount','pGoal','chargeAmount'].forEach(id=>{
     const el=document.getElementById(id);if(!el)return;
     el.addEventListener('input',()=>{const raw=el.value.replace(/[^0-9]/g,'');const v=raw?fmt(Number(raw)):'';if(el.value!==v)el.value=v;});
@@ -2309,7 +2591,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 
   document.getElementById('chips').addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip)return;document.getElementById('txAmount').value=fmt(Number(chip.dataset.val));buzz(8);});
-  document.getElementById('contribPicker').addEventListener('click',e=>{const opt=e.target.closest('.contrib-opt');if(!opt)return;pendingContributorId=opt.dataset.cid||null;document.querySelectorAll('#contribPicker .contrib-opt').forEach(el=>el.classList.remove('sel'));opt.classList.add('sel');});
+  document.getElementById('contribPicker').addEventListener('click',e=>{const opt=e.target.closest('.contrib-opt');if(!opt)return;pendingContributorId=opt.dataset.cid||null;document.querySelectorAll('#contribPicker .contrib-opt').forEach(el=>el.classList.remove('sel'));opt.classList.add('sel');updateTxHint();});
   document.getElementById('txCatPicker').addEventListener('click',e=>{
     const opt=e.target.closest('.cat-opt');if(!opt)return;
     pendingCategoryId=opt.dataset.cat||null;
@@ -2326,16 +2608,34 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(pendingTxId){
       const t=p.transactions.find(x=>x.id===pendingTxId);
       if(t){
-        t.amount=Math.round(pendingMode==='in'?raw:-raw);
+        const newAmt=Math.round(pendingMode==='in'?raw:-raw);
+        const newContrib=(p.shared&&p.participants.length>0)?pendingContributorId:t.contributorId;
+        const ce0=t.cashId?cashOf(t.cashId):null;
+        if(ce0){
+          const delta=newContrib?-ce0.amount:(-newAmt-ce0.amount);
+          if(cashBalance()+delta<0){await infoModal('Caisse insuffisante','Il manque '+money(-(cashBalance()+delta))+' dans la caisse pour ce montant. Disponible : '+money(cashBalance())+'.');return;}
+        }
+        t.amount=newAmt;
         t.note=note;
         t.date=when;
+        if(p.shared&&p.participants.length>0)t.contributorId=pendingContributorId;
         t.categoryId=pendingMode==='out'?(pendingCategoryId||t.categoryId||WD_CATEGORIES[0].id):null;
+        if(ce0){
+          if(newContrib){removeCash(ce0.id);t.cashId=null;}
+          else{ce0.amount=-t.amount;ce0.date=t.date;ce0.note=t.note;ce0.categoryId=t.categoryId;}
+        }
         save();closeSheet('txSheet');renderDetail();showToast('Mouvement modifié');buzz(20);
       }
       return;
     }
     const amount=Math.round(pendingMode==='in'?raw:-raw);
     const before=balance(p);
+    const viaCash=!pendingContributorId;
+    if(pendingMode==='in'&&viaCash&&raw>cashBalance()){
+      const rc=await askModal({title:'Caisse insuffisante',msg:'Disponible en caisse : '+money(cashBalance())+'.\nIl manque '+money(raw-cashBalance())+'.\n\nAjoutez d\'abord l\'argent reçu à la caisse, puis répartissez-le dans vos projets.',okLabel:'Ajouter à la caisse',okTone:'primary'});
+      if(rc&&rc.ok){closeSheet('txSheet');openCashSheet('in');}
+      return;
+    }
     if(pendingMode==='out'){
       if(!note){
         noteEl.style.borderColor='var(--danger)';noteEl.focus();buzz();
@@ -2349,7 +2649,9 @@ document.addEventListener('DOMContentLoaded',()=>{
       const conf=await askModal({title:after<0?'Retrait supérieur au solde':'Confirmer le retrait',msg:msg,okLabel:after<0?'Retirer quand même':'Retirer',okTone:after<0?'danger':'primary'});
       if(!conf||!conf.ok)return;
     }
-    p.transactions.push({id:uid(),amount,note,contributorId:pendingContributorId,categoryId:pendingMode==='out'?pendingCategoryId:null,date:when});
+    const nt={id:uid(),amount,note,contributorId:pendingContributorId,categoryId:pendingMode==='out'?pendingCategoryId:null,date:when};
+    p.transactions.push(nt);
+    if(viaCash)linkTxToCash(p,nt);
     save();closeSheet('txSheet');renderDetail();buzz(20);
     if(amount>0)celebrateProgress(p,before);
   });
@@ -2423,7 +2725,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!r1||!r1.ok)return;
     const r2=await askModal({title:'Dernière confirmation',msg:'Vraiment sûr ? Tous les projets, charges et paies seront perdus. Astuce : exportez un fichier JSON avant de continuer.',okLabel:'Effacer définitivement',okTone:'danger'});
     if(!r2||!r2.ok)return;
-    state={projects:[],charges:[],payrolls:[],settings:{theme:state.settings.theme,onboardingDone:true,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0}};
+    state={projects:[],charges:[],payrolls:[],cash:[],settings:{theme:state.settings.theme,onboardingDone:true,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0}};
     save();applyTheme();renderList();closeAllSheets();
     showToast('Données effacées');
   });
