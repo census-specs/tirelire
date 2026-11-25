@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.2-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.3-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -41,6 +41,15 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 - 📈 Courbe d'évolution du solde et récapitulatif mensuel
 - 🎉 Célébrations aux paliers **25 %, 50 %, 75 % et 100 %**
 - 👥 **Cagnotte partagée** : plusieurs participants cotisent, avec le total par personne
+
+### 🏷️ Tags (types de projets)
+- 🗂️ Un **tag** classe un projet par type (ex. « Projets personnels », « Famille »), avec son **icône** et sa **couleur**
+- ✨ L'accueil affiche **une carte animée par tag** : nombre de projets, solde cumulé, objectifs atteints, reste à épargner et progression globale
+- 👆 Un clic **déplie** la carte pour gérer chaque projet individuellement ; une carte **« Sans tag »** regroupe les autres
+- 🔀 Bascule **Tags / Liste** pour revenir à la liste à plat (choix mémorisé)
+- ➕ Création **libre** : à la volée depuis la fiche d'un projet, ou dans **Réglages → Mes tags** (renommer, changer l'icône et la couleur, supprimer)
+- ♻️ Un tag existant est proposé pour tous les autres projets, y compris pour ceux déjà créés
+- 🛡️ Supprimer un tag conserve les projets, qui deviennent « sans tag »
 
 ### 🏆 Réaliser un projet
 - 🛒 Bouton **« Réaliser le projet »** : on enregistre le montant payé, la date et une note
@@ -117,7 +126,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 | | |
 |---|---|
 | 📍 **Où ?** | Dans le `localStorage` du navigateur, sur l'appareil — rien n'est envoyé sur Internet |
-| 📤 **Exporter** | **JSON** (sauvegarde complète : projets, charges, paies, caisse, catégories, transferts) et **CSV** (mouvements, lisible dans Excel) |
+| 📤 **Exporter** | **JSON** (sauvegarde complète : projets, tags, charges, paies, caisse, catégories, transferts) et **CSV** (mouvements, lisible dans Excel) |
 | 📥 **Importer** | JSON, y compris les **anciens fichiers** des versions précédentes |
 | 🗑️ **Effacer** | Réglages → *Tout effacer* (double confirmation) |
 
@@ -143,6 +152,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 - [x] 📴 Service worker et installation hors ligne
 - [x] 🔁 Vrais transferts entre projets
 - [x] 🗃️ Catégories dans les exports JSON et CSV
+- [x] 🏷️ Tags : regroupement par type sur l'accueil, gestion dans les réglages
 - [x] 💰 Caisse : entrées par source, dépenses libres, paie liée à la caisse
 - [ ] 📊 Statistiques globales (dépenses par catégorie, tendance mensuelle)
 - [ ] ✅ Suivi par période pour les défis (case cochée à chaque semaine ou jour payé)
@@ -157,6 +167,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 
 | Version | Nouveautés |
 |---|---|
+| **2.3** | 🏷️ Tags avec icône et couleur · cartes animées dépliables sur l'accueil · bascule Tags/Liste · tags dans les exports JSON/CSV |
 | **2.2** | 💰 Caisse (entrées par source, dépenses libres, historique) · 🔒 Paie utilisable une seule fois, versements limités à la caisse · 📤 Caisse dans les exports JSON/CSV |
 | **2.1** | 🐞 Icône « école » ajoutée · le participant d'un mouvement s'affiche et se modifie à l'édition · doublon de code supprimé |
 | **2.0** | 🔁 Transferts entre projets · 🗃️ Catégories et transferts dans le JSON/CSV · 📥 Import rétrocompatible des anciens fichiers |
