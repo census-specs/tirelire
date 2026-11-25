@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.3-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.5-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -72,6 +72,10 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 ### 🏁 Défis d'épargne
 - 📅 52 semaines, 30 jours, 12 mois, 26 semaines, 100 jours, 90 jours — ou un défi **personnalisé**
 - ➕ Montant fixe ou progressif, avec objectif du moment et progression
+- ✅ **Suivi par période** : une case à cocher par semaine, jour ou mois (ex. 1 000 F par semaine)
+- 🏦 Cocher **prélève le montant dans la caisse** et l'ajoute au projet ; refusé si la caisse est insuffisante
+- ↩️ Décocher annule le versement et rend l'argent à la caisse ; supprimer le mouvement décoche la case
+- ⏰ Chaque période est marquée *Payé*, *À payer*, *En retard* ou *À venir*
 
 ### 🗃️ Catégories de dépenses
 - 🧩 Les retraits sont classés par **catégorie** (utilisation, urgence, santé, transport, éducation…)
@@ -155,7 +159,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 - [x] 🏷️ Tags : regroupement par type sur l'accueil, gestion dans les réglages
 - [x] 💰 Caisse : entrées par source, dépenses libres, paie liée à la caisse
 - [ ] 📊 Statistiques globales (dépenses par catégorie, tendance mensuelle)
-- [ ] ✅ Suivi par période pour les défis (case cochée à chaque semaine ou jour payé)
+- [x] ✅ Suivi par période pour les défis (case cochée à chaque semaine ou jour payé)
 - [ ] 🔎 Recherche et filtres dans l'historique
 - [ ] ☁️ Sauvegarde et synchronisation Google Drive
 - [ ] 💡 Budget mensuel par catégorie, avec alerte de dépassement
@@ -167,6 +171,8 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 
 | Version | Nouveautés |
 |---|---|
+| **2.5** | ✅ Suivi des défis : cases à cocher par période, versement prélevé sur la caisse, retards signalés |
+| **2.4** | 🐞 Correctif : un projet aux données invalides (défi corrompu, date illisible) ne fait plus planter l'app · données assainies au chargement et à l'import |
 | **2.3** | 🏷️ Tags avec icône et couleur · cartes animées dépliables sur l'accueil · bascule Tags/Liste · tags dans les exports JSON/CSV |
 | **2.2** | 💰 Caisse (entrées par source, dépenses libres, historique) · 🔒 Paie utilisable une seule fois, versements limités à la caisse · 📤 Caisse dans les exports JSON/CSV |
 | **2.1** | 🐞 Icône « école » ajoutée · le participant d'un mouvement s'affiche et se modifie à l'édition · doublon de code supprimé |

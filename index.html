@@ -497,6 +497,23 @@ input,select{font-family:inherit;}
 .badge-mini{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:99px;background:var(--mint-100);color:var(--forest-700);margin-left:6px;vertical-align:middle;}
 .chip.sel{background:var(--forest-500);color:#fff;border-color:transparent;}
 
+/* ═══════ v2.5 : SUIVI DES DÉFIS ═══════ */
+.ch-track{margin-top:14px;padding-top:12px;border-top:1px dashed rgba(100,116,139,.3);}
+.ch-head{font-size:12.5px;font-weight:700;margin-bottom:6px;}
+.ch-sum{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;margin-bottom:8px;flex-wrap:wrap;}
+.ch-late{font-weight:700;color:#C2410C;}
+.ch-list{display:flex;flex-direction:column;gap:6px;max-height:340px;overflow-y:auto;}
+.ch-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card,rgba(255,255,255,.6));border:1px solid rgba(100,116,139,.18);border-radius:12px;padding:10px 12px;font:inherit;color:inherit;cursor:pointer;min-height:48px;-webkit-tap-highlight-color:transparent;transition:transform .12s;}
+.ch-row:active{transform:scale(.985);}
+.ch-row.paid{opacity:.8;}
+.ch-row.late{border-color:rgba(194,65,12,.45);}
+.ch-box{width:24px;height:24px;border-radius:8px;border:2px solid;display:flex;align-items:center;justify-content:center;flex:none;}
+.ch-lab{display:flex;flex-direction:column;flex:1;min-width:0;}
+.ch-lab b{font-size:13.5px;font-weight:700;}
+.ch-lab small{font-size:11.5px;opacity:.7;}
+.ch-amt{font-size:13px;font-weight:700;white-space:nowrap;}
+.ch-st{font-size:11.5px;font-weight:700;min-width:56px;text-align:right;}
+.ch-more{background:none;border:0;font:inherit;font-size:13px;font-weight:700;padding:10px 0 2px;cursor:pointer;width:100%;}
 /* ═══════ v2.3 : TAGS ═══════ */
 .view-toggle{display:flex;background:var(--mint-100);border-radius:11px;padding:3px;gap:2px;}
 .view-toggle button{padding:5px 12px;border-radius:9px;font-size:12px;font-weight:700;color:var(--muted);transition:background .18s,color .18s;}
@@ -1035,9 +1052,10 @@ function migrateChallenge(ch,createdAt){
     if(ch.type==='52w')return {mode:'increment',unit:'week',total:52,base:ch.base||1000,increment:ch.base||1000,name:null,startDate:ch.startDate||createdAt||new Date().toISOString()};
     if(ch.type==='30d')return {mode:'fixed',unit:'day',total:30,base:ch.base||1000,increment:0,name:null,startDate:ch.startDate||createdAt||new Date().toISOString()};
   }
-  return {mode:ch.mode||'fixed',unit:ch.unit||'week',total:Math.max(1,Number(ch.total)||1),base:Math.max(1,Number(ch.base)||1000),increment:Math.max(0,Number(ch.increment)||0),name:ch.name||null,startDate:ch.startDate||createdAt||new Date().toISOString()};
+  return {mode:ch.mode||'fixed',unit:ch.unit||'week',total:Math.min(365,Math.max(1,Math.floor(Number(ch.total))||1)),base:Math.max(1,Number(ch.base)||1000),increment:Math.max(0,Number(ch.increment)||0),name:ch.name||null,startDate:ch.startDate||createdAt||new Date().toISOString()};
 }
-function computeChallengeAmounts(ch){const t=Math.max(1,Number(ch.total)||1);const b=Math.max(1,Number(ch.base)||1000);const i=Math.max(0,Number(ch.increment)||0);const a=[];for(let k=0;k<t;k++)a.push(ch.mode==='increment'?b+k*i:b);return a;}
+function computeChallengeAmounts(ch){const t=Math.min(365,Math.max(1,Math.floor(Number(ch.total))||1));const b=Math.max(1,Number(ch.base)||1000);const i=Math.max(0,Number(ch.increment)||0);const a=[];for(let k=0;k<t;k++)a.push(ch.mode==='increment'?b+k*i:b);return a;}
+function challengePaid(p){const m={};(p.transactions||[]).forEach(t=>{if(t.challengeIdx!=null&&t.amount>0&&!t.realization)m[t.challengeIdx]=t.id;});return m;}
 function challengeInfo(p){
   if(!p.challenge)return null;
   const ch=p.challenge;
@@ -1049,9 +1067,11 @@ function challengeInfo(p){
   const amounts=computeChallengeAmounts(ch);
   let targetByNow=0;
   for(let k=0;k<done;k++)targetByNow+=amounts[k];
-  return {name:ch.name||null,unit:ch.unit,mode:ch.mode,totalUnit:ch.total,doneUnit:done,targetByNow,totalTarget:amounts.reduce((a,b)=>a+b,0),base:ch.base,increment:ch.increment||0};
+  const paid=challengePaid(p);let paidCount=0,paidSum=0,late=0;for(let k=0;k<ch.total;k++){if(paid[k]){paidCount++;paidSum+=amounts[k];}else if(k<done-1)late++;}
+  return {amounts,paid,paidCount,paidSum,late,start:start.getTime(),unitMs,name:ch.name||null,unit:ch.unit,mode:ch.mode,totalUnit:ch.total,doneUnit:done,targetByNow,totalTarget:amounts.reduce((a,b)=>a+b,0),base:ch.base,increment:ch.increment||0};
 }
-function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:t.date||new Date().toISOString(),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||'',cashId:t.cashId||null})):[],realized:normalizeRealized(p.realized),tagId:p.tagId||null,_tagLabel:p.tagLabel||'',created:p.created||Date.now()};}
+function safeIso(v){const d=new Date(v);return(v&&!isNaN(d.getTime())&&Math.abs(d.getTime())<8.64e15)?d.toISOString():new Date().toISOString();}
+function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:safeIso(t.date),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||'',cashId:t.cashId||null,challengeIdx:(t.challengeIdx==null||isNaN(Number(t.challengeIdx)))?null:Math.floor(Number(t.challengeIdx))})):[],realized:normalizeRealized(p.realized),tagId:p.tagId||null,_tagLabel:p.tagLabel||'',created:p.created||Date.now()};}
 function normalizeCharge(c){return {id:c.id||uid(),name:c.name||'Charge',amount:Number(c.amount)||0,icon:c.icon||'card',categoryId:resolveCat(c.categoryId,c.categoryLabel),created:c.created||Date.now()};}
 const CASH_KINDS=['in','spend','project','charge'];
 function normalizeCash(e){
@@ -1119,7 +1139,7 @@ function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
 function parseAmount(v){const n=Number(String(v==null?'':v).replace(/[^0-9]/g,''));return isFinite(n)?n:0;}
 function todayStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 
-function balanceHistory(p){const sorted=p.transactions.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));let bal=0;const pts=[{date:p.created,bal:0}];sorted.forEach(t=>{bal+=t.amount;pts.push({date:new Date(t.date).toISOString(),bal});});return pts;}
+function balanceHistory(p){const sorted=p.transactions.filter(t=>!isNaN(new Date(t.date).getTime())).sort((a,b)=>new Date(a.date)-new Date(b.date));let bal=0;const pts=[{date:p.created,bal:0}];sorted.forEach(t=>{bal+=t.amount;pts.push({date:new Date(t.date).toISOString(),bal});});return pts;}
 function chartSvg(p){
   const pts=balanceHistory(p);
   if(pts.length<2)return '<div class="stats-empty">Pas encore de données à afficher.</div>';
@@ -1238,7 +1258,7 @@ function renderDetail(){
     let foot;
     if(ch.mode==='increment'&&ch.totalUnit>1)foot='Progressif · '+fmt(ch.base)+' → '+fmt(ch.base+(ch.totalUnit-1)*ch.increment)+' FCFA/'+singularUnit(ch.unit)+' · total '+money(ch.totalTarget);
     else foot=(ch.mode==='increment'?'Progressif':'Fixe')+' · '+fmt(ch.base)+' FCFA/'+singularUnit(ch.unit)+' · total '+money(ch.totalTarget);
-    challengeHtml='<div class="challenge-card" style="background:'+bg+';border-color:'+border+'"><div class="challenge-title" style="color:'+ink+'"><span>'+label+'</span><span style="background:'+hexAlpha(color,0.15)+';color:'+ink+'">'+ch.doneUnit+'/'+ch.totalUnit+'</span></div><div class="challenge-info" style="color:'+ink+'"><span>Objectif actuel</span><strong>'+money(ch.targetByNow)+'</strong></div><div class="bar" style="background:'+hexAlpha(color,0.15)+'"><i style="width:'+chPct.toFixed(1)+'%;background:linear-gradient(90deg,'+color+','+adjustColor(color,25)+')"></i></div><div class="challenge-foot" style="color:'+ink+'">'+foot+' ('+chTotPct.toFixed(0)+'%)</div></div>';
+    challengeHtml='<div class="challenge-card" style="background:'+bg+';border-color:'+border+'"><div class="challenge-title" style="color:'+ink+'"><span>'+label+'</span><span style="background:'+hexAlpha(color,0.15)+';color:'+ink+'">'+ch.doneUnit+'/'+ch.totalUnit+'</span></div><div class="challenge-info" style="color:'+ink+'"><span>Objectif actuel</span><strong>'+money(ch.targetByNow)+'</strong></div><div class="bar" style="background:'+hexAlpha(color,0.15)+'"><i style="width:'+chPct.toFixed(1)+'%;background:linear-gradient(90deg,'+color+','+adjustColor(color,25)+')"></i></div><div class="challenge-foot" style="color:'+ink+'">'+foot+' ('+chTotPct.toFixed(0)+'%)</div>'+challengeChecklistHtml(p,ch,ink,color,dark)+'</div>';
   }
   let partHtml='';
   if(p.shared){
@@ -1274,6 +1294,10 @@ function renderDetail(){
     +'<div class="tx-section-title">Historique</div>'+txHtml;
   const addPart=document.getElementById('addPartBtn');
   if(addPart)addPart.addEventListener('click',addParticipant);
+  const chl=document.getElementById('chList');
+  if(chl)chl.addEventListener('click',e=>{const r=e.target.closest('.ch-row');if(r)toggleChallengePeriod(Number(r.dataset.k));});
+  const chm=document.getElementById('chMoreBtn');
+  if(chm)chm.addEventListener('click',()=>{chShowAll=!chShowAll;renderDetail();});
 }
 async function addParticipant(){
   const p=getProject(currentProjectId);if(!p)return;
@@ -1282,7 +1306,7 @@ async function addParticipant(){
   p.participants.push({id:uid(),name:r.input.trim()});save();renderDetail();showToast('Participant ajouté');
 }
 let lastListScroll=0;
-function openDetail(id){currentProjectId=id;renderDetail();lastListScroll=window.scrollY||window.pageYOffset||0;document.getElementById('detailScreen').classList.add('open');document.getElementById('detailScreen').scrollTop=0;}
+function openDetail(id){currentProjectId=id;try{renderDetail();}catch(err){console.error(err);try{document.getElementById('dBody').innerHTML='<div class="stats-empty">Ce projet contient des données invalides et ne peut pas s\'afficher complètement. Exportez vos données puis contactez le support.</div>';}catch(e2){}}lastListScroll=window.scrollY||window.pageYOffset||0;document.getElementById('detailScreen').classList.add('open');document.getElementById('detailScreen').scrollTop=0;}
 function closeDetail(){document.getElementById('detailScreen').classList.remove('open');currentProjectId=null;renderList();requestAnimationFrame(()=>{window.scrollTo(0,lastListScroll||0);});}
 
 function openSheet(id){const b=document.getElementById('backdrop'),s=document.getElementById(id);if(b)b.classList.add('open');if(s)s.classList.add('open');}
@@ -1914,7 +1938,7 @@ function saveTransfer(){
 /* ═══════ v2.0 : EXPORTS ENRICHIS ═══════ */
 function buildExportObject(){
   const copy=JSON.parse(JSON.stringify(state));
-  copy.meta={app:'Tirelire',version:'2.3',exportedAt:new Date().toISOString()};
+  copy.meta={app:'Tirelire',version:'2.5',exportedAt:new Date().toISOString()};
   copy.projects.forEach(p=>p.transactions.forEach(t=>{const cl=catLabelOf(t.categoryId);if(cl)t.categoryLabel=cl;}));
   copy.charges.forEach(c=>{const cl=catLabelOf(c.categoryId);if(cl)c.categoryLabel=cl;});
   copy.projects.forEach(p=>{const tg=tagById(p.tagId);if(tg)p.tagLabel=tg.name;});
@@ -2423,6 +2447,51 @@ async function onCashRow(id){
 
 /* ═══════ v2.3 : TAGS ═══════ */
 const TAG_ICONS=['tag','folder','home','users','heart','star','graduation','briefcase','car','plane','suitcase','gift','shield','leaf','sun','trophy','target','laptop','phone','book','baby','piggy','bank','wallet','globe','tent','music','camera','flag','coins'];
+
+/* ═══════ v2.5 : SUIVI DES DÉFIS ═══════ */
+let chShowAll=false;
+function challengeChecklistHtml(p,ch,ink,color,dark){
+  const cur=Math.min(ch.totalUnit,ch.doneUnit)-1;
+  const unitS=singularUnit(ch.unit);
+  const uc=unitS.charAt(0).toUpperCase()+unitS.slice(1);
+  let rows='';let shown=0;
+  const from=chShowAll?0:Math.max(0,cur-2),to=chShowAll?ch.totalUnit:Math.min(ch.totalUnit,Math.max(cur+4,from+6));
+  for(let k=from;k<to;k++){
+    const paid=!!ch.paid[k],late=!paid&&k<cur,now=k===cur,fut=k>cur;
+    const d=new Date(ch.start+k*ch.unitMs);
+    const st=paid?'Payé':(late?'En retard':(now?'À payer':'À venir'));
+    const col=paid?color:(late?'#C2410C':(now?ink:'var(--muted)'));
+    rows+='<button type="button" class="ch-row'+(paid?' paid':'')+(late?' late':'')+'" data-k="'+k+'" role="checkbox" aria-checked="'+(paid?'true':'false')+'"><span class="ch-box" style="'+(paid?'background:'+color+';border-color:'+color:'border-color:'+hexAlpha(color,0.5))+'">'+(paid?'<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>':'')+'</span><span class="ch-lab"><b>'+uc+' '+(k+1)+'</b><small>'+dShort(d.toISOString())+'</small></span><span class="ch-amt">'+money(ch.amounts[k])+'</span><span class="ch-st" style="color:'+col+'">'+st+'</span></button>';
+    shown++;
+  }
+  const more=ch.totalUnit>shown?'<button type="button" class="ch-more" id="chMoreBtn" style="color:'+ink+'">'+(chShowAll?'Réduire la liste':'Voir les '+ch.totalUnit+' '+pluralUnit(ch.unit))+'</button>':'';
+  const sum='<div class="ch-sum" style="color:'+ink+'"><span>Payé : <strong>'+ch.paidCount+'/'+ch.totalUnit+'</strong> · '+money(ch.paidSum)+'</span>'+(ch.late>0?'<span class="ch-late">'+ch.late+' en retard</span>':'')+'</div>';
+  return '<div class="ch-track"><div class="ch-head" style="color:'+ink+'">Suivi · cochez à chaque '+unitS+' payé</div>'+sum+'<div class="ch-list" id="chList">'+rows+'</div>'+more+'</div>';
+}
+async function toggleChallengePeriod(k){
+  const p=getProject(currentProjectId);if(!p||p.realized)return;
+  const ch=challengeInfo(p);if(!ch||k<0||k>=ch.totalUnit)return;
+  const unitS=singularUnit(ch.unit),label=unitS.charAt(0).toUpperCase()+unitS.slice(1)+' '+(k+1);
+  const existing=ch.paid[k]?p.transactions.find(t=>t.id===ch.paid[k]):null;
+  if(existing){
+    const r=await askModal({title:'Décocher '+label.toLowerCase(),msg:money(existing.amount)+' seront retirés du projet et retournés dans la caisse.',okLabel:'Décocher',okTone:'danger'});
+    if(!r||!r.ok)return;
+    if(existing.cashId){
+      const ce=cashOf(existing.cashId);
+      if(ce&&cashBalance()-ce.amount<0){await infoModal('Annulation impossible',"Cette somme est déjà sortie de la caisse (dépense ou répartition). Supprimez d'abord les sorties concernées.");return;}
+      removeCash(existing.cashId);
+    }
+    p.transactions=p.transactions.filter(t=>t.id!==existing.id);
+    save();renderDetail();showToast(label+' décochée');return;
+  }
+  const amt=ch.amounts[k],bal=cashBalance();
+  if(amt>bal){await infoModal('Caisse insuffisante','Il faut '+money(amt)+' pour cocher '+label.toLowerCase()+', mais la caisse ne contient que '+money(bal)+'.\n\nEncaissez d\'abord de l\'argent dans la caisse.');return;}
+  const before=balance(p);
+  const t={id:uid(),amount:amt,note:'Défi · '+label,date:new Date().toISOString(),contributorId:null,payrollId:null,categoryId:null,realization:false,transferId:null,transferName:'',cashId:null,challengeIdx:k};
+  p.transactions.push(t);linkTxToCash(p,t);
+  save();renderDetail();buzz(12);showToast(label+' payée · '+money(amt));
+  celebrateProgress(p,before);
+}
 let tagAnimate=true,tagOpenInit=false;
 const openTags=new Set();
 let projectTagId=null,editingTagId=null,tagIcon='tag',tagColor=PROJECT_COLORS[0],tagFromProject=false;
