@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.7-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.8-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -101,6 +101,14 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 ### Option 1 — Utiliser le fichier seul
 Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf l'installation et le mode hors ligne (qui exigent HTTPS).
 
+### Option 3 — Générer l'APK Android 🤖
+Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacitor](https://capacitorjs.com) autour de l'app).
+1. 📤 Poussez le dépôt avec les dossiers `.github/workflows/` et `android-app/`
+2. ▶️ Onglet **Actions → Construire l'APK Android → Run workflow** (ou poussez une étiquette `v2.8`, l'APK est alors joint à la *release*)
+3. 📥 Téléchargez **Tirelire-apk** en bas de l'exécution, dézippez, puis installez `Tirelire.apk` (autorisez les sources inconnues)
+
+> ⚠️ L'APK est signé avec la clé de débogage : il convient à un usage personnel. Ses données sont **séparées** de celles de la version web : exportez un JSON depuis l'une, importez-le dans l'autre. Le déverrouillage biométrique peut ne pas être disponible dans l'APK ; le code PIN fonctionne.
+
 ### Option 2 — Héberger sur GitHub Pages *(recommandé)*
 1. 📤 Déposez à la racine du dépôt : `index.html`, `sw.js`, `manifest.webmanifest`, `icon.svg`, `icon-180.png`, `icon-192.png`, `icon-512.png`
 2. ⚙️ Dans **Settings → Pages**, choisissez la branche principale et le dossier `/ (root)`
@@ -122,6 +130,8 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 ├── 🖼️ icon-180.png            → icône iOS
 ├── 🖼️ icon-192.png            → icône Android
 ├── 🖼️ icon-512.png            → icône haute résolution
+├── 🤖 .github/workflows/build-apk.yml → construit l'APK Android (GitHub Actions)
+├── 📱 android-app/            → configuration Capacitor de l'APK
 └── 📘 README.md               → ce fichier
 ```
 
@@ -163,6 +173,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 - [ ] 📊 Statistiques globales (dépenses par catégorie, tendance mensuelle)
 - [x] ✅ Suivi par période pour les défis (case cochée à chaque semaine ou jour payé)
 - [ ] 🔎 Recherche et filtres dans l'historique
+- [x] 🤖 APK Android via GitHub Actions
 - [ ] ☁️ Sauvegarde et synchronisation Google Drive
 - [ ] 💡 Budget mensuel par catégorie, avec alerte de dépassement
 - [x] 🐞 Corrections mineures : icône « école », participant modifiable à l'édition d'un mouvement, nettoyage du code PIN
@@ -173,6 +184,7 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 
 | Version | Nouveautés |
 |---|---|
+| **2.8** | 🐞 L'appui long ne sélectionne plus le texte · 🛡️ Demande au navigateur de protéger les données contre l'effacement automatique · 🤖 Workflow GitHub Actions pour générer l'APK Android |
 | **2.7** | 👆 Appui long sur un projet : aperçu + ajout rapide depuis la caisse · appui long sur un tag : détails, liste des projets, modification |
 | **2.6** | 🐞 Correctif : un mouvement daté avant la création du projet ne fait plus planter la courbe d'évolution |
 | **2.5** | ✅ Suivi des défis : cases à cocher par période, versement prélevé sur la caisse, retards signalés |
