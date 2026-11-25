@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.5-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.7-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -41,6 +41,7 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 - 📈 Courbe d'évolution du solde et récapitulatif mensuel
 - 🎉 Célébrations aux paliers **25 %, 50 %, 75 % et 100 %**
 - 👥 **Cagnotte partagée** : plusieurs participants cotisent, avec le total par personne
+- 👆 **Appui long sur un projet** : aperçu rapide (solde, progression, échéance, défi), **ajout d'argent depuis la caisse** sans ouvrir le projet, accès direct à *Ouvrir* et *Modifier*
 
 ### 🏷️ Tags (types de projets)
 - 🗂️ Un **tag** classe un projet par type (ex. « Projets personnels », « Famille »), avec son **icône** et sa **couleur**
@@ -50,6 +51,7 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 - ➕ Création **libre** : à la volée depuis la fiche d'un projet, ou dans **Réglages → Mes tags** (renommer, changer l'icône et la couleur, supprimer)
 - ♻️ Un tag existant est proposé pour tous les autres projets, y compris pour ceux déjà créés
 - 🛡️ Supprimer un tag conserve les projets, qui deviennent « sans tag »
+- 👆 **Appui long sur un tag** : détails (solde cumulé, objectifs, reste), liste de ses projets et bouton *Modifier le tag*
 
 ### 🏆 Réaliser un projet
 - 🛒 Bouton **« Réaliser le projet »** : on enregistre le montant payé, la date et une note
@@ -171,6 +173,8 @@ Ouvrez simplement `index.html` dans un navigateur mobile. Tout fonctionne, sauf 
 
 | Version | Nouveautés |
 |---|---|
+| **2.7** | 👆 Appui long sur un projet : aperçu + ajout rapide depuis la caisse · appui long sur un tag : détails, liste des projets, modification |
+| **2.6** | 🐞 Correctif : un mouvement daté avant la création du projet ne fait plus planter la courbe d'évolution |
 | **2.5** | ✅ Suivi des défis : cases à cocher par période, versement prélevé sur la caisse, retards signalés |
 | **2.4** | 🐞 Correctif : un projet aux données invalides (défi corrompu, date illisible) ne fait plus planter l'app · données assainies au chargement et à l'import |
 | **2.3** | 🏷️ Tags avec icône et couleur · cartes animées dépliables sur l'accueil · bascule Tags/Liste · tags dans les exports JSON/CSV |
