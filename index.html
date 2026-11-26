@@ -514,6 +514,116 @@ input,select{font-family:inherit;}
 .ch-amt{font-size:13px;font-weight:700;white-space:nowrap;}
 .ch-st{font-size:11.5px;font-weight:700;min-width:56px;text-align:right;}
 .ch-more{background:none;border:0;font:inherit;font-size:13px;font-weight:700;padding:10px 0 2px;cursor:pointer;width:100%;}
+/* ═══════ v3.2 : ÉCRAN D'ACCUEIL (HUB) ═══════ */
+.hub,.hub-back{display:none;}
+body.view-home .hub{display:flex;flex-direction:column;min-height:calc(100dvh - 86px);padding:12px 16px calc(14px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto;}
+body.view-home main.content,body.view-home .fab{display:none!important;}
+body.view-home .app-header{padding-bottom:16px;}
+body.view-home .app-header .total-label,body.view-home .app-header .total,body.view-home .app-header .header-progress{display:none!important;}
+body.view-home .app-header #paiesBtn,body.view-home .app-header #chargesBtn,body.view-projects .app-header #paiesBtn,body.view-projects .app-header #chargesBtn{display:none;}
+body.view-projects .hub-back{display:flex;align-items:center;justify-content:center;margin-right:10px;}
+body.view-projects .app-header .brand-logo{display:none;}
+.hub .wg{margin:0 -16px 6px;}
+.hub .wg-card{height:236px;min-height:0;padding:15px 16px;flex-basis:86%;}
+.hub .wg-dots{margin-top:-6px;}
+.hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.hub-btn{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:6px;text-align:left;background:var(--card);border:1px solid rgba(14,42,28,.06);border-radius:20px;padding:11px 11px 10px;min-height:88px;box-shadow:0 1px 2px rgba(14,42,28,.04),0 8px 18px -14px rgba(14,42,28,.5);position:relative;transition:transform .15s,box-shadow .2s;opacity:0;animation:hubIn .55s cubic-bezier(.2,.8,.2,1) forwards;-webkit-tap-highlight-color:transparent;}
+.hub-btn:active{transform:scale(.95);}
+.hub-ic{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;}
+.hub-lbl{font-size:13px;font-weight:750;line-height:1.1;color:var(--text);}
+.hub-sub{font-size:10.5px;color:var(--muted);font-weight:600;margin-top:2px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+.hub-dot{position:absolute;top:10px;right:10px;width:9px;height:9px;border-radius:50%;background:#F59E0B;box-shadow:0 0 0 3px rgba(245,158,11,.25);}
+@keyframes hubIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+.hub-foot{margin:auto auto 0;padding:14px 10px 2px;background:none;font-size:12px;font-weight:650;color:var(--muted);letter-spacing:.2px;}
+.hub-foot span{color:var(--forest-500);}
+.wg-cell{padding:7px 10px;}
+.hub .wg-cells{margin-top:10px;gap:6px;}
+.hub .wg-ring,.hub .wg-ring svg{width:74px;height:74px;}
+.hub .wg-ring b{font-size:17px;}
+.hub .wg-big{font-size:25px;}
+.hub .wg-bars{height:92px;gap:8px;margin:20px 0 22px;}
+.wg-bars u{position:absolute;top:-15px;left:-6px;right:-6px;text-align:center;text-decoration:none;font-size:9.5px;font-weight:700;opacity:.92;}
+.wg-evo{background:linear-gradient(145deg,#052E2B 0%,#0F766E 60%,#2DD4BF 100%);}
+.wg-cash{background:linear-gradient(145deg,#422006 0%,#92400E 55%,#D97706 100%);}
+.wg-addrow{display:flex;gap:8px;margin-top:8px;}
+.wg-addrow .wg-in{margin-top:0;flex:1;min-width:0;padding:9px 12px;font-size:19px;}
+.wg-addrow .wg-go{margin-top:0;height:auto;padding:0 16px;font-size:14.5px;}
+.hub .wg-sel{margin-top:8px;padding:9px 12px;}
+.hub .wg-chips{margin-top:8px;}
+.hub .wg-chips button{padding:7px 0;font-size:12.5px;}
+.hub .wg-hint{margin-top:6px;}
+.hub .wg-item{padding:8px 11px;}
+.hub .wg-list{margin-top:10px;}
+.wg-cashbtn{margin-top:auto;display:flex;gap:8px;}
+.wg-cashbtn button{flex:1;padding:12px 0;border-radius:14px;font-weight:800;font-size:14px;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);}
+.wg-cashbtn button:active{transform:scale(.96);}
+@media (max-height:760px){body.view-home .app-header{padding-top:calc(env(safe-area-inset-top) + 12px);padding-bottom:12px;}body.view-home .hub{padding-top:8px;min-height:calc(100dvh - 70px);}.hub .wg-card{height:214px;padding:12px 14px;}.hub .wg-ring,.hub .wg-ring svg{width:58px;height:58px;}.hub .wg-ring b{font-size:14px;}.hub .wg-big{font-size:21px;}.hub .wg-top{margin-top:6px;gap:12px;}.wg-cell{padding:5px 9px;}.wg-cell b{font-size:13px;}.hub .wg-cells{margin-top:8px;gap:5px;}.hub .wg-bars{height:70px;margin:18px 0 20px;}.hub-grid{gap:8px;margin-top:4px;}.hub-btn{min-height:70px;padding:8px 10px;border-radius:17px;}.hub-ic{width:30px;height:30px;border-radius:10px;}.hub-ic svg{width:18px;height:18px;}.hub-lbl{font-size:12.5px;}.hub-foot{padding-top:8px;}.hub .wg-sel{padding:7px 12px;margin-top:6px;}.hub .wg-addrow{margin-top:6px;}.hub .wg-chips{margin-top:6px;}.wg-qmark{height:18px;font-size:44px;}.wg-q{font-size:17px;}}
+@media (max-height:670px){.hub .wg-card{height:204px;}.hub-btn{min-height:64px;padding:7px 10px;}.hub-grid{gap:7px;}.hub-foot{padding-top:4px;}.hub .wg-dots{margin-top:-8px;}}
+body.view-projects .cash-card,body.view-projects .payroll-card{display:none!important;}
+.hub .wg-cell b{white-space:nowrap;font-size:13.5px;}
+@media (max-height:760px){.hub .wg-cell small{font-size:9.5px;}.hub .wg-cell b{font-size:12.5px;}}
+@media (prefers-reduced-motion:reduce){.hub-btn{animation:none;opacity:1;}}
+/* ═══════ v3.1 : WIDGETS D'ACCUEIL ═══════ */
+.wg{margin:0 -16px 16px;}
+.wg-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
+.wg-track::-webkit-scrollbar{display:none;}
+.wg-card{flex:0 0 88%;max-width:420px;scroll-snap-align:center;border-radius:26px;padding:18px;color:#fff;position:relative;overflow:hidden;min-height:232px;display:flex;flex-direction:column;box-shadow:0 18px 34px -18px rgba(14,42,28,.65);isolation:isolate;}
+.wg-card::before{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-60px;top:-70px;background:rgba(255,255,255,.12);filter:blur(2px);z-index:-1;}
+.wg-card::after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;left:-50px;bottom:-60px;background:rgba(255,255,255,.07);z-index:-1;}
+.wg-stats{background:linear-gradient(145deg,#0E2A1C 0%,#1B4D33 55%,#2E7D52 100%);}
+.wg-defi{background:linear-gradient(145deg,#2E1065 0%,#5B21B6 60%,#8B5CF6 100%);}
+.wg-add{background:linear-gradient(145deg,#0C4A6E 0%,#0E7490 60%,#14B8A6 100%);}
+.wg-quote{background:linear-gradient(145deg,#7C2D12 0%,#C2410C 55%,#F59E0B 100%);}
+.wg-lbl{font-size:11px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;opacity:.75;display:flex;align-items:center;gap:6px;}
+.wg-top{display:flex;align-items:center;gap:14px;margin-top:10px;}
+.wg-ring{position:relative;width:86px;height:86px;flex:none;}
+.wg-ring svg{width:86px;height:86px;transform:rotate(-90deg);}
+.wg-ring circle{fill:none;stroke-width:9;stroke-linecap:round;}
+.wg-ring .bg{stroke:rgba(255,255,255,.16);}
+.wg-ring .fg{stroke:#BDE9CD;stroke-dasharray:226.2;stroke-dashoffset:226.2;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1);}
+.wg-ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:19px;letter-spacing:-.5px;}
+.wg-big{font-size:27px;font-weight:800;letter-spacing:-.8px;line-height:1.05;}
+.wg-big small{font-size:12px;font-weight:600;opacity:.75;margin-left:3px;letter-spacing:0;}
+.wg-sub{font-size:12.5px;opacity:.8;margin-top:4px;}
+.wg-cells{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px;}
+.wg-cell{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:9px 11px;backdrop-filter:blur(4px);}
+.wg-cell small{display:block;font-size:10.5px;opacity:.72;font-weight:700;text-transform:uppercase;letter-spacing:.4px;}
+.wg-cell b{font-size:14px;}
+.wg-bars{display:flex;align-items:flex-end;gap:7px;height:38px;margin-top:12px;}
+.wg-bars i{flex:1;border-radius:6px 6px 3px 3px;background:rgba(189,233,205,.35);min-height:4px;position:relative;transition:height .9s cubic-bezier(.2,.8,.2,1);}
+.wg-bars i.cur{background:#BDE9CD;}
+.wg-bars em{position:absolute;bottom:-15px;left:0;right:0;text-align:center;font-style:normal;font-size:9.5px;opacity:.7;}
+.wg-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.wg-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.16);border-radius:15px;padding:10px 12px;}
+.wg-item .wgt{flex:1;min-width:0;display:block;}
+.wg-item .wgt b{display:block;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.wg-item .wgt small{display:block;font-size:11.5px;opacity:.8;margin-top:2px;}
+.wg-chk{width:38px;height:38px;border-radius:12px;background:#fff;color:#5B21B6;display:grid;place-items:center;flex:none;font-weight:800;}
+.wg-chk:active{transform:scale(.92);}
+.wg-empty{margin:auto;text-align:center;font-size:14px;opacity:.9;line-height:1.5;}
+.wg-sel,.wg-in{width:100%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);color:#fff;border-radius:14px;padding:11px 13px;font:inherit;font-size:15px;margin-top:10px;outline:none;-webkit-appearance:none;appearance:none;}
+.wg-sel option{color:#0E2A1C;}
+.wg-in{font-size:21px;font-weight:800;letter-spacing:-.3px;}
+.wg-in::placeholder{color:rgba(255,255,255,.55);}
+.wg-chips{display:flex;gap:7px;margin-top:9px;}
+.wg-chips button{flex:1;padding:8px 0;border-radius:11px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:700;font-size:13px;}
+.wg-go{margin-top:10px;height:46px;border-radius:14px;background:#fff;color:#0E7490;font-weight:800;font-size:15.5px;border:0;}
+.wg-go:disabled{opacity:.55;}
+.wg-hint{font-size:12px;margin-top:8px;opacity:.85;min-height:15px;}
+.wg-hint.bad{color:#FECACA;font-weight:700;opacity:1;}
+.wg-qtxt{flex:1;display:flex;flex-direction:column;justify-content:center;transition:opacity .45s,transform .45s;}
+.wg-qtxt.out{opacity:0;transform:translateY(10px);}
+.wg-qmark{font-size:56px;line-height:.6;font-family:Georgia,serif;opacity:.35;height:26px;}
+.wg-q{font-size:19px;font-weight:700;line-height:1.3;letter-spacing:-.3px;margin-top:6px;}
+.wg-qcat{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;opacity:.75;margin-top:10px;}
+.wg-prog{height:3px;border-radius:3px;background:rgba(255,255,255,.2);overflow:hidden;margin-top:12px;}
+.wg-prog i{display:block;height:100%;width:0;background:#fff;border-radius:3px;}
+.wg-dots{display:flex;justify-content:center;gap:6px;margin-top:-4px;}
+.wg-dots i{width:6px;height:6px;border-radius:99px;background:var(--line);transition:.3s;}
+.wg-dots i.on{width:20px;background:var(--forest-500);}
+body.wg-on .month-card{display:none!important;}
+@media (min-width:600px){.wg{margin:0 0 16px}.wg-track{padding-left:0;padding-right:0}}
+@media (prefers-reduced-motion:reduce){.wg-ring .fg,.wg-bars i,.wg-qtxt{transition:none}}
 /* ═══════ v3.0 : NOUVEAUTÉS & À PROPOS ═══════ */
 .whatsnew{position:fixed;inset:0;z-index:150;background:radial-gradient(120% 70% at 50% 0%,#1B4D33 0%,#0E2A1C 70%);color:#fff;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;padding:calc(26px + env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom));}
 .whatsnew.show{opacity:1;visibility:visible;}
@@ -735,6 +845,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <svg class="header-wm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v4a3 3 0 0 1-3 3h-1l-1 2h-2l-1-2h-2l-1 2H7l-1-2a3 3 0 0 1-2-3Z"/><circle cx="15" cy="11" r="1" fill="currentColor" stroke="none"/><path d="M7 9c0-1 1-3 3-3M9 6l-2 3"/></svg>
   <div class="header-top">
     <div class="brand">
+      <button class="header-gear hub-back" id="hubBack" aria-label="Retour à l'accueil"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
       <div class="brand-logo"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5A8.5 8.5 0 0 0 12 4H8a5 5 0 0 0-5 5v3.5A5 5 0 0 0 8 17.5h1v2a1.5 1.5 0 0 0 1.5 1.5h1A1.5 1.5 0 0 0 13 19.5v-2h3v2A1.5 1.5 0 0 0 17.5 21h1A1.5 1.5 0 0 0 20 19.5V16a8.4 8.4 0 0 0 .5-3.5Z"/><circle cx="16" cy="11" r="1" fill="currentColor" stroke="none"/></svg></div>
       <div style="min-width:0;"><div class="brand-name">Tirelire</div><div class="brand-sub" id="projectCount">Aucun projet</div></div>
     </div>
@@ -748,6 +859,12 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <div class="total" id="totalSaved">0 FCFA</div>
   <div class="header-progress" id="headerProgress" style="display:none"></div>
 </header>
+
+<section class="hub" id="hub" aria-label="Accueil">
+  <div class="wg" id="wg" style="display:none"><div class="wg-track" id="wgTrack"></div><div class="wg-dots" id="wgDots"></div></div>
+  <nav class="hub-grid" id="hubGrid" aria-label="Menu principal"></nav>
+  <button type="button" class="hub-foot" id="hubFoot" aria-label="À propos de Tirelire">Tirelire · Version <span id="hubVer"></span></button>
+</section>
 
 <main class="content">
   <div class="home-tabs" id="homeTabs" role="tablist" style="display:none">
@@ -956,6 +1073,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <div class="setting-item"><div><div class="setting-label">Déverrouillage biométrique</div><div class="setting-desc" id="bioDesc">Utiliser l'empreinte digitale</div></div><div class="switch" id="bioToggle" role="switch" aria-checked="false" tabindex="0"></div></div>
   <div class="setting-item"><div><div class="setting-label">Installer l'application</div><div class="setting-desc" id="installDesc">Plein écran et utilisation hors ligne</div></div><button class="export-btn" id="installBtn" style="width:auto;padding:9px 14px;">Installer</button></div>
   <div class="setting-item"><div><div class="setting-label">Notifications</div><div class="setting-desc" id="notifDesc">Recevoir les rappels d'épargne</div></div><button class="export-btn" id="notifBtn" style="width:auto;padding:9px 14px;">Activer</button></div>
+  <div class="setting-item"><div><div class="setting-label">Widgets d'accueil</div><div class="setting-desc">Statistiques, ajout rapide, défis et citations</div></div><div class="switch" id="wgToggle" role="switch" aria-checked="true" tabindex="0"></div></div>
   <div class="setting-item" style="display:block;">
     <div class="setting-label">Mes tags</div>
     <div class="setting-desc" style="margin-bottom:8px;">Classez vos projets par type, avec une icône et une couleur</div>
@@ -1856,7 +1974,7 @@ function categoryBreakdown(p){
 
 let obBindDone=false;
 function showOnboarding(){
-  if(!state.settings.lastSeenVersion){state.settings.lastSeenVersion='3.0';save();}
+  if(!state.settings.lastSeenVersion){state.settings.lastSeenVersion=APP_VERSION;save();}
   const ob=document.getElementById('onboarding');
   const track=document.getElementById('onboardingTrack');
   if(!ob||!track) return;
@@ -1941,6 +2059,7 @@ function hideLock(){const l=document.getElementById('lock');if(l)l.classList.rem
 function showApp(){
   animateTotalCounter();
   maybeShowWhatsNew();
+  runPendingAction();
   if(prefersReducedMotion()) return;
   setTimeout(()=>{
     document.querySelectorAll('.project').forEach((c,i)=>{
@@ -2162,6 +2281,8 @@ function monthlySavings(){
   return{cur,prev};
 }
 function renderHomeStats(){
+  try{renderWidgets();}catch(e){console.error(e);}
+  try{renderHub();}catch(e){console.error(e);}
   const hp=document.getElementById('headerProgress');
   if(hp){
     const gp=goalsProgress();
@@ -2733,8 +2854,10 @@ function initLongPress(){
 }
 
 /* ═══════ v3.0 : NOUVEAUTÉS, À PROPOS, SPLASH À LA REPRISE ═══════ */
-const APP_VERSION='3.0';
+const APP_VERSION='3.2';
 const CHANGELOG=[
+  {v:'3.2',t:'Nouvel écran d\'accueil',i:[['n','Accueil en une seule vue : carrousel de widgets qui défilent, boutons vers tous les écrans, footer avec la version'],['n','Nouveaux widgets : évolution sur 6 mois et caisse avec Encaisser / Dépenser'],['n','Liste des projets déplacée dans « Mes projets », avec retour à l\'accueil'],['n','Pastilles sur Paie et Sauvegarde quand une action est attendue']]},
+  {v:'3.1',t:'Widgets d\'accueil',i:[['n','Statistiques complètes en un coup d\'œil : anneau de progression, caisse, objectifs, 6 derniers mois'],['n','Ajout rapide d\'argent depuis la caisse, avec montants en un clic'],['n','Défis du moment : cochez la période à payer directement'],['n','Citations de motivation qui défilent'],['n','Raccourcis sur l\'icône (Android) : Ajouter, Caisse, Défi'],['n','Réglage « Widgets d\'accueil » pour les afficher ou les masquer']]},
   {v:'3.0',t:'Reprise, nouveautés et à propos',i:[['n','Animation de démarrage à chaque réouverture de l\'app'],['n','Cet écran des nouveautés après chaque mise à jour'],['n','Menu « À propos » dans les réglages'],['n','Le code PIN se redemande après une absence']]},
   {v:'2.9',t:'Sauvegarde',i:[['n','Fenêtre d\'aperçu avant la sauvegarde : date, projets, caisse, taille'],['n','Boutons Enregistrer ou Partager (Drive, Mega, WhatsApp…)'],['n','Fichiers nommés Tirelire_AAAA-MM-JJ_vN.json']]},
   {v:'2.8',t:'Appui long',i:[['f','L\'appui long ne sélectionne plus le texte'],['n','Demande au navigateur de protéger vos données contre l\'effacement']]},
@@ -2796,10 +2919,313 @@ function initResume(){
     const sp=document.getElementById('splash');
     if(sp&&sp.classList.contains('show'))return;
     closeAllSheets();
-    const ds=document.getElementById('detailScreen');if(ds)ds.classList.remove('open');
+    document.querySelectorAll('.screen.open').forEach(x=>x.classList.remove('open'));
+    if(currentView!=='home')setView('home');
     const wn=document.getElementById('whatsNew');if(wn)wn.classList.remove('show');
     startSplash();
   });
+}
+
+/* ═══════ v3.1 : WIDGETS D'ACCUEIL ═══════ */
+const QUOTES=[
+['Épargne','Ce n\'est pas ce que vous gagnez qui vous enrichit, c\'est ce que vous gardez.'],
+['Épargne','Un petit montant mis de côté chaque jour pèse plus qu\'un grand projet remis à demain.'],
+['Épargne','Payez-vous en premier : mettez de côté avant de dépenser.'],
+['Épargne','Mille francs aujourd\'hui, c\'est la liberté de demain.'],
+['Épargne','Goutte après goutte, la jarre se remplit.'],
+['Épargne','L\'épargne n\'est pas un sacrifice, c\'est un cadeau à votre futur vous.'],
+['Épargne','Chaque FCFA mis de côté est un soldat qui travaille pour vous.'],
+['Épargne','Épargner commence le jour où l\'on décide de ne plus attendre « le bon moment ».'],
+['Épargne','La richesse se construit en silence, un versement à la fois.'],
+['Épargne','Ce que vous épargnez aujourd\'hui paiera vos choix de demain.'],
+['Argent','Le budget n\'est pas une prison, c\'est une carte pour aller où vous voulez.'],
+['Argent','Dépensez avec intention, pas par impulsion.'],
+['Argent','Avant d\'acheter, demandez-vous : en ai-je besoin, ou en ai-je envie ?'],
+['Argent','Un besoin est une urgence, une envie peut attendre trente jours.'],
+['Argent','Ce qui n\'est pas noté est vite dépensé.'],
+['Argent','Connaître où va votre argent, c\'est déjà le reprendre en main.'],
+['Argent','Ne dépensez pas ce qu\'il reste après l\'épargne : épargnez ce qu\'il reste après la dépense utile.'],
+['Argent','Les petites dépenses répétées sont les grandes fuites du budget.'],
+['Argent','Vivre un peu en dessous de ses moyens est le plus beau des luxes.'],
+['Argent','L\'argent est un bon serviteur, mais un mauvais maître.'],
+['Discipline','La discipline, c\'est choisir ce que vous voulez le plus plutôt que ce que vous voulez maintenant.'],
+['Discipline','La régularité bat l\'intensité.'],
+['Discipline','Faites-le même quand vous n\'en avez pas envie : c\'est là que ça compte.'],
+['Discipline','Un projet sans échéance n\'est qu\'un rêve poli.'],
+['Discipline','Ce sont les habitudes, pas les bonnes résolutions, qui construisent les résultats.'],
+['Discipline','Cochez la case aujourd\'hui, remerciez-vous dans un an.'],
+['Discipline','Le moment le plus difficile, c\'est de commencer. Le reste suit.'],
+['Discipline','Petit pas après petit pas, on traverse les plus grandes distances.'],
+['Discipline','Votre futur se décide dans vos routines d\'aujourd\'hui.'],
+['Discipline','Tenez vos promesses envers vous-même, elles sont les plus importantes.'],
+['Patience','Le palmier ne donne pas ses dattes le jour où on le plante.'],
+['Patience','La patience est l\'intérêt composé de la vie.'],
+['Patience','Rien de solide ne se construit en un jour, mais tout commence un jour.'],
+['Patience','Qui va doucement va sûrement, et qui épargne arrive.'],
+['Patience','Chaque pas compte, même quand la montagne paraît haute.'],
+['Objectifs','Un objectif écrit avec un montant et une date devient un plan.'],
+['Objectifs','Voyez le projet terminé, puis épargnez pour qu\'il arrive.'],
+['Objectifs','Fêtez chaque palier : 25 %, 50 %, 75 %, puis 100 %.'],
+['Objectifs','Ce qui vous motive aujourd\'hui vous remerciera le jour où vous le réaliserez.'],
+['Objectifs','Un projet à la fois, un FCFA à la fois.'],
+['Sérénité','Un fonds de réserve, c\'est de la tranquillité d\'esprit en billets.'],
+['Sérénité','L\'imprévu coûte moins cher à celui qui s\'est préparé.'],
+['Sérénité','Dormir tranquille vaut plus que n\'importe quel achat.'],
+['Sérénité','Une caisse bien tenue, c\'est une tête libre.']
+];
+let wgBuilt=false,wgQi=0,wgQTimer=null,wgSlides=[];
+function wgEnabled(){return state.settings.widgets!==false;}
+function wgMonthsBars(){
+  const now=new Date(),arr=[];
+  for(let i=5;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth()-i,1);arr.push({k:d.getFullYear()+'-'+d.getMonth(),l:d.toLocaleDateString('fr-FR',{month:'narrow'}),v:0,cur:i===0});}
+  const m={};arr.forEach(a=>m[a.k]=a);
+  state.projects.forEach(p=>p.transactions.forEach(t=>{const a=Number(t.amount)||0;if(a>0&&!t.transferId){const d=new Date(t.date);if(isNaN(d))return;const x=m[d.getFullYear()+'-'+d.getMonth()];if(x)x.v+=a;}}));
+  return arr;
+}
+function wgBuild(){
+  const tr=document.getElementById('wgTrack');if(!tr)return;
+  tr.innerHTML=
+   '<div class="wg-card wg-stats" id="wgStats"></div>'+
+   '<div class="wg-card wg-evo" id="wgEvo"></div>'+
+   '<div class="wg-card wg-cash" id="wgCash"></div>'+
+   '<div class="wg-card wg-defi" id="wgDefi"></div>'+
+   '<div class="wg-card wg-add" id="wgAdd"><div class="wg-lbl">⚡ Ajout rapide</div>'+
+     '<select class="wg-sel" id="wgProj" aria-label="Projet"></select>'+
+     '<div class="wg-addrow"><input class="wg-in" id="wgAmt" type="text" inputmode="numeric" placeholder="Montant" autocomplete="off" aria-label="Montant en FCFA"><button type="button" class="wg-go" id="wgGo" disabled>Ajouter</button></div>'+
+     '<div class="wg-chips"><button type="button" data-a="500">+500</button><button type="button" data-a="1000">+1 000</button><button type="button" data-a="5000">+5 000</button><button type="button" data-a="10000">+10 000</button></div>'+
+     '<div class="wg-hint" id="wgHint"></div></div>'+
+   '<div class="wg-card wg-quote" id="wgQuote"><div class="wg-lbl">💬 Pour rester motivé</div><div class="wg-qtxt" id="wgQtxt"></div><div class="wg-prog"><i id="wgQprog"></i></div></div>';
+  wgBuilt=true;
+  document.getElementById('wgAmt').addEventListener('input',wgAmtInput);
+  document.querySelector('#wgAdd .wg-chips').addEventListener('click',e=>{const b=e.target.closest('button[data-a]');if(!b)return;const inp=document.getElementById('wgAmt');const cur=Number(inp.value.replace(/\D/g,''))||0;inp.value=fmt(cur+Number(b.dataset.a));wgAmtInput();});
+  document.getElementById('wgGo').addEventListener('click',wgAddMoney);
+  document.getElementById('wgProj').addEventListener('change',wgAmtInput);
+  document.getElementById('wgQuote').addEventListener('click',()=>wgNextQuote(true));
+  tr.addEventListener('scroll',wgUpdateDots,{passive:true});
+  tr.addEventListener('click',wgTrackClick);
+  ['pointerdown','touchstart','wheel'].forEach(n=>tr.addEventListener(n,()=>{wgTouchAt=Date.now();},{passive:true}));
+  wgNextQuote(false,true);
+  clearInterval(wgQTimer);wgQTimer=setInterval(()=>{if(!document.hidden&&wgEnabled())wgNextQuote(false);},8000);
+  wgStartAuto();
+}
+let wgTouchAt=0,wgAuto=null;
+function wgStartAuto(){
+  clearInterval(wgAuto);if(prefersReducedMotion())return;
+  wgAuto=setInterval(()=>{
+    if(typeof currentView!=='undefined'&&currentView!=='home')return;
+    if(document.hidden||!wgEnabled())return;
+    if(Date.now()-wgTouchAt<12000)return;
+    const a=document.activeElement;if(a&&/INPUT|SELECT|TEXTAREA/.test(a.tagName))return;
+    if(document.querySelector('.sheet.open,.screen.open,.modal-wrap.open,.whatsnew.show,.lock.show,.splash.show'))return;
+    const cards=[...document.querySelectorAll('#wgTrack .wg-card')].filter(c=>c.style.display!=='none');
+    if(cards.length<2)return;
+    const on=[...document.querySelectorAll('#wgDots i')].findIndex(d=>d.classList.contains('on'));
+    wgGoTo(cards[(on+1)%cards.length].id);
+  },6500);
+}
+async function wgTrackClick(e){
+  const c=e.target.closest('button[data-wc]');
+  if(c){if(c.dataset.wc==='in')openCashSheet('in');else if(c.dataset.wc==='out')openCashSheet('out');return;}
+  const t=e.target.closest('[data-wcs]');
+  if(t){openCashScreen();return;}
+  return wgDefiClick(e);
+}
+function wgNextQuote(manual,first){
+  const q=document.getElementById('wgQtxt');if(!q)return;
+  if(first)wgQi=(Math.floor(Date.now()/86400000)+Math.floor(Math.random()*QUOTES.length))%QUOTES.length;
+  else wgQi=(wgQi+1)%QUOTES.length;
+  const it=QUOTES[wgQi];
+  const paint=()=>{q.innerHTML='<div class="wg-qmark">“</div><div class="wg-q">'+esc(it[1])+'</div><div class="wg-qcat">'+esc(it[0])+'</div>';q.classList.remove('out');};
+  const pr=document.getElementById('wgQprog');
+  if(first||prefersReducedMotion()){paint();}
+  else{q.classList.add('out');setTimeout(paint,420);}
+  if(pr){pr.style.transition='none';pr.style.width='0';void pr.offsetWidth;pr.style.transition='width 8s linear';pr.style.width='100%';}
+}
+function wgAmtInput(){
+  const inp=document.getElementById('wgAmt'),btn=document.getElementById('wgGo'),hint=document.getElementById('wgHint'),sel=document.getElementById('wgProj');
+  if(!inp)return;
+  const digits=inp.value.replace(/\D/g,'').slice(0,10);inp.value=digits?fmt(Number(digits)):'';
+  const amt=Number(digits)||0,cash=cashBalance(),over=amt>cash;
+  hint.classList.toggle('bad',over);
+  hint.textContent=over?'Dépasse la caisse ('+money(cash)+')':'Caisse disponible : '+money(cash);
+  btn.disabled=amt<=0||over||!sel.value;
+}
+function depositToProject(p,amt){
+  if(!p||p.realized||amt<=0||amt>cashBalance())return false;
+  const before=balance(p);
+  const t={id:uid(),amount:amt,note:'',date:new Date().toISOString(),contributorId:null,payrollId:null,categoryId:null,realization:false,transferId:null,transferName:'',cashId:null,challengeIdx:null};
+  p.transactions.push(t);linkTxToCash(p,t);
+  save();renderList();
+  if(document.getElementById('detailScreen').classList.contains('open')&&currentProjectId===p.id)renderDetail();
+  buzz(15);showToast(money(amt)+' ajoutés à « '+p.name+' »');
+  celebrateProgress(p,before);
+  return true;
+}
+function wgAddMoney(){
+  const p=getProject(document.getElementById('wgProj').value);
+  const amt=Number(document.getElementById('wgAmt').value.replace(/\D/g,''))||0;
+  const keep=document.getElementById('wgProj').value;
+  if(depositToProject(p,amt)){const i=document.getElementById('wgAmt');if(i)i.value='';const s=document.getElementById('wgProj');if(s)s.value=keep;wgAmtInput();}
+}
+async function wgDefiClick(e){
+  const b=e.target.closest('button[data-dp]');if(!b)return;
+  const prev=currentProjectId;currentProjectId=b.dataset.dp;
+  try{await toggleChallengePeriod(Number(b.dataset.dk));}finally{currentProjectId=prev;renderList();}
+}
+function wgUpdateDots(){
+  const tr=document.getElementById('wgTrack'),dots=document.getElementById('wgDots');if(!tr||!dots)return;
+  const cards=[...tr.querySelectorAll('.wg-card')].filter(c=>c.style.display!=='none');
+  if(!cards.length)return;
+  const mid=tr.scrollLeft+tr.clientWidth/2;
+  let best=0,bd=1e9;cards.forEach((c,i)=>{const d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);if(d<bd){bd=d;best=i;}});
+  dots.querySelectorAll('i').forEach((d,i)=>d.classList.toggle('on',i===best));
+}
+function renderWidgets(){
+  const box=document.getElementById('wg');if(!box)return;
+  const tg=document.getElementById('wgToggle');
+  if(tg){tg.classList.toggle('on',wgEnabled());tg.setAttribute('aria-checked',wgEnabled()?'true':'false');}
+  const act=activeProjects();
+  if(!wgEnabled()||(!act.length&&state.cash.length===0&&state.projects.length===0)){box.style.display='none';document.body.classList.remove('wg-on');return;}
+  box.style.display='';document.body.classList.add('wg-on');
+  if(!wgBuilt)wgBuild();
+  // — Statistiques
+  const st=tagStats(act),ms=monthlySavings(),cash=cashBalance(),bars=wgMonthsBars();
+  const diff=ms.cur-ms.prev;
+  const done=doneProjects().length;
+  const pct=Math.round(st.pct);
+  document.getElementById('wgStats').innerHTML=
+   '<div class="wg-lbl">📊 Mes statistiques</div>'+
+   '<div class="wg-top"><div class="wg-ring"><svg viewBox="0 0 86 86"><circle class="bg" cx="43" cy="43" r="36"/><circle class="fg" id="wgRing" cx="43" cy="43" r="36"/></svg><b>'+pct+'%</b></div>'+
+   '<div><div class="wg-big">'+fmt(totalSaved())+'<small>FCFA</small></div><div class="wg-sub">épargnés · '+act.length+' projet'+(act.length>1?'s':'')+' en cours'+(done?' · '+done+' réalisé'+(done>1?'s':''):'')+'</div></div></div>'+
+   '<div class="wg-cells"><div class="wg-cell"><small>Caisse</small><b>'+money(cash)+'</b></div><div class="wg-cell"><small>Ce mois</small><b>'+money(ms.cur)+(ms.prev>0||ms.cur>0?' <span style="font-size:11px;opacity:.85">'+(diff>0?'▲':(diff<0?'▼':'='))+'</span>':'')+'</b></div>'+
+   '<div class="wg-cell"><small>Objectifs</small><b>'+st.reached+'/'+st.withGoal+' atteints</b></div><div class="wg-cell"><small>Reste</small><b>'+money(st.remain)+'</b></div></div>';
+  requestAnimationFrame(()=>{const r=document.getElementById('wgRing');if(r)r.style.strokeDashoffset=String(226.2*(1-Math.min(100,Math.max(0,st.pct))/100));});
+  // — Évolution sur 6 mois
+  const mx=Math.max(1,...bars.map(b=>b.v)),tot6=bars.reduce((a,b)=>a+b.v,0),best=bars.reduce((a,b)=>b.v>a.v?b:a,bars[0]);
+  const kfmt=v=>v>=1000?(Math.round(v/100)/10).toString().replace('.',',')+'k':String(v);
+  document.getElementById('wgEvo').innerHTML=
+   '<div class="wg-lbl">📈 Épargne des 6 derniers mois</div>'+
+   '<div class="wg-big" style="margin-top:8px;font-size:22px">'+fmt(tot6)+'<small>FCFA au total</small></div>'+
+   '<div class="wg-bars" aria-label="Épargne par mois">'+bars.map(b=>'<i class="'+(b.cur?'cur':'')+'" style="height:'+Math.max(4,Math.round(b.v/mx*92))+'px">'+(b.v>0?'<u>'+kfmt(b.v)+'</u>':'')+'<em>'+esc(b.l)+'</em></i>').join('')+'</div>';
+  // — Caisse
+  const cm=cashMonthStats();
+  document.getElementById('wgCash').innerHTML=
+   '<div class="wg-lbl" data-wcs>🏦 Ma caisse</div>'+
+   '<div class="wg-big" style="margin-top:10px" data-wcs>'+fmt(cash)+'<small>FCFA</small></div><div class="wg-sub" data-wcs>Argent disponible à répartir</div>'+
+   '<div class="wg-cells" style="margin-bottom:12px"><div class="wg-cell"><small>Entré ce mois</small><b>'+money(cm.inn)+'</b></div><div class="wg-cell"><small>Dépensé ce mois</small><b>'+money(cm.out)+'</b></div></div>'+
+   '<div class="wg-cashbtn"><button type="button" data-wc="in">+ Encaisser</button><button type="button" data-wc="out">− Dépenser</button></div>';
+  // — Défi du moment
+  const items=[];
+  act.forEach(p=>{const ch=challengeInfo(p);if(!ch)return;const cur=Math.min(ch.totalUnit,ch.doneUnit)-1;for(let k=0;k<=cur;k++){if(!ch.paid[k]){items.push({p,k,amt:ch.amounts[k],late:k<cur,unit:singularUnit(ch.unit)});break;}}});
+  const defi=document.getElementById('wgDefi');
+  if(items.length){
+    defi.style.display='';
+    defi.innerHTML='<div class="wg-lbl">🏁 Défis du moment</div><div class="wg-list">'+items.slice(0,2).map(it=>'<div class="wg-item"><div class="wgt"><b>'+esc(it.p.name)+'</b><small>'+esc(it.unit.charAt(0).toUpperCase()+it.unit.slice(1))+' '+(it.k+1)+' · '+money(it.amt)+(it.late?' · en retard':'')+'</small></div><button type="button" class="wg-chk" data-dp="'+it.p.id+'" data-dk="'+it.k+'" aria-label="Payer">✓</button></div>').join('')+'</div>'+(items.length>2?'<div class="wg-sub" style="margin-top:8px">+ '+(items.length-2)+' autre'+(items.length-2>1?'s':'')+' à payer</div>':'')+'<div class="wg-sub" style="margin-top:auto;padding-top:8px">Cocher prélève la somme dans la caisse.</div>';
+  }else{
+    const hasCh=act.some(p=>challengeInfo(p));
+    if(hasCh){defi.style.display='';defi.innerHTML='<div class="wg-lbl">🏁 Défis du moment</div><div class="wg-empty">🎉 Tout est à jour.<br>Aucune période à payer.</div>';}
+    else defi.style.display='none';
+  }
+  // — Ajout rapide : on ne touche pas à ce que vous tapez
+  const sel=document.getElementById('wgProj'),curP=sel.value;
+  sel.innerHTML=act.map(p=>'<option value="'+p.id+'">'+esc(p.name)+'</option>').join('');
+  if(curP&&act.some(p=>p.id===curP))sel.value=curP;
+  document.getElementById('wgAdd').style.display=act.length?'':'none';
+  wgAmtInput();
+  // — Pastilles
+  const cards=[...document.querySelectorAll('#wgTrack .wg-card')].filter(c=>c.style.display!=='none');
+  document.getElementById('wgDots').innerHTML=cards.map(()=>'<i></i>').join('');
+  wgUpdateDots();
+}
+function wgGoTo(id){const c=document.getElementById(id),tr=document.getElementById('wgTrack');if(!c||!tr||c.style.display==='none')return false;const x=c.offsetLeft-(tr.clientWidth-c.offsetWidth)/2;if(tr.scrollTo)tr.scrollTo({left:x,behavior:'smooth'});else tr.scrollLeft=x;return true;}
+function runPendingAction(){
+  let a=null;try{a=new URLSearchParams(location.search).get('action');}catch(e){}
+  if(!a)return;
+  try{history.replaceState(null,'',location.pathname);}catch(e){}
+  setTimeout(()=>{
+    if(currentView!=='home')setView('home');
+    if(a==='add'){document.getElementById('wg').scrollIntoView({behavior:'smooth',block:'center'});if(wgGoTo('wgAdd')){const i=document.getElementById('wgAmt');if(i)setTimeout(()=>i.focus(),500);}}
+    else if(a==='cash')openCashScreen();
+    else if(a==='challenge'){document.getElementById('wg').scrollIntoView({behavior:'smooth',block:'center'});if(!wgGoTo('wgDefi'))showToast('Aucun défi à payer pour le moment');}
+  },900);
+}
+function initWidgets(){
+  const t=document.getElementById('wgToggle');
+  if(t)t.addEventListener('click',()=>{state.settings.widgets=!wgEnabled();save();renderWidgets();});
+  runPendingActionHold=true;
+}
+let runPendingActionHold=false;
+
+/* ═══════ v3.2 : ÉCRAN D'ACCUEIL (HUB) ═══════ */
+let currentView='home';
+const HUB_ITEMS=[
+ {id:'projects',l:'Mes projets',c:'#2E7D52',svg:'<path d="M3 7a2 2 0 012-2h4l2 2.5h8a2 2 0 012 2V17a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'},
+ {id:'done',l:'Réalisés',c:'#D97706',svg:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/>'},
+ {id:'new',l:'Nouveau projet',c:'#2563EB',svg:'<path d="M12 5v14M5 12h14"/>'},
+ {id:'cash',l:'Caisse',c:'#0E7490',svg:'<rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.7"/>'},
+ {id:'pay',l:'Gérer la paie',c:'#7C3AED',svg:'<path d="M3 7a3 3 0 013-3h11l3 3v10a3 3 0 01-3 3H6a3 3 0 01-3-3z"/><path d="M3 9h16"/><circle cx="16" cy="14" r="1.2"/>'},
+ {id:'charges',l:'Charges',c:'#EA580C',svg:'<path d="M3 6h18M3 12h18M3 18h12"/><circle cx="18" cy="18" r="2.5"/>'},
+ {id:'paies',l:'Historique',c:'#475569',svg:'<path d="M3 12a9 9 0 102.6-6.3"/><path d="M3 4v5h5M12 7v5l3 2"/>'},
+ {id:'backup',l:'Sauvegarde',c:'#0D9488',svg:'<path d="M12 3L4.5 6v6c0 4.4 3.1 7.5 7.5 9 4.4-1.5 7.5-4.6 7.5-9V6z"/><path d="M9 12l2 2 4-4"/>'},
+ {id:'settings',l:'Réglages',c:'#64748B',svg:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/>'}
+];
+function backupDue(){
+  const hasData=state.projects.length>0||state.charges.length>0||state.payrolls.length>0||state.cash.length>0;
+  const last=Number(state.settings.lastExport)||0;
+  return hasData&&(!last||Date.now()-last>30*86400000);
+}
+function hubSubs(){
+  const n=activeProjects().length,nd=doneProjects().length,pp=pendingPaies().length;
+  return {projects:n===0?'Aucun':(n===1?'1 en cours':n+' en cours'),done:nd===0?'Aucun':String(nd),new:'Créer',cash:money(cashBalance()),
+    pay:pp>0?(pp===1?'1 à répartir':pp+' à répartir'):'Aucune paie',charges:state.charges.length+(state.charges.length>1?' charges':' charge'),
+    paies:state.payrolls.length+(state.payrolls.length>1?' paies':' paie'),backup:backupDue()?'À faire':'À jour',settings:'Thème, PIN…'};
+}
+function renderHub(){
+  const g=document.getElementById('hubGrid');if(!g)return;
+  const subs=hubSubs();
+  if(!g.children.length){
+    g.innerHTML=HUB_ITEMS.map((it,i)=>'<button type="button" class="hub-btn" data-hub="'+it.id+'" style="animation-delay:'+(0.05+i*0.04).toFixed(2)+'s"><span class="hub-ic" style="background:'+hexAlpha(it.c,0.14)+';color:'+it.c+'"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+it.svg+'</svg></span><span><span class="hub-lbl">'+it.l+'</span><span class="hub-sub" data-sub="'+it.id+'"></span></span></button>').join('');
+  }
+  HUB_ITEMS.forEach(it=>{const e=g.querySelector('[data-sub="'+it.id+'"]');if(e)e.textContent=subs[it.id]||'';});
+  const bk=g.querySelector('[data-hub="backup"]');
+  if(bk){const had=bk.querySelector('.hub-dot');if(backupDue()&&!had)bk.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!backupDue()&&had)had.remove();}
+  const pay=g.querySelector('[data-hub="pay"]');
+  if(pay){const had=pay.querySelector('.hub-dot');if(pendingPaies().length&&!had)pay.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!pendingPaies().length&&had)had.remove();}
+  const hv=document.getElementById('hubVer');if(hv)hv.textContent=APP_VERSION;
+}
+function replayHubAnim(){document.querySelectorAll('.hub-btn').forEach(b=>{b.style.animation='none';void b.offsetWidth;b.style.animation='';});}
+function setView(v,fromPop){
+  currentView=v;
+  document.body.classList.toggle('view-home',v==='home');
+  document.body.classList.toggle('view-projects',v==='projects');
+  try{window.scrollTo(0,0);}catch(e){}
+  if(v==='projects'){
+    try{if(!fromPop&&!(history.state&&history.state.v==='p'))history.pushState({v:'p'},'');}catch(e){}
+    tagAnimate=true;renderList();
+  }else{
+    try{if(!fromPop&&history.state&&history.state.v==='p')history.back();}catch(e){}
+    renderList();renderHub();replayHubAnim();
+  }
+}
+function hubAction(id){
+  buzz(8);
+  if(id==='projects'){homeTab='active';setView('projects');}
+  else if(id==='done'){homeTab='done';setView('projects');}
+  else if(id==='new')openProjectSheet(false);
+  else if(id==='cash')openCashScreen();
+  else if(id==='pay')openPayrollSheet();
+  else if(id==='charges')openChargesSheet('charges');
+  else if(id==='paies'){renderPaiesScreen();document.getElementById('paiesScreen').classList.add('open');}
+  else if(id==='backup')exportJSON();
+  else if(id==='settings')document.getElementById('settingsBtn').click();
+}
+function initHub(){
+  document.body.classList.add('view-home');
+  renderHub();
+  document.getElementById('hubGrid').addEventListener('click',e=>{const b=e.target.closest('[data-hub]');if(b)hubAction(b.dataset.hub);});
+  document.getElementById('hubBack').addEventListener('click',()=>setView('home'));
+  document.getElementById('hubFoot').addEventListener('click',()=>{openAbout();});
+  window.addEventListener('popstate',()=>{if(currentView==='projects')setView('home',true);});
 }
 let tagAnimate=true,tagOpenInit=false;
 const openTags=new Set();
@@ -3010,6 +3436,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('projectList').addEventListener('click',e=>{const card=e.target.closest('.project');if(card)openDetail(card.dataset.id);});
   initLongPress();
   initResume();
+  initWidgets();
+  initHub();
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
   document.getElementById('backBtn').addEventListener('click',closeDetail);
   document.getElementById('delBtn').addEventListener('click',async()=>{

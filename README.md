@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-3.0-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-3.2-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -25,6 +25,25 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 ---
 
 ## 📱 Fonctionnalités
+
+### 🏠 Écran d'accueil
+- 👀 **Une seule vue, sans défilement** : carrousel de widgets en haut, boutons en dessous, petit footer *Tirelire · Version x.y*
+- 🔘 **9 boutons** : Mes projets · Réalisés · Nouveau projet · Caisse · Gérer la paie · Charges · Historique · Sauvegarde · Réglages, chacun avec une information utile (nombre de projets, solde de la caisse, paie à répartir…)
+- 🟠 **Pastille d'alerte** sur *Gérer la paie* (paie à répartir) et *Sauvegarde* (sauvegarde à faire)
+- 📂 **Mes projets** ouvre la liste (onglets En cours / Réalisés, tags, appui long) avec un bouton retour vers l'accueil
+- 🔄 Les widgets défilent tout seuls (en pause quand vous touchez, tapez ou ouvrez un écran)
+
+### 🧩 Widgets d'accueil
+- 📊 **Mes statistiques** : anneau de progression globale, total épargné, caisse, épargne du mois, objectifs atteints, reste
+- 📈 **Évolution** : épargne mois par mois sur les 6 derniers mois
+- 🏦 **Caisse** : solde, entrées et dépenses du mois, boutons *Encaisser* et *Dépenser*
+- ⚡ **Ajout rapide** : choisissez un projet, tapez ou touchez un montant (+500, +1 000, +5 000, +10 000) : l'argent sort de la caisse
+- 🏁 **Défis du moment** : cochez directement la période à payer
+- 💬 **Citations** sur l'épargne, l'argent, la discipline et la patience, qui défilent toutes les 8 secondes (un toucher passe à la suivante)
+- 👈 Carrousel à faire glisser ; masquable dans **Réglages → Widgets d'accueil**
+- 🚀 **Raccourcis d'icône** (Android, app installée) : *Ajouter de l'argent*, *Ma caisse*, *Défi du moment* ; liens directs `?action=add`, `?action=cash`, `?action=challenge`
+
+> ℹ️ Ce sont des widgets **dans l'application**. Les widgets natifs de l'écran d'accueil du téléphone ne sont pas possibles avec une web app (iOS) et demandent du code Android natif dans l'APK.
 
 ### 💰 Caisse
 - 🏦 La **caisse** contient l'argent réel disponible : tout versement vers un projet ou une charge en sort
@@ -188,6 +207,8 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 
 | Version | Nouveautés |
 |---|---|
+| **3.2** | 🏠 Nouvel écran d'accueil en une seule vue : carrousel de widgets, 9 boutons vers les écrans, footer avec la version · liste des projets dans « Mes projets » |
+| **3.1** | 🧩 Widgets d'accueil (statistiques, ajout rapide, défis du moment, citations) · ⚡ Raccourcis sur l'icône Android · réglage pour les masquer |
 | **3.0** | ✨ Animation de démarrage à chaque réouverture · 🆕 Écran des nouveautés après chaque mise à jour · ℹ️ Menu « À propos » dans les réglages · 🔒 PIN redemandé après une absence |
 | **2.9** | 💾 Modale de sauvegarde (aperçu des données, *Enregistrer* ou *Partager*) · 🏷️ Fichiers nommés `Tirelire_AAAA-MM-JJ_vN.json` |
 | **2.8** | 🐞 L'appui long ne sélectionne plus le texte · 🛡️ Demande au navigateur de protéger les données contre l'effacement automatique · 🤖 Workflow GitHub Actions pour générer l'APK Android |
