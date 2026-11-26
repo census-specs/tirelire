@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-2.8-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-3.0-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -84,6 +84,9 @@ Tout tient dans **un seul fichier HTML** : pas de serveur, pas de compte, pas de
 - 📉 Répartition des dépenses par catégorie dans chaque projet
 
 ### 🔐 Confort et sécurité
+- ✨ **Animation de démarrage** à chaque ouverture, et au retour dans l'app après plus de 15 secondes d'absence (le code PIN est alors redemandé)
+- 🆕 **Écran des nouveautés** : après chaque mise à jour, la liste des nouveautés et corrections depuis votre dernière version
+- ℹ️ **À propos** (Réglages) : version, auteur, historique complet des versions
 - 🔢 **Code PIN** à 4 chiffres et 🖐️ **déverrouillage biométrique**
 - 🌗 Thème **clair / sombre / auto**
 - 🔔 **Rappels d'épargne** (quotidiens, hebdomadaires, mensuels)
@@ -115,7 +118,7 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 3. 🌐 Ouvrez l'adresse fournie sur votre téléphone
 4. 📲 Installez l'app : bouton **Installer** dans les Réglages, ou menu du navigateur → *Ajouter à l'écran d'accueil*
 
-> 💡 **Mise à jour du service worker** : à chaque nouvelle version, changez le nom du cache dans `sw.js` (`const VERSION = 'tirelire-vX.Y'`) pour que les téléphones récupèrent les nouveaux fichiers.
+> 💡 **Nouvelle version** : changez le nom du cache dans `sw.js` (`const VERSION = 'tirelire-vX.Y'`), `APP_VERSION` dans `index.html`, et ajoutez une entrée en tête de `CHANGELOG` pour alimenter l'écran des nouveautés.
 
 ---
 
@@ -142,6 +145,7 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 | | |
 |---|---|
 | 📍 **Où ?** | Dans le `localStorage` du navigateur, sur l'appareil — rien n'est envoyé sur Internet |
+| 💾 **Sauvegarder** | Le bouton *Exporter JSON* ouvre une fenêtre avec le récapitulatif (date, projets, mouvements, total épargné, caisse, taille), puis **Enregistrer** ou **Partager** (Drive, Mega, WhatsApp…). Nom du fichier : `Tirelire_2026-11-26_v1.json`, le numéro `vN` augmentant à chaque sauvegarde du jour |
 | 📤 **Exporter** | **JSON** (sauvegarde complète : projets, tags, charges, paies, caisse, catégories, transferts) et **CSV** (mouvements, lisible dans Excel) |
 | 📥 **Importer** | JSON, y compris les **anciens fichiers** des versions précédentes |
 | 🗑️ **Effacer** | Réglages → *Tout effacer* (double confirmation) |
@@ -184,6 +188,8 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 
 | Version | Nouveautés |
 |---|---|
+| **3.0** | ✨ Animation de démarrage à chaque réouverture · 🆕 Écran des nouveautés après chaque mise à jour · ℹ️ Menu « À propos » dans les réglages · 🔒 PIN redemandé après une absence |
+| **2.9** | 💾 Modale de sauvegarde (aperçu des données, *Enregistrer* ou *Partager*) · 🏷️ Fichiers nommés `Tirelire_AAAA-MM-JJ_vN.json` |
 | **2.8** | 🐞 L'appui long ne sélectionne plus le texte · 🛡️ Demande au navigateur de protéger les données contre l'effacement automatique · 🤖 Workflow GitHub Actions pour générer l'APK Android |
 | **2.7** | 👆 Appui long sur un projet : aperçu + ajout rapide depuis la caisse · appui long sur un tag : détails, liste des projets, modification |
 | **2.6** | 🐞 Correctif : un mouvement daté avant la création du projet ne fait plus planter la courbe d'évolution |

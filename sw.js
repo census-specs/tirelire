@@ -1,7 +1,7 @@
-/* Tirelire — service worker (v2.8)
+/* Tirelire — service worker (v3.0)
    Stratégie : cache d'abord + mise à jour en arrière-plan, pour un lancement
    instantané et fonctionnel sans réseau. Les nouveautés s'appliquent au lancement suivant. */
-const VERSION = 'tirelire-v2.8';
+const VERSION = 'tirelire-v3.0';
 const SHELL = [
   './',
   './index.html',

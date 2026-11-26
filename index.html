@@ -514,6 +514,44 @@ input,select{font-family:inherit;}
 .ch-amt{font-size:13px;font-weight:700;white-space:nowrap;}
 .ch-st{font-size:11.5px;font-weight:700;min-width:56px;text-align:right;}
 .ch-more{background:none;border:0;font:inherit;font-size:13px;font-weight:700;padding:10px 0 2px;cursor:pointer;width:100%;}
+/* ═══════ v3.0 : NOUVEAUTÉS & À PROPOS ═══════ */
+.whatsnew{position:fixed;inset:0;z-index:150;background:radial-gradient(120% 70% at 50% 0%,#1B4D33 0%,#0E2A1C 70%);color:#fff;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .45s,visibility .45s;padding:calc(26px + env(safe-area-inset-top)) 20px calc(18px + env(safe-area-inset-bottom));}
+.whatsnew.show{opacity:1;visibility:visible;}
+.wn-inner{display:flex;flex-direction:column;flex:1;min-height:0;max-width:520px;width:100%;margin:0 auto;}
+.wn-head{text-align:center;margin-bottom:16px;animation:wnUp .6s both;}
+.wn-head .wn-ico{width:62px;height:62px;border-radius:20px;margin:0 auto 12px;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(189,233,205,.2);font-size:30px;}
+.wn-head h2{margin:0;font-size:25px;letter-spacing:-.5px;}
+.wn-head p{margin:6px 0 0;color:rgba(189,233,205,.75);font-size:14px;}
+.wn-list{flex:1;overflow-y:auto;min-height:0;padding:2px 2px 10px;-webkit-overflow-scrolling:touch;}
+.wn-ver{background:rgba(255,255,255,.07);border:1px solid rgba(189,233,205,.14);border-radius:18px;padding:14px 15px;margin-bottom:10px;animation:wnUp .6s both;}
+.wn-ver h3{margin:0 0 3px;font-size:15.5px;display:flex;align-items:center;gap:8px;}
+.wn-ver h3 span{font-size:11px;font-weight:700;background:rgba(189,233,205,.18);color:#BDE9CD;border-radius:99px;padding:3px 9px;}
+.wn-ver .wn-t{font-size:12.5px;color:rgba(189,233,205,.7);margin-bottom:8px;}
+.wn-ver ul{list-style:none;margin:0;padding:0;}
+.wn-ver li{position:relative;padding-left:20px;font-size:13.5px;line-height:1.4;margin:5px 0;color:rgba(255,255,255,.9);}
+.wn-ver li::before{content:'';position:absolute;left:3px;top:6px;width:8px;height:8px;border-radius:50%;background:#4A9B6E;}
+.wn-ver li.fix::before{background:#F5C700;}
+.wn-key{display:flex;gap:14px;justify-content:center;font-size:11.5px;color:rgba(189,233,205,.7);margin:2px 0 10px;}
+.wn-btn{margin-top:8px;height:54px;border-radius:17px;border:0;font-weight:800;font-size:16.5px;color:#fff;background:linear-gradient(135deg,#4A9B6E,#2E7D52);box-shadow:0 12px 26px -10px rgba(46,125,82,.9);}
+@keyframes wnUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.ab-logo{width:72px;height:72px;border-radius:22px;margin:4px auto 10px;display:block;box-shadow:0 10px 24px -10px rgba(14,42,28,.6);}
+.ab-title{text-align:center;}
+.ab-title h2{margin:0!important;font-size:22px;}
+.ab-title p{margin:4px 0 0;color:var(--muted);font-size:13.5px;}
+.ab-card{background:var(--mint-100);border-radius:15px;padding:13px 14px;margin-top:12px;font-size:13.5px;line-height:1.45;}
+.ab-card small{display:block;font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.ab-card b{font-size:15px;}
+.ab-made{text-align:center;margin:18px 0 6px;font-size:14px;font-weight:650;line-height:1.5;}
+.ab-links{display:flex;gap:8px;margin-top:12px;}
+.ab-links a,.ab-links button{flex:1;text-align:center;padding:12px;border-radius:14px;background:var(--mint-100);color:var(--forest-700);font-weight:650;font-size:14px;text-decoration:none;}
+@media (prefers-reduced-motion:reduce){.wn-head,.wn-ver{animation:none!important;}}
+/* ═══════ v2.9 : SAUVEGARDE ═══════ */
+.bk-file{background:var(--mint-100);border-radius:13px;padding:11px 13px;margin-bottom:10px;}
+.bk-file small{display:block;font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.4px;}
+.bk-file b{font-size:15px;word-break:break-all;}
+.bk-row{margin-top:14px;}
+.bk-row .bk-main{background:linear-gradient(135deg,var(--forest-500),var(--forest-700));color:#fff;}
+.bk-cancel{display:block;width:100%;margin-top:8px;padding:12px;background:none;color:var(--muted);font-weight:600;font-size:14px;}
 /* ═══════ v2.7 : APPUI LONG — APERÇUS ═══════ */
 #projectList,#projectList *,.project,.tag-head{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;}
 html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;}
@@ -812,6 +850,20 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <button class="btn-primary btn-block" id="saveProject">Créer le projet</button>
 </div>
 
+<div class="sheet" id="aboutSheet">
+  <div class="grabber"></div>
+  <div id="aboutBody"></div>
+</div>
+
+<div class="whatsnew" id="whatsNew" role="dialog" aria-modal="true" aria-label="Nouveautés">
+  <div class="wn-inner" id="wnInner"></div>
+</div>
+
+<div class="sheet" id="backupSheet">
+  <div class="grabber"></div>
+  <div id="backupBody"></div>
+</div>
+
 <div class="sheet" id="quickSheet">
   <div class="grabber"></div>
   <div id="quickBody"></div>
@@ -913,6 +965,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <div class="setting-item" style="display:block;">
     <div class="setting-label" style="margin-bottom:10px;">Exporter / Importer</div>
     <div class="export-row"><button class="export-btn" id="exportCsv">Exporter CSV</button><button class="export-btn" id="exportJson">Exporter JSON</button></div>
+    <div class="setting-item" style="display:block;"><button class="export-btn" id="aboutBtn" style="display:flex;align-items:center;justify-content:center;gap:8px;">ℹ️ À propos de Tirelire</button></div>
     <div class="export-row" style="margin-top:10px;"><button class="export-btn" id="importJson">Importer JSON</button><button class="export-btn danger" id="resetAll">Tout effacer</button></div>
     <input type="file" id="fileInput" accept=".json,application/json" style="display:none">
   </div>
@@ -1803,6 +1856,7 @@ function categoryBreakdown(p){
 
 let obBindDone=false;
 function showOnboarding(){
+  if(!state.settings.lastSeenVersion){state.settings.lastSeenVersion='3.0';save();}
   const ob=document.getElementById('onboarding');
   const track=document.getElementById('onboardingTrack');
   if(!ob||!track) return;
@@ -1886,6 +1940,7 @@ function showLock(){
 function hideLock(){const l=document.getElementById('lock');if(l)l.classList.remove('show');replayTagAnim();}
 function showApp(){
   animateTotalCounter();
+  maybeShowWhatsNew();
   if(prefersReducedMotion()) return;
   setTimeout(()=>{
     document.querySelectorAll('.project').forEach((c,i)=>{
@@ -1979,7 +2034,7 @@ function saveTransfer(){
 /* ═══════ v2.0 : EXPORTS ENRICHIS ═══════ */
 function buildExportObject(){
   const copy=JSON.parse(JSON.stringify(state));
-  copy.meta={app:'Tirelire',version:'2.8',exportedAt:new Date().toISOString()};
+  copy.meta={app:'Tirelire',version:APP_VERSION,exportedAt:new Date().toISOString()};
   copy.projects.forEach(p=>p.transactions.forEach(t=>{const cl=catLabelOf(t.categoryId);if(cl)t.categoryLabel=cl;}));
   copy.charges.forEach(c=>{const cl=catLabelOf(c.categoryId);if(cl)c.categoryLabel=cl;});
   copy.projects.forEach(p=>{const tg=tagById(p.tagId);if(tg)p.tagLabel=tg.name;});
@@ -2006,9 +2061,45 @@ function exportCSV(){
   });
   download('tirelire-'+new Date().toISOString().slice(0,10)+'.csv',csv,'text/csv;charset=utf-8');
 }
+function backupInfo(){
+  const today=new Date(),ymd=today.getFullYear()+'-'+String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0');
+  const log=state.settings.exportLog||{};
+  const n=(log.date===ymd?Number(log.n)||0:0)+1;
+  const name='Tirelire_'+ymd+'_v'+n+'.json';
+  const content=JSON.stringify(buildExportObject(),null,2);
+  const active=state.projects.filter(p=>!p.realized),done=state.projects.filter(p=>p.realized);
+  const moves=state.projects.reduce((a,p)=>a+p.transactions.length,0);
+  return {ymd,n,name,content,active:active.length,done:done.length,moves,saved:active.reduce((a,p)=>a+balance(p),0),cash:cashBalance(),tags:state.tags.length,charges:state.charges.length,size:new Blob([content]).size};
+}
+function markExported(info){
+  state.settings.lastExport=Date.now();
+  state.settings.exportLog={date:info.ymd,n:info.n};
+  save();
+  try{updateBackupBanner();}catch(e){}
+}
+function fmtSize(b){return b<1024?b+' o':(b<1048576?(b/1024).toFixed(1).replace('.',',')+' Ko':(b/1048576).toFixed(1).replace('.',',')+' Mo');}
 function exportJSON(){
-  state.settings.lastExport=Date.now();save();
-  download('tirelire-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(buildExportObject(),null,2),'application/json');
+  const info=backupInfo();
+  const last=Number(state.settings.lastExport)||0;
+  const when=new Date().toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  const cell=(l,v)=>'<div class="qv-cell"><small>'+l+'</small><b>'+esc(String(v))+'</b></div>';
+  let canShare=false;
+  try{const f=new File([info.content],info.name,{type:'application/json'});canShare=!!(navigator.canShare&&navigator.canShare({files:[f]}));}catch(e){}
+  let h='<div class="qv-top"><div class="qv-ico" style="background:var(--mint-100);color:var(--forest-500)">'+iconSvg('shield',26)+'</div><div><h2>Sauvegarde</h2><div class="qv-tag">'+esc(when)+'</div></div></div>';
+  h+='<div class="bk-file"><small>Nom du fichier</small><b id="bkName">'+esc(info.name)+'</b></div>';
+  h+='<div class="qv-grid">'+cell('Projets',info.active+' en cours'+(info.done?' · '+info.done+' réalisé'+(info.done>1?'s':''):''))+cell('Mouvements',info.moves)+cell('Total épargné',money(info.saved))+cell('Caisse',money(info.cash))+cell('Tags · Charges',info.tags+' · '+info.charges)+cell('Taille',fmtSize(info.size))+'</div>';
+  h+='<div class="qv-hint">'+(last?'Dernière sauvegarde il y a '+fmtAgo(last)+'.':'Aucune sauvegarde enregistrée jusqu\'ici.')+' Version de l\'app : '+APP_VERSION+'</div>';
+  h+='<div class="qv-row bk-row"><button type="button" id="bkSave" class="bk-main">Enregistrer</button>'+(canShare?'<button type="button" id="bkShare">Partager</button>':'')+'</div>';
+  h+='<button type="button" class="bk-cancel" id="bkCancel">Annuler</button>';
+  document.getElementById('backupBody').innerHTML=h;
+  document.getElementById('bkSave').addEventListener('click',()=>{download(info.name,info.content,'application/json');markExported(info);closeSheet('backupSheet');showToast('Sauvegarde enregistrée · '+info.name);});
+  const sh=document.getElementById('bkShare');
+  if(sh)sh.addEventListener('click',async()=>{
+    try{const f=new File([info.content],info.name,{type:'application/json'});await navigator.share({files:[f],title:info.name});markExported(info);closeSheet('backupSheet');showToast('Sauvegarde partagée · '+info.name);}
+    catch(e){if(!e||e.name!=='AbortError')showToast('Partage impossible : utilisez Enregistrer');}
+  });
+  document.getElementById('bkCancel').addEventListener('click',()=>closeSheet('backupSheet'));
+  openSheet('backupSheet');
 }
 
 function importJSON(file){
@@ -2640,6 +2731,76 @@ function initLongPress(){
   list.addEventListener('contextmenu',e=>{if(e.target.closest('.project,.tag-head'))e.preventDefault();});
   list.addEventListener('selectstart',e=>{if(e.target.closest&&e.target.closest('.project,.tag-head'))e.preventDefault();});
 }
+
+/* ═══════ v3.0 : NOUVEAUTÉS, À PROPOS, SPLASH À LA REPRISE ═══════ */
+const APP_VERSION='3.0';
+const CHANGELOG=[
+  {v:'3.0',t:'Reprise, nouveautés et à propos',i:[['n','Animation de démarrage à chaque réouverture de l\'app'],['n','Cet écran des nouveautés après chaque mise à jour'],['n','Menu « À propos » dans les réglages'],['n','Le code PIN se redemande après une absence']]},
+  {v:'2.9',t:'Sauvegarde',i:[['n','Fenêtre d\'aperçu avant la sauvegarde : date, projets, caisse, taille'],['n','Boutons Enregistrer ou Partager (Drive, Mega, WhatsApp…)'],['n','Fichiers nommés Tirelire_AAAA-MM-JJ_vN.json']]},
+  {v:'2.8',t:'Appui long',i:[['f','L\'appui long ne sélectionne plus le texte'],['n','Demande au navigateur de protéger vos données contre l\'effacement']]},
+  {v:'2.7',t:'Aperçus rapides',i:[['n','Appui long sur un projet : infos et ajout d\'argent depuis la caisse'],['n','Appui long sur un tag : détails, liste des projets, modification']]},
+  {v:'2.6',t:'Correctif courbe',i:[['f','Un versement daté avant la création du projet ne fait plus planter l\'app']]},
+  {v:'2.5',t:'Suivi des défis',i:[['n','Une case à cocher par semaine, jour ou mois'],['n','Cocher prélève l\'argent dans la caisse et l\'ajoute au projet'],['n','Retards signalés, décocher annule le versement']]},
+  {v:'2.4',t:'Correctif défis',i:[['f','Un défi corrompu ou une date illisible ne plante plus l\'app'],['f','Données assainies au chargement et à l\'import']]},
+  {v:'2.3',t:'Tags',i:[['n','Tags avec icône et couleur, cartes animées sur l\'accueil'],['n','Bascule Tags / Liste']]},
+  {v:'2.2',t:'Caisse',i:[['n','Argent réel par source, dépenses libres, historique'],['n','Paie utilisable une seule fois, versements limités à la caisse']]},
+  {v:'2.1',t:'Corrections',i:[['f','Icône « école » ajoutée'],['f','Participant modifiable à l\'édition d\'un mouvement'],['f','Nettoyage du code PIN']]},
+  {v:'2.0',t:'Transferts',i:[['n','Transferts entre projets'],['n','Catégories dans les exports JSON et CSV, import des anciens fichiers']]},
+  {v:'1.9',t:'Réalisation',i:[['n','Réaliser un projet, onglet Réalisés'],['n','Installation et mode hors ligne']]}
+];
+function verNum(v){const a=String(v||'0').split('.');return (Number(a[0])||0)*1000+(Number(a[1])||0);}
+function showWhatsNew(all){
+  const seen=all?'0':(state.settings.lastSeenVersion||'2.4');
+  const list=CHANGELOG.filter(c=>verNum(c.v)>verNum(seen));
+  const items=list.length?list:CHANGELOG.slice(0,1);
+  let h='<div class="wn-head"><div class="wn-ico">✨</div><h2>'+(all?'Toutes les nouveautés':'Tirelire a évolué')+'</h2><p>Version '+APP_VERSION+(all?'':' · voici ce qui change')+'</p></div>';
+  h+='<div class="wn-key"><span>🟢 Nouveauté</span><span>🟡 Correction</span></div><div class="wn-list">';
+  items.forEach((c,idx)=>{h+='<div class="wn-ver" style="animation-delay:'+(0.12+idx*0.08).toFixed(2)+'s"><h3>Version '+c.v+(c.v===APP_VERSION?'<span>Actuelle</span>':'')+'</h3><div class="wn-t">'+esc(c.t)+'</div><ul>'+c.i.map(x=>'<li class="'+(x[0]==='f'?'fix':'')+'">'+esc(x[1])+'</li>').join('')+'</ul></div>';});
+  h+='</div><button class="wn-btn" id="wnOk">'+(all?'Fermer':'C\'est parti')+'</button>';
+  document.getElementById('wnInner').innerHTML=h;
+  const w=document.getElementById('whatsNew');
+  w.classList.add('show');
+  document.getElementById('wnOk').addEventListener('click',()=>{
+    w.classList.remove('show');
+    if(!all){state.settings.lastSeenVersion=APP_VERSION;save();}
+  });
+}
+function maybeShowWhatsNew(){
+  if(!state.settings.onboardingDone)return;
+  if(state.settings.lastSeenVersion===APP_VERSION)return;
+  setTimeout(()=>showWhatsNew(false),700);
+}
+function openAbout(){
+  const nb=state.projects.length;
+  let h='<img class="ab-logo" src="icon-192.png" alt="" width="72" height="72">';
+  h+='<div class="ab-title"><h2>Tirelire</h2><p>Vos projets, un FCFA à la fois</p></div>';
+  h+='<div class="ab-card"><small>L\'application</small>Épargne par projets en FCFA : caisse réelle, tags, défis à cocher, transferts, projets réalisés. Gratuite, privée et utilisable hors ligne. Vos données restent sur votre appareil.</div>';
+  h+='<div class="ab-card"><small>Version</small><b>'+APP_VERSION+'</b> · '+esc(CHANGELOG[0].t)+'</div>';
+  h+='<div class="ab-card"><small>Auteur</small><b>Pierre Valdeze MBOM MBOM</b><br>Agro-statisticien · Fondateur d\'Exceller chez Pierre · Créateur de Nuru Analytics</div>';
+  h+='<div class="ab-links"><a href="https://github.com/census-specs/tirelire" target="_blank" rel="noopener">GitHub</a><a href="https://www.youtube.com/@excellerchezpierre" target="_blank" rel="noopener">YouTube</a><button type="button" id="abNews">Nouveautés</button></div>';
+  h+='<div class="ab-made">Fait avec 💚 au Cameroun<br>par Pierre Valdeze MBOM MBOM</div>';
+  document.getElementById('aboutBody').innerHTML=h;
+  document.getElementById('abNews').addEventListener('click',()=>{closeAllSheets();showWhatsNew(true);});
+  closeSheet('settingsSheet');openSheet('aboutSheet');
+}
+let hiddenAt=0;
+function initResume(){
+  document.getElementById('aboutBtn').addEventListener('click',openAbout);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){hiddenAt=Date.now();return;}
+    if(!hiddenAt)return;
+    const away=Date.now()-hiddenAt;hiddenAt=0;
+    if(away<15000||!state.settings.onboardingDone)return;
+    const mw=document.getElementById('modalWrap');
+    if(mw&&mw.classList.contains('open'))return;
+    const sp=document.getElementById('splash');
+    if(sp&&sp.classList.contains('show'))return;
+    closeAllSheets();
+    const ds=document.getElementById('detailScreen');if(ds)ds.classList.remove('open');
+    const wn=document.getElementById('whatsNew');if(wn)wn.classList.remove('show');
+    startSplash();
+  });
+}
 let tagAnimate=true,tagOpenInit=false;
 const openTags=new Set();
 let projectTagId=null,editingTagId=null,tagIcon='tag',tagColor=PROJECT_COLORS[0],tagFromProject=false;
@@ -2848,6 +3009,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('fabNew').addEventListener('click',()=>openProjectSheet(false));
   document.getElementById('projectList').addEventListener('click',e=>{const card=e.target.closest('.project');if(card)openDetail(card.dataset.id);});
   initLongPress();
+  initResume();
   try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
   document.getElementById('backBtn').addEventListener('click',closeDetail);
   document.getElementById('delBtn').addEventListener('click',async()=>{
