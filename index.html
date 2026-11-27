@@ -570,6 +570,19 @@ body.view-projects .cash-card,body.view-projects .payroll-card{display:none!impo
 @media (min-height:800px){.hub .wg-card{height:262px;}.hub .wg-bars{height:112px;}.hub .wg-cells{margin-top:14px;}.hub-foot{padding-bottom:6px;}}
 @media (min-height:900px){.hub .wg-card{height:286px;}.hub-btn{padding:14px 13px 12px;}}
 #backupSheet{z-index:66;}
+/* v4.0 : COMPTES & SYNCHRO */
+.cloud-st{font-size:12px;font-weight:700;margin-top:6px;color:var(--forest-500);}
+.cloud-st.warn{color:#D97706;}.cloud-st.err{color:var(--danger);}
+.pass-wrap{position:relative;}.pass-wrap input{padding-right:48px;}
+.pass-wrap button{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:11px;font-size:17px;opacity:.7;}
+.au-msg{min-height:18px;font-size:13px;font-weight:650;margin:2px 2px 10px;color:var(--muted);line-height:1.4;}
+.au-msg.err{color:var(--danger);}.au-msg.ok{color:var(--forest-500);}
+.au-link{display:block;width:100%;text-align:center;padding:12px;font-size:13.5px;font-weight:700;color:var(--forest-500);}
+.au-note{font-size:12px;color:var(--muted);font-weight:600;text-align:center;line-height:1.45;padding:2px 8px 6px;}
+.ch-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;}
+.ch-list .modal-btn{flex:none;width:100%;text-align:left;padding:12px 14px;}
+.ch-list .modal-btn small{display:block;font-size:11.5px;font-weight:600;opacity:.75;margin-top:2px;}
+#hubCloud{opacity:.85;}
 /* v3.4 : RECHERCHE */
 .sr-pill{display:none;}
 body.view-home .sr-pill{display:flex;align-items:center;gap:10px;width:100%;margin:-24px 0 10px;position:relative;z-index:3;height:48px;padding:0 16px;border-radius:16px;background:var(--card);color:var(--muted);text-align:left;border:1px solid rgba(14,42,28,.07);box-shadow:0 10px 24px -12px rgba(14,42,28,.45),0 1px 2px rgba(14,42,28,.06);transition:transform .15s,box-shadow .2s;-webkit-tap-highlight-color:transparent;animation:srIn .6s cubic-bezier(.2,.8,.2,1) both;}
@@ -919,7 +932,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <button type="button" class="sr-pill" id="srPill" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>Rechercher dans Tirelire…</span></button>
   <div class="wg" id="wg" style="display:none"><div class="wg-track" id="wgTrack"></div><div class="wg-dots" id="wgDots"></div></div>
   <nav class="hub-grid" id="hubGrid" aria-label="Menu principal"></nav>
-  <button type="button" class="hub-foot" id="hubFoot" aria-label="À propos de Tirelire">Tirelire · Version <span id="hubVer"></span></button>
+  <button type="button" class="hub-foot" id="hubFoot" aria-label="À propos de Tirelire">Tirelire · Version <span id="hubVer"></span><span id="hubCloud"></span></button>
 </section>
 
 <main class="content">
@@ -1145,6 +1158,9 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
     <div id="tagsSettingsList"></div>
     <button class="export-btn" id="addTagBtn" style="margin-top:12px;">+ Nouveau tag</button>
   </div>
+  <div class="setting-item" style="display:none;" id="cloudItem">
+    <div style="flex:1;min-width:0;"><div class="setting-label">Compte &amp; synchronisation</div><div class="setting-desc" id="cloudDesc"></div><div class="cloud-st" id="cloudSt"></div><div class="export-row" id="cloudBtns" style="margin-top:10px;"></div></div>
+  </div>
   <div class="setting-item" style="display:block;">
     <div class="setting-label" style="margin-bottom:10px;">Exporter / Importer</div>
     <div class="export-row"><button class="export-btn" id="exportCsv">Exporter CSV</button><button class="export-btn" id="exportJson">Exporter JSON</button></div>
@@ -1178,6 +1194,27 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <div class="field"><label>Icône</label><div class="charge-icon-picker" id="chargeIconPicker"></div></div>
   <div class="field"><label>Catégorie</label><div class="cat-picker" id="chargeCatPicker"></div></div>
   <div class="export-row"><button class="export-btn" id="chargeCancel">Annuler</button><button class="export-btn" id="chargeConfirm" style="background:var(--forest-500);color:#fff;border:none;">Enregistrer</button></div>
+</div>
+
+<div class="sheet" id="authSheet" style="z-index:66;">
+  <div class="grabber"></div>
+  <h2 id="auTitle">Connexion</h2>
+  <div class="segmented" id="auSeg" style="margin-bottom:14px;"><button type="button" data-m="login">Connexion</button><button type="button" data-m="signup">Créer un compte</button></div>
+  <div class="field" id="auUserF"><label for="auUser">Nom d'utilisateur</label><input id="auUser" type="text" maxlength="20" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="ex. pierre_237"></div>
+  <div class="field" id="auMailF"><label for="auMail">E-mail</label><input id="auMail" type="email" autocomplete="email" autocapitalize="none" inputmode="email" placeholder="vous@exemple.com"></div>
+  <div class="field" id="auPassF"><label for="auPass" id="auPassL">Mot de passe</label><div class="pass-wrap"><input id="auPass" type="password" autocomplete="current-password" minlength="6" placeholder="6 caractères minimum"><button type="button" id="auEye" aria-label="Afficher le mot de passe">👁</button></div></div>
+  <div class="au-msg" id="auMsg"></div>
+  <button class="btn-primary btn-block" id="auGo">Se connecter</button>
+  <button type="button" class="au-link" id="auForgot">Mot de passe oublié ?</button>
+  <div class="au-note" id="auNote"></div>
+</div>
+
+<div class="modal-wrap" id="choiceWrap">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <h3 id="chTitle"></h3>
+    <p class="modal-msg" id="chMsg"></p>
+    <div class="ch-list" id="chList"></div>
+  </div>
 </div>
 
 <div class="modal-wrap" id="modalWrap">
@@ -1372,7 +1409,7 @@ function load(){
   fixTags();
   if(state.projects.length>0||state.charges.length>0||state.payrolls.length>0||state.cash.length>0) state.settings.onboardingDone=true;
 }
-function save(){state.settings.lastChange=Date.now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}}
+function save(){state.settings.lastChange=Date.now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){}try{if(!applyingCloud)cloudSchedule();}catch(e){}}
 function getProject(id){return state.projects.find(p=>p.id===id);}
 function activeProjects(){return state.projects.filter(p=>!p.realized);}
 function doneProjects(){return state.projects.filter(p=>!!p.realized);}
@@ -2919,8 +2956,9 @@ function initLongPress(){
 }
 
 /* ═══════ v3.0 : NOUVEAUTÉS, À PROPOS, SPLASH À LA REPRISE ═══════ */
-const APP_VERSION='3.4';
+const APP_VERSION='4.0';
 const CHANGELOG=[
+  {v:'4.0',t:'Comptes et synchronisation',i:[['n','Créez un compte (e-mail + nom d\'utilisateur) et retrouvez vos projets sur tous vos appareils'],['n','Vos données actuelles sont conservées : envoyées sur le compte, ou fusionnées si le compte en contient déjà'],['n','Synchronisation automatique, utilisable hors ligne, avec copie de sécurité restaurable']]},
   {v:'3.4',t:'Recherche',i:[['n','Barre de recherche sur l\'accueil : projets, mouvements, caisse, tags, charges et paies'],['n','Recherche par nom, note, montant (ex. 5000), date, catégorie ou tag, sans tenir compte des accents'],['n','Résultats surlignés, filtres par type et recherches récentes']]},
   {v:'3.3',t:'Export corrigé et accueil plus rempli',i:[['f','Le bouton « Exporter JSON » des réglages ouvre maintenant bien la fenêtre de sauvegarde (elle restait cachée derrière les réglages)'],['n','Accueil : cartes et boutons ajustés à la hauteur de l\'écran, moins de blanc en bas']]},
   {v:'3.2',t:'Nouvel écran d\'accueil',i:[['n','Accueil en une seule vue : carrousel de widgets qui défilent, boutons vers tous les écrans, footer avec la version'],['n','Nouveaux widgets : évolution sur 6 mois et caisse avec Encaisser / Dépenser'],['n','Liste des projets déplacée dans « Mes projets », avec retour à l\'accueil'],['n','Pastilles sur Paie et Sauvegarde quand une action est attendue']]},
@@ -3260,6 +3298,327 @@ function renderHub(){
   if(pay){const had=pay.querySelector('.hub-dot');if(pendingPaies().length&&!had)pay.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!pendingPaies().length&&had)had.remove();}
   const hv=document.getElementById('hubVer');if(hv)hv.textContent=APP_VERSION;
 }
+/* ═══════ v4.0 : COMPTES & SYNCHRONISATION (Supabase) ═══════ */
+/* À renseigner : Project URL et clé « anon public » (Supabase → Project Settings → API). Jamais la clé service_role. */
+var CLOUD={url:'https://ezbzdevqutlmniultomy.supabase.co',key:'sb_publishable_y83V1OV0Yj5kRETZkF9PCQ_ptxJw9hJ'};
+try{const o=JSON.parse(localStorage.getItem('tirelire.cloudcfg')||'null');if(o&&o.url&&o.key)CLOUD={url:String(o.url).replace(/\/+$/,''),key:String(o.key)};}catch(e){}
+CLOUD.url=String(CLOUD.url||'').replace(/\/+$/,'');
+var SESS_KEY='tirelire.session',SYNC_KEY='tirelire.sync',PRELINK_KEY='tirelire.v2.prelink';
+var cloudSess=null,syncMeta={rev:0,hash:'',last:0,uid:''},cloudState='off',cloudMsg='',syncing=false,syncAgain=false,syncTimer=null,applyingCloud=false,auMode='login',auRecoveryToken=null,refreshing=null;
+function cloudOn(){return !!(CLOUD.url&&CLOUD.key);}
+function cloudErr(code,msg){const e=new Error(msg||code);e.code=code;return e;}
+function cloudLoad(){
+  try{cloudSess=JSON.parse(localStorage.getItem(SESS_KEY)||'null');if(cloudSess&&!(cloudSess.access_token&&cloudSess.user&&cloudSess.user.id))cloudSess=null;}catch(e){cloudSess=null;}
+  try{syncMeta=Object.assign({rev:0,hash:'',last:0,uid:''},JSON.parse(localStorage.getItem(SYNC_KEY)||'{}'));}catch(e){}
+  if(cloudSess&&syncMeta.uid!==cloudSess.user.id)syncMeta={rev:0,hash:'',last:0,uid:cloudSess.user.id};
+}
+function cloudSaveMeta(){try{localStorage.setItem(SYNC_KEY,JSON.stringify(syncMeta));}catch(e){}}
+function cloudSaveSess(){try{if(cloudSess)localStorage.setItem(SESS_KEY,JSON.stringify(cloudSess));else localStorage.removeItem(SESS_KEY);}catch(e){}}
+function hash32(t){let h=5381;for(let i=0;i<t.length;i++)h=((h<<5)+h+t.charCodeAt(i))|0;return h+':'+t.length;}
+function cloudPayload(){return {projects:state.projects,charges:state.charges,payrolls:state.payrolls,cash:state.cash,tags:state.tags};}
+function localHasData(){return !!(state.projects.length||state.charges.length||state.payrolls.length||state.cash.length||state.tags.length);}
+function deviceName(){const u=navigator.userAgent||'';return /iPhone|iPad/.test(u)?'iPhone/iPad':/Android/.test(u)?'Android':/Windows/.test(u)?'Windows':/Mac/.test(u)?'Mac':/Linux/.test(u)?'Linux':'Navigateur';}
+function sessionFrom(d,username){
+  const u=d.user||{};
+  return {access_token:d.access_token,refresh_token:d.refresh_token,expires_at:d.expires_at||(Math.floor(Date.now()/1000)+(d.expires_in||3600)),user:{id:u.id,email:u.email||''},username:username||(u.user_metadata&&u.user_metadata.username)||''};
+}
+async function sb(path,o){
+  o=o||{};
+  const h=Object.assign({apikey:CLOUD.key,'Content-Type':'application/json'},o.headers||{});
+  if(o.token)h.Authorization='Bearer '+o.token;
+  else if(o.auth!==false){if(!cloudSess)throw cloudErr('auth');await cloudFresh();h.Authorization='Bearer '+cloudSess.access_token;}
+  else if(/^eyJ/.test(CLOUD.key))h.Authorization='Bearer '+CLOUD.key;
+  let r;
+  try{r=await fetch(CLOUD.url+path,{method:o.method||'GET',headers:h,body:o.body!==undefined?JSON.stringify(o.body):undefined});}catch(e){throw cloudErr('network');}
+  if(r.status===401&&o.auth!==false&&!o.token&&!o._retry){if(await cloudRefresh())return sb(path,Object.assign({},o,{_retry:true}));cloudDrop(true);throw cloudErr('auth');}
+  let j=null;const t=await r.text();if(t){try{j=JSON.parse(t);}catch(e){j=t;}}
+  if(!r.ok){const e=cloudErr('http',(j&&(j.msg||j.message||j.error_description||j.error))||('HTTP '+r.status));e.status=r.status;e.body=j;throw e;}
+  return {status:r.status,data:j};
+}
+async function cloudFresh(){if(cloudSess&&cloudSess.expires_at&&Date.now()/1000>cloudSess.expires_at-60)await cloudRefresh();}
+function cloudRefresh(){
+  if(!cloudSess||!cloudSess.refresh_token)return Promise.resolve(false);
+  if(refreshing)return refreshing;
+  refreshing=(async()=>{
+    try{
+      const r=await sb('/auth/v1/token?grant_type=refresh_token',{method:'POST',auth:false,body:{refresh_token:cloudSess.refresh_token}});
+      if(r.data&&r.data.access_token){cloudSess=sessionFrom(Object.assign({user:cloudSess.user},r.data),cloudSess.username);if(r.data.user&&r.data.user.id)cloudSess.user={id:r.data.user.id,email:r.data.user.email||cloudSess.user.email};cloudSaveSess();return true;}
+      return false;
+    }catch(e){return false;}
+    finally{setTimeout(()=>{refreshing=null;},0);}
+  })();
+  return refreshing;
+}
+function cloudDrop(expired){
+  cloudSess=null;cloudSaveSess();syncMeta={rev:0,hash:'',last:0,uid:''};cloudSaveMeta();setCloud('off');
+  if(expired)showToast('Session expirée : reconnectez-vous');
+}
+function cloudMsgFr(e){
+  const m=String(e&&e.message||'');
+  if(e&&e.code==='network')return 'Pas de connexion internet.';
+  if(/invalid login/i.test(m))return 'E-mail ou mot de passe incorrect.';
+  if(/not confirmed/i.test(m))return "Confirmez d'abord votre e-mail (lien reçu par message), puis reconnectez-vous.";
+  if(/already registered|already exists/i.test(m))return 'Cet e-mail a déjà un compte : connectez-vous.';
+  if(/at least|too short|weak/i.test(m))return 'Mot de passe trop court (6 caractères minimum).';
+  if(/rate limit|too many|security purposes/i.test(m))return 'Trop de tentatives : patientez une minute.';
+  if(/invalid.*email|email.*invalid|unable to validate email/i.test(m))return 'Adresse e-mail invalide.';
+  if(e&&(e.status===404||/schema cache|does not exist|relation/i.test(m)))return "La base n'est pas prête : exécutez le script SQL dans Supabase.";
+  if(e&&e.code==='username')return m;
+  return m||'Une erreur est survenue.';
+}
+/* ── comptes ── */
+async function cloudSignup(username,email,pass){
+  const av=await sb('/rest/v1/rpc/username_available',{method:'POST',auth:false,body:{u:username}});
+  if(av.data===false)throw cloudErr('username',"Ce nom d'utilisateur est déjà pris.");
+  const r=await sb('/auth/v1/signup',{method:'POST',auth:false,body:{email,password:pass,data:{username}}});
+  const d=r.data||{};
+  if(d.access_token){cloudSess=sessionFrom(d,username);cloudSaveSess();return 'ok';}
+  return 'confirm';
+}
+async function cloudLogin(email,pass){
+  const r=await sb('/auth/v1/token?grant_type=password',{method:'POST',auth:false,body:{email,password:pass}});
+  cloudSess=sessionFrom(r.data,'');cloudSaveSess();
+  await cloudFetchProfile();
+}
+async function cloudFetchProfile(){
+  try{const r=await sb('/rest/v1/profiles?select=username&id=eq.'+cloudSess.user.id);const row=Array.isArray(r.data)&&r.data[0];if(row&&row.username){cloudSess.username=row.username;cloudSaveSess();}}catch(e){}
+}
+async function cloudLogout(){
+  try{if(cloudSess)await sb('/auth/v1/logout',{method:'POST'});}catch(e){}
+  cloudDrop(false);renderCloudSettings();
+}
+/* ── fusion ── */
+function mergeById(local,remote){const m=new Map();(remote||[]).forEach(x=>{if(x&&x.id!=null)m.set(x.id,x);});(local||[]).forEach(x=>{if(x&&x.id!=null)m.set(x.id,x);});return Array.from(m.values());}
+function mergeData(loc,rem){
+  const rp=new Map((rem.projects||[]).map(x=>[x.id,x]));
+  const projects=mergeById(loc.projects,rem.projects).map(x=>{
+    const a=(loc.projects||[]).find(y=>y.id===x.id),b=rp.get(x.id);
+    if(a&&b){const ids=new Set((a.transactions||[]).map(t=>t.id));return Object.assign({},a,{transactions:(a.transactions||[]).concat((b.transactions||[]).filter(t=>!ids.has(t.id)))});}
+    return x;
+  });
+  return {projects,charges:mergeById(loc.charges,rem.charges),payrolls:mergeById(loc.payrolls,rem.payrolls),cash:mergeById(loc.cash,rem.cash),tags:mergeById(loc.tags,rem.tags)};
+}
+function dataCounts(d){return (d.projects||[]).length+' projet'+((d.projects||[]).length>1?'s':'')+' · '+(d.cash||[]).length+' mouvement'+((d.cash||[]).length>1?'s':'')+' de caisse';}
+function cloudApply(d,rev,keepMeta){
+  try{localStorage.setItem(PRELINK_KEY,JSON.stringify({at:Date.now(),data:JSON.parse(JSON.stringify(cloudPayload()))}));}catch(e){}
+  applyingCloud=true;
+  try{
+    state.projects=(Array.isArray(d.projects)?d.projects:[]).map(normalizeProject);
+    state.charges=(Array.isArray(d.charges)?d.charges:[]).map(normalizeCharge);
+    state.payrolls=Array.isArray(d.payrolls)?d.payrolls:[];
+    state.cash=(Array.isArray(d.cash)?d.cash:[]).map(normalizeCash);
+    state.tags=(Array.isArray(d.tags)?d.tags:[]).map(normalizeTag);
+    if(state.projects.length||state.charges.length||state.payrolls.length||state.cash.length)state.settings.onboardingDone=true;
+    fixTags();save();
+  }finally{applyingCloud=false;}
+  if(!keepMeta){syncMeta.rev=rev;syncMeta.hash=hash32(JSON.stringify(cloudPayload()));syncMeta.last=Date.now();syncMeta.uid=cloudSess.user.id;cloudSaveMeta();}
+  try{renderList();}catch(e){console.error(e);}
+  try{renderHomeStats();}catch(e){}
+}
+/* ── synchro ── */
+function setCloud(st,msg){cloudState=st;cloudMsg=msg||'';cloudPaint();}
+function cloudPaint(){
+  const hc=document.getElementById('hubCloud');
+  if(hc){const t={ok:' · ☁ à jour',syncing:' · ☁ synchro…',offline:' · ☁ hors ligne',error:' · ⚠ synchro',conflict:' · ⚠ à résoudre',idle:' · ☁'}[cloudState];hc.textContent=cloudSess&&t?t:'';}
+  renderCloudSettings();
+}
+function cloudAgo(t){if(!t)return 'jamais';const m=Math.round((Date.now()-t)/60000);if(m<1)return "à l'instant";if(m<60)return 'il y a '+m+' min';const h=Math.round(m/60);if(h<24)return 'il y a '+h+' h';return new Date(t).toLocaleDateString('fr-FR');}
+function cloudSchedule(ms){
+  if(!cloudSess||applyingCloud||cloudState==='conflict'||!cloudOn())return;
+  clearTimeout(syncTimer);syncTimer=setTimeout(()=>{cloudSync();},ms==null?2500:ms);
+}
+async function cloudSync(opt){
+  opt=opt||{};
+  if(!cloudOn()||!cloudSess)return;
+  if(syncing){syncAgain=true;return;}
+  if(navigator.onLine===false){setCloud('offline');return;}
+  if(cloudState==='conflict'&&!opt.manual)return;
+  syncing=true;if(cloudState!=='conflict')setCloud('syncing');
+  try{
+    const r=await sb('/rest/v1/user_data?select=rev,updated_at,device&user_id=eq.'+cloudSess.user.id);
+    const row=Array.isArray(r.data)&&r.data[0]||null;
+    const h=hash32(JSON.stringify(cloudPayload())),changed=h!==syncMeta.hash;
+    if(!row){
+      if(localHasData()||opt.force)await cloudPush(null);else{syncMeta.rev=0;setCloud('ok');}
+    }else if(!syncMeta.rev){
+      if(!localHasData())await cloudPull(row.rev);else await cloudConflict(row,true);
+    }else if(row.rev===syncMeta.rev){
+      if(changed)await cloudPush(row.rev);else{syncMeta.last=Date.now();cloudSaveMeta();setCloud('ok');}
+    }else{
+      if(!changed)await cloudPull(row.rev);else await cloudConflict(row,false);
+    }
+  }catch(e){cloudHandleErr(e);}
+  finally{syncing=false;if(syncAgain){syncAgain=false;cloudSchedule(800);}}
+}
+function cloudHandleErr(e){
+  if(e&&e.code==='network'){setCloud('offline');return;}
+  if(e&&e.code==='auth'){return;}
+  console.error(e);setCloud('error',cloudMsgFr(e));
+}
+async function cloudPush(rev){
+  const payload=cloudPayload(),h=hash32(JSON.stringify(payload));
+  const body={data:payload,device:deviceName()};
+  let r;
+  try{
+    if(rev==null){body.user_id=cloudSess.user.id;r=await sb('/rest/v1/user_data?select=rev',{method:'POST',headers:{Prefer:'return=representation'},body});}
+    else r=await sb('/rest/v1/user_data?select=rev&user_id=eq.'+cloudSess.user.id+'&rev=eq.'+rev,{method:'PATCH',headers:{Prefer:'return=representation'},body});
+  }catch(e){if(e.status===409){syncAgain=true;return;}throw e;}
+  const row=Array.isArray(r.data)&&r.data[0];
+  if(!row){syncAgain=true;return;}
+  syncMeta={rev:row.rev,hash:h,last:Date.now(),uid:cloudSess.user.id};cloudSaveMeta();setCloud('ok');
+}
+async function cloudFetchData(){
+  const r=await sb('/rest/v1/user_data?select=data,rev,device,updated_at&user_id=eq.'+cloudSess.user.id);
+  const row=Array.isArray(r.data)&&r.data[0];if(!row)throw cloudErr('http','Données introuvables');return row;
+}
+async function cloudPull(){
+  const row=await cloudFetchData();
+  cloudApply(row.data||{},row.rev);setCloud('ok');
+}
+function choiceModal(o){
+  return new Promise(res=>{
+    document.getElementById('chTitle').textContent=o.title||'';
+    document.getElementById('chMsg').textContent=o.msg||'';
+    const l=document.getElementById('chList');l.innerHTML='';
+    o.choices.forEach(c=>{const b=document.createElement('button');b.type='button';b.className='modal-btn'+(c.tone==='primary'?' primary':c.tone==='danger'?' danger':'');b.innerHTML=esc(c.label)+(c.desc?'<small>'+esc(c.desc)+'</small>':'');b.addEventListener('click',()=>{document.getElementById('choiceWrap').classList.remove('open');res(c.id);});l.appendChild(b);});
+    document.getElementById('choiceWrap').classList.add('open');
+  });
+}
+async function cloudConflict(row,first){
+  const full=await cloudFetchData();const rem=full.data||{};
+  const loc=cloudPayload();
+  const when=full.updated_at?new Date(full.updated_at).toLocaleString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+  const choice=await choiceModal({
+    title:first?'Votre compte contient déjà des données':'Modifié sur un autre appareil',
+    msg:(first?'Cet appareil et votre compte ont chacun des données. ':'Votre compte et cet appareil ont changé séparément. ')+'Compte'+(when?' ('+when+(full.device?', '+full.device:'')+')':'')+' : '+dataCounts(rem)+'. Cet appareil : '+dataCounts(loc)+'. Rien ne sera perdu sans votre accord.',
+    choices:[
+      {id:'merge',tone:'primary',label:'Fusionner les deux',desc:'Garde tout : projets et mouvements des deux côtés'},
+      {id:'local',label:'Garder cet appareil',desc:'Remplace le contenu du compte'},
+      {id:'cloud',label:'Garder le compte',desc:'Remplace les données de cet appareil'},
+      {id:'later',label:'Décider plus tard',desc:'La synchronisation reste en pause'}
+    ]});
+  if(choice==='merge'){cloudApply(mergeData(loc,rem),full.rev,true);await cloudPush(full.rev);showToast('Données fusionnées ✓');}
+  else if(choice==='local'){
+    const r=await askModal({title:'Remplacer le compte ?',msg:'Les données du compte seront remplacées par celles de cet appareil.',okLabel:'Remplacer',okTone:'danger'});
+    if(!r||!r.ok){setCloud('conflict');return;}
+    await cloudPush(full.rev);
+  }else if(choice==='cloud'){
+    const r=await askModal({title:'Remplacer cet appareil ?',msg:'Les données de cet appareil seront remplacées par celles du compte. Une copie de sécurité est gardée et restaurable depuis les réglages.',okLabel:'Remplacer',okTone:'danger'});
+    if(!r||!r.ok){setCloud('conflict');return;}
+    cloudApply(rem,full.rev);setCloud('ok');
+  }else setCloud('conflict');
+}
+async function cloudRestorePrelink(){
+  let b=null;try{b=JSON.parse(localStorage.getItem(PRELINK_KEY)||'null');}catch(e){}
+  if(!b||!b.data)return;
+  const r=await askModal({title:'Restaurer la copie de sécurité ?',msg:'Données de cet appareil avant la dernière synchronisation entrante ('+new Date(b.at).toLocaleString('fr-FR')+') : '+dataCounts(b.data)+'. Elles remplaceront les données actuelles puis seront synchronisées.',okLabel:'Restaurer',okTone:'danger'});
+  if(!r||!r.ok)return;
+  cloudApply(b.data,0,true);closeAllSheets();showToast('Copie de sécurité restaurée');cloudSchedule(300);
+}
+/* ── écran Réglages ── */
+function renderCloudSettings(){
+  const it=document.getElementById('cloudItem');if(!it)return;
+  if(!cloudOn()){it.style.display='none';return;}
+  it.style.display='flex';
+  const d=document.getElementById('cloudDesc'),st=document.getElementById('cloudSt'),bt=document.getElementById('cloudBtns');
+  let hasPre=false;try{hasPre=!!localStorage.getItem(PRELINK_KEY);}catch(e){}
+  if(!cloudSess){
+    d.textContent='Retrouvez vos projets sur tous vos appareils et préparez les projets partagés. Vos données actuelles sont conservées.';st.textContent='';st.className='cloud-st';
+    bt.innerHTML='<button class="export-btn" id="cloudSignup">Créer un compte</button><button class="export-btn" id="cloudLogin">Se connecter</button>';
+    document.getElementById('cloudSignup').onclick=()=>openAuth('signup');document.getElementById('cloudLogin').onclick=()=>openAuth('login');
+    return;
+  }
+  d.textContent=(cloudSess.username?'@'+cloudSess.username+' · ':'')+cloudSess.user.email;
+  const t={ok:'☁ Synchronisé · '+cloudAgo(syncMeta.last),syncing:'☁ Synchronisation…',offline:'Hors ligne : synchro dès le retour du réseau',error:'⚠ '+(cloudMsg||'Erreur de synchronisation'),conflict:'⚠ Données à fusionner : touchez « Synchroniser »',idle:'☁ Connecté'}[cloudState]||'';
+  st.textContent=t;st.className='cloud-st'+(cloudState==='error'?' err':(cloudState==='conflict'||cloudState==='offline')?' warn':'');
+  bt.innerHTML='<button class="export-btn" id="cloudNow">Synchroniser</button><button class="export-btn danger" id="cloudOut">Se déconnecter</button>'+(hasPre?'<button class="export-btn" id="cloudRestore" style="flex-basis:100%">Restaurer la copie d\'avant synchro</button>':'');
+  document.getElementById('cloudNow').onclick=()=>{cloudSync({manual:true,force:true});};
+  document.getElementById('cloudOut').onclick=async()=>{const r=await askModal({title:'Se déconnecter ?',msg:'Vos données restent sur cet appareil. La synchronisation s\'arrête jusqu\'à la prochaine connexion.',okLabel:'Se déconnecter',okTone:'danger'});if(r&&r.ok)cloudLogout();};
+  const rb=document.getElementById('cloudRestore');if(rb)rb.onclick=cloudRestorePrelink;
+}
+/* ── feuille connexion ── */
+function openAuth(mode){
+  setAuthMode(mode||'login');
+  ['auUser','auMail','auPass'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('auMsg').textContent='';
+  openSheet('authSheet');
+}
+function setAuthMode(m){
+  auMode=m;
+  document.querySelectorAll('#auSeg button').forEach(b=>b.classList.toggle('sel',b.dataset.m===m));
+  const reset=m==='reset';
+  document.getElementById('auSeg').style.display=reset?'none':'flex';
+  document.getElementById('auUserF').style.display=m==='signup'?'block':'none';
+  document.getElementById('auMailF').style.display=reset?'none':'block';
+  document.getElementById('auPassL').textContent=reset?'Nouveau mot de passe':'Mot de passe';
+  document.getElementById('auPass').autocomplete=m==='login'?'current-password':'new-password';
+  document.getElementById('auTitle').textContent=m==='signup'?'Créer un compte':(reset?'Nouveau mot de passe':'Connexion');
+  document.getElementById('auGo').textContent=m==='signup'?'Créer mon compte':(reset?'Enregistrer':'Se connecter');
+  document.getElementById('auForgot').style.display=m==='login'?'block':'none';
+  document.getElementById('auNote').textContent=m==='signup'?'Vos projets actuels restent sur cet appareil et seront envoyés sur votre compte : rien n\'est perdu.':'';
+  document.getElementById('auMsg').textContent='';
+}
+function auSay(t,cls){const e=document.getElementById('auMsg');e.textContent=t;e.className='au-msg'+(cls?' '+cls:'');}
+async function auSubmit(){
+  const go=document.getElementById('auGo');
+  const user=document.getElementById('auUser').value.trim().toLowerCase(),mail=document.getElementById('auMail').value.trim(),pass=document.getElementById('auPass').value;
+  try{
+    if(auMode==='reset'){
+      if(pass.length<6)return auSay('Mot de passe trop court (6 caractères minimum).','err');
+      go.disabled=true;auSay('Enregistrement…');
+      await sb('/auth/v1/user',{method:'PUT',token:auRecoveryToken,body:{password:pass}});
+      auRecoveryToken=null;closeSheet('authSheet');showToast('Mot de passe modifié ✓ : connectez-vous');openAuth('login');return;
+    }
+    if(!/^\S+@\S+\.\S+$/.test(mail))return auSay('Adresse e-mail invalide.','err');
+    if(pass.length<6)return auSay('Mot de passe trop court (6 caractères minimum).','err');
+    if(auMode==='signup'&&!/^[a-z0-9_]{3,20}$/.test(user))return auSay("Nom d'utilisateur : 3 à 20 caractères (lettres, chiffres, _).",'err');
+    go.disabled=true;auSay(auMode==='signup'?'Création du compte…':'Connexion…');
+    if(auMode==='signup'){
+      const r=await cloudSignup(user,mail,pass);
+      if(r==='confirm'){auSay('Compte créé ✓ Ouvrez le lien reçu par e-mail, puis connectez-vous.','ok');setAuthMode('login');document.getElementById('auMail').value=mail;auSay('Compte créé ✓ Ouvrez le lien reçu par e-mail, puis connectez-vous.','ok');return;}
+    }else await cloudLogin(mail,pass);
+    closeSheet('authSheet');
+    showToast('Bienvenue'+(cloudSess.username?' @'+cloudSess.username:'')+' ✓');
+    setCloud('idle');cloudSync({manual:true,force:true});
+  }catch(e){auSay(cloudMsgFr(e),'err');}
+  finally{go.disabled=false;}
+}
+async function cloudForgot(){
+  const mail=document.getElementById('auMail').value.trim();
+  if(!/^\S+@\S+\.\S+$/.test(mail))return auSay("Saisissez d'abord votre e-mail ci-dessus.",'err');
+  try{auSay('Envoi…');await sb('/auth/v1/recover',{method:'POST',auth:false,body:{email:mail}});auSay('Si ce compte existe, un lien de réinitialisation vient d\'être envoyé.','ok');}
+  catch(e){auSay(cloudMsgFr(e),'err');}
+}
+async function cloudHandleHash(){
+  const h=location.hash||'';if(!/access_token=/.test(h))return false;
+  const q=new URLSearchParams(h.replace(/^#/,''));
+  const at=q.get('access_token'),rt=q.get('refresh_token'),type=q.get('type');
+  try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}
+  if(!at)return false;
+  if(type==='recovery'){auRecoveryToken=at;openAuth('reset');return true;}
+  try{
+    const u=await sb('/auth/v1/user',{token:at});
+    cloudSess=sessionFrom({access_token:at,refresh_token:rt,expires_in:Number(q.get('expires_in'))||3600,user:u.data},'');cloudSaveSess();
+    await cloudFetchProfile();showToast('E-mail confirmé ✓ Bienvenue'+(cloudSess.username?' @'+cloudSess.username:''));
+    setCloud('idle');cloudSync({manual:true,force:true});return true;
+  }catch(e){showToast('Lien invalide ou expiré');return false;}
+}
+function initCloud(){
+  cloudLoad();
+  if(!cloudOn()){renderCloudSettings();return;}
+  document.querySelectorAll('#auSeg button').forEach(b=>b.addEventListener('click',()=>setAuthMode(b.dataset.m)));
+  document.getElementById('auGo').addEventListener('click',auSubmit);
+  document.getElementById('auForgot').addEventListener('click',cloudForgot);
+  document.getElementById('auEye').addEventListener('click',()=>{const i=document.getElementById('auPass');i.type=i.type==='password'?'text':'password';});
+  ['auUser','auMail','auPass'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{if(e.key==='Enter')auSubmit();}));
+  cloudHandleHash();
+  if(cloudSess){setCloud('idle');setTimeout(()=>cloudSync(),1200);}
+  renderCloudSettings();
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden&&cloudSess)cloudSync();});
+  window.addEventListener('online',()=>{if(cloudSess)cloudSync();});
+  setInterval(()=>{if(cloudSess&&!document.hidden)cloudSync();},90000);
+}
+
 /* ═══════ v3.4 : RECHERCHE GLOBALE ═══════ */
 let srFilter='all',srQuery='',srExpanded={},srTimer=null;
 const SR_KEY='tirelire.recentSearch';
@@ -3413,6 +3772,7 @@ function hubAction(id){
   else if(id==='settings')document.getElementById('settingsBtn').click();
 }
 function initHub(){
+  try{initCloud();}catch(e){console.error(e);}
   try{initSearch();}catch(e){console.error(e);}
   document.body.classList.add('view-home');
   renderHub();
@@ -3937,6 +4297,12 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!r1||!r1.ok)return;
     const r2=await askModal({title:'Dernière confirmation',msg:'Vraiment sûr ? Tous les projets, charges et paies seront perdus. Astuce : exportez un fichier JSON avant de continuer.',okLabel:'Effacer définitivement',okTone:'danger'});
     if(!r2||!r2.ok)return;
+    if(cloudSess){
+      const r3=await askModal({title:'Et votre compte en ligne ?',msg:'Vous êtes connecté. Par défaut, seules les données de cet appareil sont effacées et vous serez déconnecté (le compte garde vos données).',okLabel:'Continuer',check:'Effacer aussi les données de mon compte en ligne'});
+      if(!r3||!r3.ok)return;
+      if(r3.checked){try{await sb('/rest/v1/user_data?user_id=eq.'+cloudSess.user.id,{method:'DELETE'});}catch(e){await infoModal('Compte non effacé',cloudMsgFr(e));return;}}
+      cloudDrop(false);
+    }
     state={projects:[],charges:[],payrolls:[],cash:[],tags:[],settings:{theme:state.settings.theme,onboardingDone:true,pinEnabled:false,pin:null,pinHashed:false,lastExport:0,backupSnooze:0,notifEnabled:false,biometricCredId:null,lastChange:0}};
     save();applyTheme();renderList();closeAllSheets();
     showToast('Données effacées');

@@ -1,0 +1,7 @@
+{
+  "appId": "com.valdeze.tirelire",
+  "appName": "Tirelire",
+  "webDir": "www",
+  "backgroundColor": "#0E2A1C",
+  "android": { "allowMixedContent": false }
+}

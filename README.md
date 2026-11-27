@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-3.4-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-4.0-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -207,6 +207,7 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 
 | Version | Nouveautés |
 |---|---|
+| **4.0** | ☁️ Comptes (e-mail + nom d'utilisateur) et synchronisation Supabase · fusion sans perte · copie de sécurité · script SQL fourni (`supabase/`) |
 | **3.4** | 🔎 Recherche globale : projets, mouvements, caisse, tags, charges, paies · montants, notes, dates, sans accents · filtres et récentes |
 | **3.3** | 🛠️ Correctif : « Exporter JSON » des réglages s'affichait derrière le panneau · accueil adapté à la hauteur de l'écran |
 | **3.2** | 🏠 Nouvel écran d'accueil en une seule vue : carrousel de widgets, 9 boutons vers les écrans, footer avec la version · liste des projets dans « Mes projets » |
@@ -238,3 +239,7 @@ Projet **personnel**, tous droits réservés. Le code n'est pas destiné à êtr
 Fait avec 💚 par **Pierre Valdeze** — *un FCFA à la fois.*
 
 </div>
+
+
+## ☁️ Comptes et synchronisation (v4.0)
+Voir **`supabase/LISEZMOI.md`** (installation en 10 minutes) et `supabase/01_comptes_et_sync.sql`. Sans configuration, l'app reste 100 % locale.
