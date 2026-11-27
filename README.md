@@ -6,7 +6,7 @@
 
 Application mobile d'épargne par projets, en FCFA — gratuite, privée et utilisable hors ligne.
 
-![Version](https://img.shields.io/badge/version-3.2-2E7D52?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-3.4-2E7D52?style=for-the-badge)
 ![PWA](https://img.shields.io/badge/PWA-installable-123B27?style=for-the-badge)
 ![Hors ligne](https://img.shields.io/badge/hors%20ligne-oui-4A9B6E?style=for-the-badge)
 ![Stack](https://img.shields.io/badge/HTML%20%2B%20CSS%20%2B%20JS-sans%20d%C3%A9pendance-BDE9CD?style=for-the-badge&labelColor=123B27)
@@ -207,6 +207,8 @@ Un workflow **GitHub Actions** construit un APK installable (enveloppe [Capacito
 
 | Version | Nouveautés |
 |---|---|
+| **3.4** | 🔎 Recherche globale : projets, mouvements, caisse, tags, charges, paies · montants, notes, dates, sans accents · filtres et récentes |
+| **3.3** | 🛠️ Correctif : « Exporter JSON » des réglages s'affichait derrière le panneau · accueil adapté à la hauteur de l'écran |
 | **3.2** | 🏠 Nouvel écran d'accueil en une seule vue : carrousel de widgets, 9 boutons vers les écrans, footer avec la version · liste des projets dans « Mes projets » |
 | **3.1** | 🧩 Widgets d'accueil (statistiques, ajout rapide, défis du moment, citations) · ⚡ Raccourcis sur l'icône Android · réglage pour les masquer |
 | **3.0** | ✨ Animation de démarrage à chaque réouverture · 🆕 Écran des nouveautés après chaque mise à jour · ℹ️ Menu « À propos » dans les réglages · 🔒 PIN redemandé après une absence |

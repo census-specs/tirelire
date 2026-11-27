@@ -563,6 +563,61 @@ body.view-projects .cash-card,body.view-projects .payroll-card{display:none!impo
 .hub .wg-cell b{white-space:nowrap;font-size:13.5px;}
 @media (max-height:760px){.hub .wg-cell small{font-size:9.5px;}.hub .wg-cell b{font-size:12.5px;}}
 @media (prefers-reduced-motion:reduce){.hub-btn{animation:none;opacity:1;}}
+/* v3.3 : le hub remplit la hauteur disponible (moins de vide en bas) */
+.hub-grid{flex:1 1 auto;grid-template-rows:repeat(3,minmax(0,1fr));max-height:460px;}
+.hub-btn{justify-content:center;gap:9px;}
+@media (max-height:760px){.hub-btn{gap:6px;}}
+@media (min-height:800px){.hub .wg-card{height:262px;}.hub .wg-bars{height:112px;}.hub .wg-cells{margin-top:14px;}.hub-foot{padding-bottom:6px;}}
+@media (min-height:900px){.hub .wg-card{height:286px;}.hub-btn{padding:14px 13px 12px;}}
+#backupSheet{z-index:66;}
+/* v3.4 : RECHERCHE */
+.sr-pill{display:none;}
+body.view-home .sr-pill{display:flex;align-items:center;gap:10px;width:100%;margin:-24px 0 10px;position:relative;z-index:3;height:48px;padding:0 16px;border-radius:16px;background:var(--card);color:var(--muted);text-align:left;border:1px solid rgba(14,42,28,.07);box-shadow:0 10px 24px -12px rgba(14,42,28,.45),0 1px 2px rgba(14,42,28,.06);transition:transform .15s,box-shadow .2s;-webkit-tap-highlight-color:transparent;animation:srIn .6s cubic-bezier(.2,.8,.2,1) both;}
+body.view-home .sr-pill:active{transform:scale(.98);}
+.sr-pill svg{color:var(--forest-500);flex:none;}
+.sr-pill span{font-size:14.5px;font-weight:650;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sr-pill i{font-style:normal;font-size:10.5px;font-weight:700;color:var(--forest-500);background:var(--mint-100);padding:4px 8px;border-radius:99px;white-space:nowrap;}
+body.view-home .hub{min-height:calc(100dvh - 106px);}
+@keyframes srIn{from{opacity:0;transform:translateY(8px) scale(.98);}to{opacity:1;transform:none;}}
+body.view-home .app-header{padding-bottom:36px;}
+.sr-head{flex:none;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top) + 12px) 14px 10px;background:var(--card);}
+.sr-field{flex:1;min-width:0;display:flex;align-items:center;gap:9px;height:46px;padding:0 6px 0 14px;border-radius:15px;background:var(--input-bg);border:1.5px solid var(--line);color:var(--forest-500);transition:border-color .2s,box-shadow .2s,background .2s;}
+.sr-field:focus-within{border-color:var(--forest-500);background:var(--input-focus);box-shadow:0 0 0 4px rgba(46,125,82,.14);}
+.sr-field input{flex:1;min-width:0;width:100%;border:0;outline:0;background:none;font:inherit;font-size:16px;font-weight:600;color:var(--ink);height:100%;-webkit-appearance:none;appearance:none;}
+.sr-field input::placeholder{color:var(--muted);font-weight:550;opacity:.85;}
+.sr-field input::-webkit-search-cancel-button{display:none;}
+.sr-field button{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:var(--muted);background:var(--line);flex:none;}
+.sr-field button[hidden]{display:none;}
+.sr-chips{flex:none;display:flex;gap:8px;overflow-x:auto;padding:2px 14px 12px;background:var(--card);border-bottom:1px solid var(--line);scrollbar-width:none;}
+.sr-chips::-webkit-scrollbar{display:none;}
+.sr-chip{flex:none;display:flex;align-items:center;gap:6px;padding:8px 13px;border-radius:99px;background:var(--bg);color:var(--ink);font-size:13px;font-weight:700;border:1px solid var(--line);transition:all .18s;}
+.sr-chip b{font-size:11px;font-weight:800;background:var(--line);color:var(--muted);border-radius:99px;padding:1px 7px;}
+.sr-chip.sel{background:var(--forest-500);color:#fff;border-color:var(--forest-500);}
+.sr-chip.sel b{background:rgba(255,255,255,.22);color:#fff;}
+.sr-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px calc(env(safe-area-inset-bottom) + 24px);}
+.sr-sec{font-size:11.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin:16px 4px 8px;display:flex;align-items:center;justify-content:space-between;}
+.sr-sec:first-child{margin-top:2px;}
+.sr-sec button{font-size:12px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--forest-500);padding:4px 6px;}
+.sr-res{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:17px;padding:11px 12px;margin-bottom:8px;box-shadow:0 6px 14px -12px rgba(14,42,28,.5);animation:srIn .35s cubic-bezier(.2,.8,.2,1) both;-webkit-tap-highlight-color:transparent;transition:transform .12s;}
+.sr-res:active{transform:scale(.985);}
+.sr-ic{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;flex:none;}
+.sr-tx{flex:1;min-width:0;}
+.sr-t{font-size:14.5px;font-weight:720;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sr-s{font-size:12px;color:var(--muted);font-weight:600;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sr-a{font-size:13.5px;font-weight:800;color:var(--forest-500);white-space:nowrap;text-align:right;}
+.sr-a.out{color:var(--danger);}
+.sr-a small{display:block;font-size:10.5px;font-weight:650;color:var(--muted);margin-top:2px;}
+.sr-res mark{background:rgba(46,125,82,.2);color:inherit;border-radius:4px;padding:0 1px;}
+.sr-more{display:block;width:100%;padding:11px;border-radius:14px;background:var(--mint-100);color:var(--forest-500);font-size:13px;font-weight:750;margin:2px 0 6px;}
+.sr-empty{text-align:center;padding:46px 24px 20px;color:var(--muted);font-size:14px;font-weight:600;line-height:1.5;}
+.sr-empty .big{width:76px;height:76px;border-radius:26px;margin:0 auto 16px;display:grid;place-items:center;background:var(--mint-100);color:var(--forest-500);}
+.sr-empty b{display:block;color:var(--ink);font-size:16.5px;margin-bottom:4px;}
+.sr-sug{display:flex;flex-wrap:wrap;gap:8px;margin:0 2px;}
+.sr-sug button{padding:9px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13.5px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:7px;}
+.sr-sug button svg{color:var(--muted);}
+@media (max-height:760px){body.view-home .hub{min-height:calc(100dvh - 86px);}body.view-home .sr-pill{height:44px;margin:-22px 0 8px;}body.view-home .app-header{padding-bottom:32px;}.sr-pill i{display:none;}}
+@media (max-height:670px){body.view-home .hub{min-height:calc(100dvh - 82px);}body.view-home .sr-pill{height:40px;margin:-20px 0 6px;}body.view-home .app-header{padding-bottom:28px;}.hub .wg-card{height:204px;}.hub-btn{min-height:52px;padding:6px 10px;}.hub-grid{gap:6px;}}
+@media (prefers-reduced-motion:reduce){.sr-pill,.sr-res{animation:none;}}
 /* ═══════ v3.1 : WIDGETS D'ACCUEIL ═══════ */
 .wg{margin:0 -16px 16px;}
 .wg-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 16px 14px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;}
@@ -861,6 +916,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
 </header>
 
 <section class="hub" id="hub" aria-label="Accueil">
+  <button type="button" class="sr-pill" id="srPill" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>Rechercher dans Tirelire…</span></button>
   <div class="wg" id="wg" style="display:none"><div class="wg-track" id="wgTrack"></div><div class="wg-dots" id="wgDots"></div></div>
   <nav class="hub-grid" id="hubGrid" aria-label="Menu principal"></nav>
   <button type="button" class="hub-foot" id="hubFoot" aria-label="À propos de Tirelire">Tirelire · Version <span id="hubVer"></span></button>
@@ -941,6 +997,15 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
     <button class="icon-btn" id="paiesNewBtn" aria-label="Gérer la paie" style="color:#fff;background:linear-gradient(155deg,#2E7D52,#123B27);"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
   </div>
   <div class="d-body" id="paiesBody"></div>
+</div>
+
+<div class="screen" id="searchScreen" style="z-index:35">
+  <div class="sr-head">
+    <button type="button" class="icon-btn" id="srBack" aria-label="Retour"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <label class="sr-field"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><input id="srInput" type="search" inputmode="search" enterkeyhint="search" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Projet, montant, note, tag…"><button type="button" id="srClear" aria-label="Effacer" hidden><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></label>
+  </div>
+  <div class="sr-chips" id="srChips"></div>
+  <div class="sr-body" id="srBody"></div>
 </div>
 
 <div class="backdrop" id="backdrop"></div>
@@ -2854,8 +2919,10 @@ function initLongPress(){
 }
 
 /* ═══════ v3.0 : NOUVEAUTÉS, À PROPOS, SPLASH À LA REPRISE ═══════ */
-const APP_VERSION='3.2';
+const APP_VERSION='3.4';
 const CHANGELOG=[
+  {v:'3.4',t:'Recherche',i:[['n','Barre de recherche sur l\'accueil : projets, mouvements, caisse, tags, charges et paies'],['n','Recherche par nom, note, montant (ex. 5000), date, catégorie ou tag, sans tenir compte des accents'],['n','Résultats surlignés, filtres par type et recherches récentes']]},
+  {v:'3.3',t:'Export corrigé et accueil plus rempli',i:[['f','Le bouton « Exporter JSON » des réglages ouvre maintenant bien la fenêtre de sauvegarde (elle restait cachée derrière les réglages)'],['n','Accueil : cartes et boutons ajustés à la hauteur de l\'écran, moins de blanc en bas']]},
   {v:'3.2',t:'Nouvel écran d\'accueil',i:[['n','Accueil en une seule vue : carrousel de widgets qui défilent, boutons vers tous les écrans, footer avec la version'],['n','Nouveaux widgets : évolution sur 6 mois et caisse avec Encaisser / Dépenser'],['n','Liste des projets déplacée dans « Mes projets », avec retour à l\'accueil'],['n','Pastilles sur Paie et Sauvegarde quand une action est attendue']]},
   {v:'3.1',t:'Widgets d\'accueil',i:[['n','Statistiques complètes en un coup d\'œil : anneau de progression, caisse, objectifs, 6 derniers mois'],['n','Ajout rapide d\'argent depuis la caisse, avec montants en un clic'],['n','Défis du moment : cochez la période à payer directement'],['n','Citations de motivation qui défilent'],['n','Raccourcis sur l\'icône (Android) : Ajouter, Caisse, Défi'],['n','Réglage « Widgets d\'accueil » pour les afficher ou les masquer']]},
   {v:'3.0',t:'Reprise, nouveautés et à propos',i:[['n','Animation de démarrage à chaque réouverture de l\'app'],['n','Cet écran des nouveautés après chaque mise à jour'],['n','Menu « À propos » dans les réglages'],['n','Le code PIN se redemande après une absence']]},
@@ -3161,7 +3228,7 @@ let currentView='home';
 const HUB_ITEMS=[
  {id:'projects',l:'Mes projets',c:'#2E7D52',svg:'<path d="M3 7a2 2 0 012-2h4l2 2.5h8a2 2 0 012 2V17a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'},
  {id:'done',l:'Réalisés',c:'#D97706',svg:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"/>'},
- {id:'new',l:'Nouveau projet',c:'#2563EB',svg:'<path d="M12 5v14M5 12h14"/>'},
+ {id:'new',l:'Nouveau',c:'#2563EB',svg:'<path d="M12 5v14M5 12h14"/>'},
  {id:'cash',l:'Caisse',c:'#0E7490',svg:'<rect x="2.5" y="6" width="19" height="12" rx="2.5"/><circle cx="12" cy="12" r="2.7"/>'},
  {id:'pay',l:'Gérer la paie',c:'#7C3AED',svg:'<path d="M3 7a3 3 0 013-3h11l3 3v10a3 3 0 01-3 3H6a3 3 0 01-3-3z"/><path d="M3 9h16"/><circle cx="16" cy="14" r="1.2"/>'},
  {id:'charges',l:'Charges',c:'#EA580C',svg:'<path d="M3 6h18M3 12h18M3 18h12"/><circle cx="18" cy="18" r="2.5"/>'},
@@ -3193,6 +3260,132 @@ function renderHub(){
   if(pay){const had=pay.querySelector('.hub-dot');if(pendingPaies().length&&!had)pay.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!pendingPaies().length&&had)had.remove();}
   const hv=document.getElementById('hubVer');if(hv)hv.textContent=APP_VERSION;
 }
+/* ═══════ v3.4 : RECHERCHE GLOBALE ═══════ */
+let srFilter='all',srQuery='',srExpanded={},srTimer=null;
+const SR_KEY='tirelire.recentSearch';
+function srNrmChar(c){return c.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}
+function srNrm(t){let o='';t=String(t==null?'':t);for(let i=0;i<t.length;i++)o+=srNrmChar(t[i]);return o;}
+function srTokens(q){const n=srNrm(q).trim();if(!n)return [];if(/^[\d\s]+$/.test(n)&&/\d/.test(n)){const c=n.replace(/\s+/g,'');return [c];}return n.split(/\s+/).filter(Boolean);}
+function srHl(text,toks){
+  text=String(text==null?'':text);if(!toks.length)return esc(text);
+  let norm='';const map=[];
+  for(let i=0;i<text.length;i++){const n=srNrmChar(text[i]);for(let k=0;k<n.length;k++)map.push(i);norm+=n;}
+  const mask=new Array(text.length).fill(false);let any=false;
+  toks.forEach(t=>{if(!t)return;let ix=0;while((ix=norm.indexOf(t,ix))>-1){for(let j=ix;j<ix+t.length;j++){mask[map[j]]=true;any=true;}ix+=t.length;}});
+  if(!any)return esc(text);
+  let h='',open=false;
+  for(let i=0;i<text.length;i++){if(mask[i]&&!open){h+='<mark>';open=true;}else if(!mask[i]&&open){h+='</mark>';open=false;}h+=esc(text[i]);}
+  if(open)h+='</mark>';return h;
+}
+function srRecents(){try{const a=JSON.parse(localStorage.getItem(SR_KEY)||'[]');return Array.isArray(a)?a.filter(x=>typeof x==='string').slice(0,6):[];}catch(e){return [];}}
+function srRemember(q){q=String(q||'').trim();if(q.length<2)return;try{const a=srRecents().filter(x=>srNrm(x)!==srNrm(q));a.unshift(q);localStorage.setItem(SR_KEY,JSON.stringify(a.slice(0,6)));}catch(e){}}
+function srClearRecents(){try{localStorage.removeItem(SR_KEY);}catch(e){}}
+function srTxType(t){if(t.transferId)return t.amount>0?'Transfert reçu':'Transfert envoyé';if(t.realization)return t.categoryId==='reliquat'?'Reliquat libéré':'Réalisation';return t.amount>0?'Dépôt':'Retrait';}
+function srDateTxt(d){const x=new Date(d);return isNaN(x)?'':x.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}
+function srDateShort(d){const x=new Date(d);return isNaN(x)?'':x.toLocaleDateString('fr-FR',{day:'numeric',month:'short',year:'numeric'});}
+function srMatch(hay,toks){const h=srNrm(hay);return toks.every(t=>h.indexOf(t)>-1);}
+function srCollect(toks){
+  const out={project:[],tag:[],tx:[],cash:[],charge:[],pay:[]};
+  state.projects.forEach(p=>{
+    const tg=tagNameOf(p),bal=balance(p);
+    if(srMatch([p.name,tg,p.realized?'réalisé':'en cours',String(Number(p.goal)||0),fmt(Number(p.goal)||0),String(Math.round(bal)),fmt(bal)].join(' | '),toks))
+      out.project.push({p,tg,bal});
+    (p.transactions||[]).forEach(t=>{
+      const type=srTxType(t),cat=catLabelOf(t.categoryId),abs=Math.abs(Number(t.amount)||0);
+      if(srMatch([t.note,p.name,type,cat,t.transferName,srDateTxt(t.date),String(abs),fmt(abs),tg].join(' | '),toks))
+        out.tx.push({p,t,type,cat,abs});
+    });
+  });
+  state.tags.forEach(g=>{if(srMatch(g.name,toks)){const n=state.projects.filter(p=>p.tagId===g.id);out.tag.push({g,n:n.length,act:n.filter(p=>!p.realized).length});}});
+  state.cash.filter(e=>e.kind!=='project'||!e.txId).forEach(e=>{
+    const kl=e.kind==='in'?'Entrée de caisse':(e.kind==='spend'?'Dépense de caisse':(e.kind==='charge'?'Charge payée':'Retour de projet supprimé'));
+    const src=e.kind==='in'?((sourceById(e.source)||{}).name||''):catLabelOf(e.categoryId),abs=Math.abs(Number(e.amount)||0);
+    if(srMatch([e.note,kl,src,e.ref,srDateTxt(e.date),String(abs),fmt(abs),'caisse'].join(' | '),toks))out.cash.push({e,kl,src,abs});
+  });
+  state.charges.forEach(c=>{const abs=Number(c.amount)||0;if(srMatch([c.name,catLabelOf(c.categoryId),String(abs),fmt(abs),'charge'].join(' | '),toks))out.charge.push({c,abs});});
+  state.payrolls.forEach(r=>{const sal=Number(r.salary)||0;if(srMatch(['paie',srDateTxt(r.date),String(sal),fmt(sal)].join(' | '),toks))out.pay.push({r,sal});});
+  const byDate=(a,b,fa,fb)=>new Date(fb)-new Date(fa);
+  out.tx.sort((a,b)=>byDate(a,b,a.t.date,b.t.date));out.cash.sort((a,b)=>byDate(a,b,a.e.date,b.e.date));out.pay.sort((a,b)=>byDate(a,b,a.r.date,b.r.date));
+  return out;
+}
+const SR_GROUPS=[['project','Projets'],['tag','Tags'],['tx','Mouvements'],['cash','Caisse'],['charge','Charges'],['pay','Paies']];
+function srRow(kind,i,toks,o){
+  let ico='',bg='',col='',t='',sub='',amt='',cls='',small='';
+  if(kind==='project'){const p=o.p,c=p.color||'#2E7D52';ico=iconSvg(p.icon,20);col=c;bg=c+'22';t=srHl(p.name,toks);sub=(p.realized?'Réalisé':'En cours')+(o.tg?' · '+srHl(o.tg,toks):'');amt=money(o.bal);small=(Number(p.goal)>0?Math.min(100,Math.round(o.bal/p.goal*100))+' % de '+fmt(p.goal):'');}
+  else if(kind==='tag'){const g=o.g;ico=iconSvg(g.icon,20);col=g.color;bg=g.color+'22';t=srHl(g.name,toks);sub=o.n+' projet'+(o.n>1?'s':'')+(o.act!==o.n?' · '+o.act+' en cours':'');}
+  else if(kind==='tx'){const p=o.p,t0=o.t,c=p.color||'#2E7D52',out=t0.amount<0;ico=iconSvg(p.icon,20);col=c;bg=c+'22';t=srHl(t0.note||o.type,toks);sub=srHl(p.name,toks)+' · '+srDateShort(t0.date)+(o.cat?' · '+srHl(o.cat,toks):'');amt=(out?'−':'+')+fmt(o.abs);cls=out?' out':'';small=t0.note?o.type:'';}
+  else if(kind==='cash'){const e=o.e,out=e.kind!=='in'&&e.kind!=='project'?true:(e.kind==='project'?Number(e.amount)<0:false);ico=iconSvg('wallet',20);col=out?'#DC2626':'#2E7D52';bg=out?'#DC262618':'#2E7D5222';t=srHl(e.note||o.kl,toks);sub=srHl(o.kl,toks)+(o.src?' · '+srHl(o.src,toks):'')+' · '+srDateShort(e.date);amt=(out?'−':'+')+fmt(o.abs);cls=out?' out':'';}
+  else if(kind==='charge'){const c=o.c;ico=iconSvg(c.icon,20);col='#EA580C';bg='#EA580C22';t=srHl(c.name,toks);sub='Charge fixe'+(catLabelOf(c.categoryId)?' · '+srHl(catLabelOf(c.categoryId),toks):'');amt=money(o.abs);cls=' out';}
+  else {const r=o.r;ico=iconSvg('wallet',20);col='#7C3AED';bg='#7C3AED22';t=srHl('Paie',toks);sub=srDateShort(r.date);amt=money(o.sal);}
+  return '<button type="button" class="sr-res" data-k="'+kind+'" data-i="'+i+'" style="animation-delay:'+Math.min(i,8)*0.03+'s"><span class="sr-ic" style="background:'+bg+';color:'+col+'">'+ico+'</span><span class="sr-tx"><div class="sr-t">'+t+'</div><div class="sr-s">'+sub+'</div></span>'+(amt?'<span class="sr-a'+cls+'">'+esc(amt)+(small?'<small>'+esc(small)+'</small>':'')+'</span>':'')+'</button>';
+}
+let srLast=null;
+function renderSearch(){
+  const body=document.getElementById('srBody'),chips=document.getElementById('srChips');if(!body)return;
+  const toks=srTokens(srQuery);
+  document.getElementById('srClear').hidden=!srQuery;
+  if(!toks.length){
+    chips.style.display='none';srLast=null;
+    const rec=srRecents(),sug=[];
+    state.tags.slice(0,5).forEach(g=>sug.push(g.name));
+    state.projects.filter(p=>!p.realized).slice(0,4).forEach(p=>sug.push(p.name));
+    ['Retrait','Dépôt','Caisse'].forEach(x=>sug.push(x));
+    let h='';
+    if(rec.length){h+='<div class="sr-sec">Récentes<button type="button" id="srClearRec">Effacer</button></div><div class="sr-sug">'+rec.map(x=>'<button type="button" data-q="'+esc(x)+'"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>'+esc(x)+'</button>').join('')+'</div>';}
+    h+='<div class="sr-sec">Suggestions</div><div class="sr-sug">'+sug.map(x=>'<button type="button" data-q="'+esc(x)+'">'+esc(x)+'</button>').join('')+'</div>';
+    h+='<div class="sr-empty"><div class="big"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></div><b>Tout retrouver en un instant</b>Un nom de projet, un montant (ex. 5000), une note, un tag, une date ou une catégorie.</div>';
+    body.innerHTML=h;return;
+  }
+  const res=srCollect(toks);srLast=res;
+  const total=SR_GROUPS.reduce((a,g)=>a+res[g[0]].length,0);
+  const present=SR_GROUPS.filter(g=>res[g[0]].length);
+  if(srFilter!=='all'&&!res[srFilter].length&&total)srFilter='all';
+  chips.style.display='flex';
+  chips.innerHTML='<button type="button" class="sr-chip'+(srFilter==='all'?' sel':'')+'" data-f="all">Tout <b>'+total+'</b></button>'+present.map(g=>'<button type="button" class="sr-chip'+(srFilter===g[0]?' sel':'')+'" data-f="'+g[0]+'">'+g[1]+' <b>'+res[g[0]].length+'</b></button>').join('');
+  if(!total){body.innerHTML='<div class="sr-empty"><div class="big"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6M8.5 8.5l5 5M13.5 8.5l-5 5"/></svg></div><b>Aucun résultat</b>Rien ne correspond à « '+esc(srQuery.trim())+' ». Essayez un autre mot ou un montant.</div>';return;}
+  let h='';
+  SR_GROUPS.forEach(g=>{
+    const k=g[0],list=res[k];if(!list.length||(srFilter!=='all'&&srFilter!==k))return;
+    const lim=srFilter===k||srExpanded[k]?list.length:6;
+    h+='<div class="sr-sec">'+g[1]+' · '+list.length+'</div>';
+    list.slice(0,lim).forEach((o,i)=>{h+=srRow(k,i,toks,o);});
+    if(list.length>lim)h+='<button type="button" class="sr-more" data-more="'+k+'">Afficher les '+list.length+' résultats</button>';
+  });
+  body.innerHTML=h;
+}
+function srOpenResult(k,i){
+  if(!srLast)return;const o=srLast[k][i];if(!o)return;
+  srRemember(srQuery);buzz(8);
+  const inp=document.getElementById('srInput');if(inp)inp.blur();
+  if(k==='project'||k==='tx')openDetail(o.p.id);
+  else if(k==='tag'){if(o.act>0)openTagInfo(o.g.id);else openTagSheet(o.g.id);}
+  else if(k==='cash')openCashScreen();
+  else if(k==='charge')openChargesSheet();
+  else if(k==='pay'){renderPaiesScreen();document.getElementById('paiesScreen').classList.add('open');}
+}
+function openSearch(q){
+  srFilter='all';srExpanded={};srQuery=q||'';
+  const inp=document.getElementById('srInput');inp.value=srQuery;
+  renderSearch();
+  document.getElementById('searchScreen').classList.add('open');
+  try{inp.focus({preventScroll:true});}catch(e){inp.focus();}
+}
+function closeSearch(){const inp=document.getElementById('srInput');if(inp)inp.blur();document.getElementById('searchScreen').classList.remove('open');}
+function initSearch(){
+  const inp=document.getElementById('srInput');
+  document.getElementById('srPill').addEventListener('click',()=>openSearch(''));
+  document.getElementById('srBack').addEventListener('click',closeSearch);
+  document.getElementById('srClear').addEventListener('click',()=>{inp.value='';srQuery='';srFilter='all';srExpanded={};renderSearch();inp.focus();});
+  inp.addEventListener('input',()=>{srQuery=inp.value;srFilter='all';srExpanded={};clearTimeout(srTimer);srTimer=setTimeout(renderSearch,70);});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){srRemember(srQuery);inp.blur();}else if(e.key==='Escape')closeSearch();});
+  document.getElementById('srChips').addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;srFilter=b.dataset.f;renderSearch();document.getElementById('srBody').scrollTop=0;});
+  document.getElementById('srBody').addEventListener('click',e=>{
+    const r=e.target.closest('.sr-res');if(r){srOpenResult(r.dataset.k,Number(r.dataset.i));return;}
+    const m=e.target.closest('[data-more]');if(m){srExpanded[m.dataset.more]=true;renderSearch();return;}
+    const q=e.target.closest('[data-q]');if(q){inp.value=q.dataset.q;srQuery=q.dataset.q;renderSearch();return;}
+    if(e.target.closest('#srClearRec')){srClearRecents();renderSearch();}
+  });
+}
 function replayHubAnim(){document.querySelectorAll('.hub-btn').forEach(b=>{b.style.animation='none';void b.offsetWidth;b.style.animation='';});}
 function setView(v,fromPop){
   currentView=v;
@@ -3220,6 +3413,7 @@ function hubAction(id){
   else if(id==='settings')document.getElementById('settingsBtn').click();
 }
 function initHub(){
+  try{initSearch();}catch(e){console.error(e);}
   document.body.classList.add('view-home');
   renderHub();
   document.getElementById('hubGrid').addEventListener('click',e=>{const b=e.target.closest('[data-hub]');if(b)hubAction(b.dataset.hub);});
