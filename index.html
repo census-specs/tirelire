@@ -807,6 +807,65 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
 .tag-preview .pv-name{font-size:15.5px;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .tag-preview .pv-sub{font-size:12px;color:var(--muted);margin-top:2px;}
 .tag-del{display:block;width:100%;margin-top:12px;padding:10px;font-size:13.5px;font-weight:650;color:var(--danger);border-radius:12px;}
+
+/* v4.1 projets partagés */
+.hub-wide{display:flex;align-items:center;gap:12px;width:100%;margin-top:10px;padding:10px 14px;background:var(--card);border:1px solid rgba(14,42,28,.06);border-radius:20px;text-align:left;box-shadow:0 1px 2px rgba(14,42,28,.04),0 8px 18px -14px rgba(14,42,28,.5);-webkit-tap-highlight-color:transparent;transition:transform .15s;flex:none;}
+.hub-wide:active{transform:scale(.98);}
+.hub-wide .hw-t{flex:1;min-width:0;display:block;}.hub-wide .hw-t span{display:block;}.hub-wide .hw-go{color:var(--muted);flex:none;}
+@media (max-height:760px){.hub-wide{margin-top:8px;padding:7px 12px;border-radius:17px;}}
+@media (max-height:670px){.hub-wide{margin-top:6px;padding:5px 12px;}}
+.sh-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 14px calc(env(safe-area-inset-bottom) + 28px);}
+.sh-sec{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:750;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin:6px 4px 10px;}
+.sh-spin{width:12px;height:12px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--forest-500);animation:shspin .7s linear infinite;}
+@keyframes shspin{to{transform:rotate(360deg);}}
+.sh-card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid rgba(14,42,28,.06);border-radius:18px;padding:12px;margin-bottom:10px;box-shadow:0 8px 18px -16px rgba(14,42,28,.6);}
+.sh-ic{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:none;}
+.sh-ic.big{width:52px;height:52px;border-radius:16px;}
+.sh-mid{flex:1;min-width:0;display:block;}
+.sh-top{display:flex;align-items:center;gap:8px;}.sh-top b{flex:1;min-width:0;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sh-chip{flex:none;font-size:10.5px;font-weight:750;padding:3px 8px;border-radius:99px;}
+.sh-bar{display:block;height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin:8px 0 6px;}.sh-bar i{display:block;height:100%;border-radius:99px;}
+.sh-bar.big{height:10px;margin:0 0 8px;}
+.sh-meta{display:block;font-size:12px;color:var(--muted);font-weight:600;}
+.sh-empty{text-align:center;padding:48px 24px;color:var(--muted);font-size:14px;line-height:1.5;}.sh-empty b{display:block;color:var(--ink);font-size:17px;margin-bottom:6px;}.sh-big{font-size:44px;margin-bottom:10px;}
+.sh-none{font-size:13.5px;color:var(--muted);line-height:1.5;background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:14px;margin-bottom:14px;}
+.sh-link{display:block;margin-top:8px;color:var(--forest-500);font-weight:700;font-size:14px;}
+.sh-dh{display:flex;align-items:center;gap:12px;margin:4px 0 12px;}.sh-dt{font-size:19px;font-weight:750;line-height:1.2;overflow-wrap:anywhere;}.sh-ds{font-size:13px;color:var(--muted);margin-top:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.sh-desc{font-size:14px;line-height:1.5;color:var(--ink);margin-bottom:12px;overflow-wrap:anywhere;}
+.sh-prog{margin-bottom:14px;}.sh-pm{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--muted);}.sh-pm b{color:var(--ink);font-size:16px;}
+.sh-linkbox{display:flex;align-items:center;gap:8px;background:var(--input-bg);border:1.5px solid var(--line);border-radius:14px;padding:8px 8px 8px 12px;margin-bottom:12px;}
+.sh-lk{flex:1;min-width:0;font-size:13px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sh-lkb{display:flex;gap:6px;flex:none;}.sh-lkb button{font-size:12.5px;font-weight:700;padding:8px 10px;border-radius:10px;background:var(--card);border:1px solid var(--line);color:var(--forest-500);}
+.sh-qrbox{display:flex;gap:14px;align-items:center;margin-bottom:12px;}
+.sh-qr{width:124px;height:124px;flex:none;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#fff;}.sh-qr svg{display:block;width:100%;height:100%;}
+.sh-qrt{flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--muted);line-height:1.4;}.sh-qrt b{color:var(--ink);font-size:14px;}
+.sh-info{display:flex;gap:10px;margin-bottom:12px;}.sh-info>div{flex:1;background:var(--input-bg);border-radius:14px;padding:10px 12px;}.sh-info b{display:block;font-size:16px;}.sh-info span{font-size:12px;color:var(--muted);}
+.sh-sec2{font-size:12.5px;font-weight:700;color:var(--muted);margin:10px 2px 8px;}
+.sh-momo{display:flex;align-items:center;gap:10px;background:var(--input-bg);border-radius:12px;padding:10px 12px;margin-bottom:6px;font-size:13.5px;}
+.sh-op{font-size:11px;font-weight:800;padding:3px 8px;border-radius:7px;flex:none;}.sh-op.mtn{background:#FFCC00;color:#3a2f00;}.sh-op.orange{background:#FF7900;color:#fff;}
+.sh-mn{font-weight:700;}.sh-mh{color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sh-note{font-size:12.5px;line-height:1.45;border-radius:12px;padding:10px 12px;margin:8px 0;background:#FFF6E5;color:#7A4B00;}.sh-note.soft{background:var(--input-bg);color:var(--muted);}
+.sh-acts{display:flex;flex-direction:column;gap:8px;margin:12px 0 6px;}
+.sh-ro{font-size:12.5px;color:var(--muted);margin:-6px 2px 14px;display:none;}
+.sh-prev{font-size:12px;color:var(--muted);margin:6px 2px 0;word-break:break-all;}
+.sh-slugmsg{font-size:12.5px;font-weight:650;margin:4px 2px 0;min-height:16px;color:var(--muted);}.sh-slugmsg.good{color:var(--forest-500);}.sh-slugmsg.bad{color:var(--danger);}
+.sh-two{display:grid;grid-template-columns:1.25fr 1fr;gap:10px;}
+@media (prefers-reduced-motion:reduce){.sh-spin{animation:none;}}
+.hub-wide{position:relative;}
+.sh-pend{display:inline-block;margin-top:6px;font-size:11.5px;font-weight:750;color:#B45309;background:#FFF1D6;border-radius:99px;padding:3px 9px;}
+.sh-ct{background:var(--input-bg);border-radius:14px;padding:12px;margin-bottom:8px;}
+.sh-ctt{display:flex;justify-content:space-between;gap:8px;align-items:baseline;}.sh-ctt b{font-size:14.5px;}.sh-ctt span{font-weight:750;color:var(--forest-500);}
+.sh-ctm{font-size:12.5px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}.sh-ctm b{color:var(--ink);word-break:break-all;}
+.sh-ctn{font-size:12.5px;color:var(--ink);margin-top:6px;font-style:italic;overflow-wrap:anywhere;}
+.sh-cta{display:flex;gap:8px;margin-top:10px;}.sh-cta button{flex:1;padding:11px;border-radius:12px;font-size:14px;font-weight:700;}
+.sh-ok{background:linear-gradient(155deg,#2E7D52,#123B27);color:#fff;}.sh-no{background:var(--card);border:1px solid var(--line);color:var(--danger);}
+.sh-hist{display:flex;align-items:center;gap:8px;justify-content:space-between;font-size:13px;padding:9px 2px;border-bottom:1px solid var(--line);}.sh-hist>span{flex:1;min-width:0;overflow-wrap:anywhere;}.sh-hist small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;}
+.sh-cp{font-size:12px;font-weight:700;padding:6px 9px;border-radius:9px;background:var(--card);border:1px solid var(--line);color:var(--forest-500);flex:none;}
+.sh-momo .sh-cp{margin-left:auto;}
+body.has-shared .hub-grid{flex:1 1 0;min-height:270px;}
+body.has-shared .hub-btn{min-height:76px;}
+@media (max-height:760px){body.has-shared .hub-grid{min-height:0;}body.has-shared .hub-btn{min-height:58px;}body.has-shared .hub-ic{width:28px;height:28px;}body.has-shared .hub .wg-card{height:204px;}}
+@media (max-height:670px){body.has-shared .hub-btn{min-height:44px;padding:5px 9px;gap:2px;}body.has-shared .hub-ic{width:24px;height:24px;border-radius:8px;}body.has-shared .hub-ic svg{width:15px;height:15px;}body.has-shared .hub-lbl{font-size:12px;}body.has-shared .hub-sub{font-size:10.5px;}body.has-shared .hub .wg-card{height:194px;}body.has-shared .hub-wide{padding:4px 12px;}body.has-shared .hub-wide .hub-ic{width:26px;height:26px;}}
 </style>
 </head>
 <body>
@@ -932,6 +991,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <button type="button" class="sr-pill" id="srPill" aria-label="Rechercher"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg><span>Rechercher dans Tirelire…</span></button>
   <div class="wg" id="wg" style="display:none"><div class="wg-track" id="wgTrack"></div><div class="wg-dots" id="wgDots"></div></div>
   <nav class="hub-grid" id="hubGrid" aria-label="Menu principal"></nav>
+  <button type="button" class="hub-wide" id="hubShared" style="display:none"><span class="hub-ic" style="background:rgba(14,116,144,.14);color:#0E7490"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.8"/><path d="M15 15.5a5 5 0 0 1 6 4.5"/></svg></span><span class="hw-t"><span class="hub-lbl">Projets partagés</span><span class="hub-sub" id="hubSharedSub">Lien, QR code et participants</span></span><svg class="hw-go" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
   <button type="button" class="hub-foot" id="hubFoot" aria-label="À propos de Tirelire">Tirelire · Version <span id="hubVer"></span><span id="hubCloud"></span></button>
 </section>
 
@@ -1196,6 +1256,49 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
   <div class="export-row"><button class="export-btn" id="chargeCancel">Annuler</button><button class="export-btn" id="chargeConfirm" style="background:var(--forest-500);color:#fff;border:none;">Enregistrer</button></div>
 </div>
 
+<div class="screen" id="sharedScreen" style="z-index:35">
+  <div class="d-head">
+    <button type="button" class="icon-btn" id="shBack" aria-label="Retour"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="d-title">Projets partagés</div>
+    <button type="button" class="icon-btn" id="shAddBtn" aria-label="Partager un projet" style="display:none"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+  </div>
+  <div class="sh-body" id="shBody"></div>
+</div>
+
+<div class="sheet" id="shDetail" style="z-index:62;">
+  <div class="grabber"></div>
+  <div id="shDetailBody"></div>
+</div>
+
+<div class="sheet" id="shPay" style="z-index:66;">
+  <div class="grabber"></div>
+  <h2>Déclarer mon versement</h2>
+  <input type="hidden" id="shpProj">
+  <div class="field"><label for="shpOp">Compte utilisé</label><select id="shpOp"></select></div>
+  <div class="field"><label for="shpAmt">Montant versé (FCFA)</label><input id="shpAmt" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex : 5000"></div>
+  <div class="field"><label for="shpTxn">ID de transaction (reçu par SMS)</label><input id="shpTxn" type="text" maxlength="30" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" placeholder="Ex : MP240101.1234.A56789"></div>
+  <div class="field"><label for="shpNote">Message au créateur (facultatif)</label><input id="shpNote" type="text" maxlength="140" autocomplete="off"></div>
+  <div class="au-msg" id="shpMsg"></div>
+  <button class="btn-primary btn-block" id="shpGo">Envoyer pour validation</button>
+</div>
+
+<div class="sheet" id="shForm" style="z-index:64;">
+  <div class="grabber"></div>
+  <h2 id="shfTitleH">Partager un projet</h2>
+  <div class="field" id="shfProjF"><label for="shfProj">Projet à partager</label><select id="shfProj"></select></div>
+  <div id="shfNewBox" style="display:none"><div class="field"><label for="shfName">Nom du nouveau projet</label><input id="shfName" type="text" maxlength="40" autocomplete="off" placeholder="Ex : Tontine du quartier"></div><div class="field"><label for="shfGoal">Objectif (FCFA)</label><input id="shfGoal" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex : 500000"></div></div>
+  <div class="sh-ro" id="shfGoalRO"></div>
+  <div class="field"><label for="shfTitle">Titre affiché sur la page publique</label><input id="shfTitle" type="text" maxlength="60" autocomplete="off"></div>
+  <div class="field"><label for="shfDesc">L'objectif du projet est de…</label><input id="shfDesc" type="text" maxlength="300" autocomplete="off" placeholder="Ex : financer le voyage de fin d'année"></div>
+  <div class="field" id="shfSlugF"><label for="shfSlug">Lien du projet</label><input id="shfSlug" type="text" maxlength="40" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="mon-projet"><div class="sh-prev" id="shfLinkPrev"></div><div class="sh-slugmsg" id="shfSlugMsg"></div></div>
+  <div class="sh-sec2">Comptes Mobile Money (pour recevoir)</div>
+  <div class="sh-two"><div class="field"><label for="shfMtnNum">MTN : numéro</label><input id="shfMtnNum" type="tel" inputmode="tel" autocomplete="off" placeholder="6 70 00 00 00"></div><div class="field"><label for="shfMtnName">Titulaire</label><input id="shfMtnName" type="text" maxlength="40" autocomplete="off"></div></div>
+  <div class="sh-two"><div class="field"><label for="shfOrNum">Orange : numéro</label><input id="shfOrNum" type="tel" inputmode="tel" autocomplete="off" placeholder="6 90 00 00 00"></div><div class="field"><label for="shfOrName">Titulaire</label><input id="shfOrName" type="text" maxlength="40" autocomplete="off"></div></div>
+  <div class="switch-row"><div><div class="setting-label">Page publique</div><div class="setting-desc">Le lien et le QR code affichent le projet</div></div><div class="switch on" id="shfPublic" role="switch" aria-checked="true" tabindex="0"></div></div>
+  <div class="au-msg" id="shfMsg"></div>
+  <button class="btn-primary btn-block" id="shfGo">Créer le lien</button>
+</div>
+
 <div class="sheet" id="authSheet" style="z-index:66;">
   <div class="grabber"></div>
   <h2 id="auTitle">Connexion</h2>
@@ -1230,6 +1333,7 @@ html.lp-active,html.lp-active *{-webkit-user-select:none!important;user-select:n
 <div class="confetti-layer" id="confettiLayer"></div>
 <div class="toast" id="toast"></div>
 
+<script src="config.js"></script>
 <script>
 const ICONS = {
   tag:'<path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7a1 1 0 0 1 .7.3l7.6 7.6a1.4 1.4 0 0 1 0 2l-6.2 6.2a1.4 1.4 0 0 1-2 0L3.8 12.9a1 1 0 0 1-.3-.7Z"/><circle cx="8" cy="8" r="1.4"/>',
@@ -1385,7 +1489,7 @@ function challengeInfo(p){
   return {amounts,paid,paidCount,paidSum,late,start:start.getTime(),unitMs,name:ch.name||null,unit:ch.unit,mode:ch.mode,totalUnit:ch.total,doneUnit:done,targetByNow,totalTarget:amounts.reduce((a,b)=>a+b,0),base:ch.base,increment:ch.increment||0};
 }
 function safeIso(v){const d=new Date(v);return(v&&!isNaN(d.getTime())&&Math.abs(d.getTime())<8.64e15)?d.toISOString():new Date().toISOString();}
-function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:safeIso(t.date),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||'',cashId:t.cashId||null,challengeIdx:(t.challengeIdx==null||isNaN(Number(t.challengeIdx)))?null:Math.floor(Number(t.challengeIdx))})):[],realized:normalizeRealized(p.realized),tagId:p.tagId||null,_tagLabel:p.tagLabel||'',created:p.created||Date.now()};}
+function normalizeProject(p){return {id:p.id||uid(),name:p.name||'Projet',icon:p.icon||'bag',color:p.color||'#2E7D52',goal:Number(p.goal)||0,deadline:p.deadline||null,reminder:p.reminder||'off',lastReminder:p.lastReminder||0,shared:!!p.shared,cloud:(p.cloud&&p.cloud.id)?{id:String(p.cloud.id),slug:String(p.cloud.slug||''),applied:Array.isArray(p.cloud.applied)?p.cloud.applied.slice(-500).map(String):[]}:null,participants:Array.isArray(p.participants)?p.participants:[],challenge:migrateChallenge(p.challenge,p.created),transactions:Array.isArray(p.transactions)?p.transactions.map(t=>({id:t.id||uid(),amount:Number(t.amount)||0,note:t.note||'',date:safeIso(t.date),contributorId:t.contributorId||null,payrollId:t.payrollId||null,categoryId:resolveCat(t.categoryId,t.categoryLabel),realization:!!t.realization,transferId:t.transferId||null,transferName:t.transferName||'',cashId:t.cashId||null,challengeIdx:(t.challengeIdx==null||isNaN(Number(t.challengeIdx)))?null:Math.floor(Number(t.challengeIdx))})):[],realized:normalizeRealized(p.realized),tagId:p.tagId||null,_tagLabel:p.tagLabel||'',created:p.created||Date.now()};}
 function normalizeCharge(c){return {id:c.id||uid(),name:c.name||'Charge',amount:Number(c.amount)||0,icon:c.icon||'card',categoryId:resolveCat(c.categoryId,c.categoryLabel),created:c.created||Date.now()};}
 const CASH_KINDS=['in','spend','project','charge'];
 function normalizeCash(e){
@@ -2956,8 +3060,10 @@ function initLongPress(){
 }
 
 /* ═══════ v3.0 : NOUVEAUTÉS, À PROPOS, SPLASH À LA REPRISE ═══════ */
-const APP_VERSION='4.0';
+const APP_VERSION='4.2';
 const CHANGELOG=[
+  {v:'4.2',t:'Versements Mobile Money',i:[['n','Participants : numéros MTN/Orange du projet visibles dans l\'app, puis « J\'ai versé » avec l\'ID de transaction'],['n','Créateur : liste des versements à valider ou refuser (avec motif), pastille sur l\'accueil'],['n','Un versement validé entre dans votre caisse puis dans le projet, sans double comptage'],['n','Page publique : contributions validées par membre']]},
+  {v:'4.1',t:'Projets partagés',i:[['n','Partagez un projet : un lien personnalisé et un QR code mènent à une page publique qui montre l\'avancement'],['n','Choisissez vos comptes Mobile Money (MTN, Orange) : visibles seulement par les participants'],['n','« Participer » depuis le lien ajoute le projet à vos projets partagés (compte requis)'],['n','Nouvelle tuile « Projets partagés » sur l\'accueil (visible une fois la synchronisation en ligne configurée)']]},
   {v:'4.0',t:'Comptes et synchronisation',i:[['n','Créez un compte (e-mail + nom d\'utilisateur) et retrouvez vos projets sur tous vos appareils'],['n','Vos données actuelles sont conservées : envoyées sur le compte, ou fusionnées si le compte en contient déjà'],['n','Synchronisation automatique, utilisable hors ligne, avec copie de sécurité restaurable']]},
   {v:'3.4',t:'Recherche',i:[['n','Barre de recherche sur l\'accueil : projets, mouvements, caisse, tags, charges et paies'],['n','Recherche par nom, note, montant (ex. 5000), date, catégorie ou tag, sans tenir compte des accents'],['n','Résultats surlignés, filtres par type et recherches récentes']]},
   {v:'3.3',t:'Export corrigé et accueil plus rempli',i:[['f','Le bouton « Exporter JSON » des réglages ouvre maintenant bien la fenêtre de sauvegarde (elle restait cachée derrière les réglages)'],['n','Accueil : cartes et boutons ajustés à la hauteur de l\'écran, moins de blanc en bas']]},
@@ -3297,10 +3403,16 @@ function renderHub(){
   const pay=g.querySelector('[data-hub="pay"]');
   if(pay){const had=pay.querySelector('.hub-dot');if(pendingPaies().length&&!had)pay.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!pendingPaies().length&&had)had.remove();}
   const hv=document.getElementById('hubVer');if(hv)hv.textContent=APP_VERSION;
+  document.body.classList.toggle('has-shared',cloudOn());
+  const hs=document.getElementById('hubShared');
+  if(hs){hs.style.display=cloudOn()?'flex':'none';const sub=document.getElementById('hubSharedSub');
+    if(sub){const o=shOwned.length,j=shJoined.length,pc=shPendingCount();sub.textContent=pc?pc+' versement'+(pc>1?'s':'')+' à valider':!cloudSess?'Épargnez à plusieurs : lien et QR code':(o+j===0?'Partager ou rejoindre un projet':(o?o+' partagé'+(o>1?'s':''):'')+(o&&j?' · ':'')+(j?j+' rejoint'+(j>1?'s':''):''));
+    const had=hs.querySelector('.hub-dot');if(pc&&!had)hs.insertAdjacentHTML('beforeend','<i class="hub-dot"></i>');else if(!pc&&had)had.remove();}}
 }
 /* ═══════ v4.0 : COMPTES & SYNCHRONISATION (Supabase) ═══════ */
 /* À renseigner : Project URL et clé « anon public » (Supabase → Project Settings → API). Jamais la clé service_role. */
-var CLOUD={url:'https://ezbzdevqutlmniultomy.supabase.co',key:'sb_publishable_y83V1OV0Yj5kRETZkF9PCQ_ptxJw9hJ'};
+var CLOUD={url:'',key:''};
+try{const c0=window.TIRELIRE_CONFIG;if(c0&&c0.url&&c0.key)CLOUD={url:String(c0.url),key:String(c0.key)};}catch(e){}
 try{const o=JSON.parse(localStorage.getItem('tirelire.cloudcfg')||'null');if(o&&o.url&&o.key)CLOUD={url:String(o.url).replace(/\/+$/,''),key:String(o.key)};}catch(e){}
 CLOUD.url=String(CLOUD.url||'').replace(/\/+$/,'');
 var SESS_KEY='tirelire.session',SYNC_KEY='tirelire.sync',PRELINK_KEY='tirelire.v2.prelink';
@@ -3447,6 +3559,9 @@ async function cloudSync(opt){
     }else{
       if(!changed)await cloudPull(row.rev);else await cloudConflict(row,false);
     }
+    try{await sharedPushOwned();}catch(e){}
+    try{shPoll();}catch(e){}
+    try{if(localStorage.getItem(JOIN_KEY))shProcessJoin();}catch(e){}
   }catch(e){cloudHandleErr(e);}
   finally{syncing=false;if(syncAgain){syncAgain=false;cloudSchedule(800);}}
 }
@@ -3537,10 +3652,11 @@ function renderCloudSettings(){
   const rb=document.getElementById('cloudRestore');if(rb)rb.onclick=cloudRestorePrelink;
 }
 /* ── feuille connexion ── */
-function openAuth(mode){
+function openAuth(mode,note){
   setAuthMode(mode||'login');
   ['auUser','auMail','auPass'].forEach(i=>document.getElementById(i).value='');
   document.getElementById('auMsg').textContent='';
+  if(note){document.getElementById('auMsg').textContent=note;document.getElementById('auMsg').className='au-msg ok';}
   openSheet('authSheet');
 }
 function setAuthMode(m){
@@ -3759,6 +3875,541 @@ function setView(v,fromPop){
     renderList();renderHub();replayHubAnim();
   }
 }
+/* ═══════ QR CODE (encodeur autonome : mode octets, correction M, versions 1 à 10) ═══════ */
+var QR_DATA=[null,[16],[28],[44],[32,32],[43,43],[27,27,27,27],[31,31,31,31],[38,38,39,39],[36,36,36,37,37],[43,43,43,43,44]];
+var QR_ECW=[0,10,16,26,18,24,16,18,22,22,26];
+var QR_ALIGN=[null,[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50]];
+function qrMul(x,y){var z=0;for(var i=7;i>=0;i--){z=(z<<1)^((z>>>7)*0x11D);z^=((y>>>i)&1)*x;}return z&255;}
+function qrDivisor(deg){var r=[],i,j;for(i=0;i<deg-1;i++)r.push(0);r.push(1);var root=1;for(i=0;i<deg;i++){for(j=0;j<r.length;j++){r[j]=qrMul(r[j],root);if(j+1<r.length)r[j]^=r[j+1];}root=qrMul(root,2);}return r;}
+function qrRemainder(data,div){var r=div.map(function(){return 0;});data.forEach(function(b){var f=b^r.shift();r.push(0);div.forEach(function(c,i){r[i]^=qrMul(c,f);});});return r;}
+function qrEncode(text){
+  var bytes=Array.prototype.slice.call(new TextEncoder().encode(String(text)));
+  var v=1;
+  for(;v<=10;v++){var cap=QR_DATA[v].reduce(function(a,b){return a+b;},0);var need=(v<10?12:20)+bytes.length*8;if(need<=cap*8)break;}
+  if(v>10)throw new Error('Texte trop long pour le QR code');
+  var total=QR_DATA[v].reduce(function(a,b){return a+b;},0),bits=[];
+  function put(val,n){for(var i=n-1;i>=0;i--)bits.push((val>>>i)&1);}
+  put(4,4);put(bytes.length,v<10?8:16);bytes.forEach(function(b){put(b,8);});
+  put(0,Math.min(4,total*8-bits.length));while(bits.length%8)bits.push(0);
+  var cw=[];for(var i=0;i<bits.length;i+=8){var b=0;for(var k=0;k<8;k++)b=(b<<1)|bits[i+k];cw.push(b);}
+  for(var pad=0xEC;cw.length<total;pad^=0xEC^0x11)cw.push(pad);
+  var div=qrDivisor(QR_ECW[v]),blocks=[],ecs=[],off=0;
+  QR_DATA[v].forEach(function(len){var d=cw.slice(off,off+len);off+=len;blocks.push(d);ecs.push(qrRemainder(d,div));});
+  var out=[],maxLen=Math.max.apply(null,QR_DATA[v]);
+  for(i=0;i<maxLen;i++)blocks.forEach(function(b){if(i<b.length)out.push(b[i]);});
+  for(i=0;i<QR_ECW[v];i++)ecs.forEach(function(e){out.push(e[i]);});
+  var size=17+4*v,mod=[],fn=[],y,x;
+  for(y=0;y<size;y++){mod.push(new Array(size).fill(false));fn.push(new Array(size).fill(false));}
+  function setF(x,y,d){mod[y][x]=!!d;fn[y][x]=true;}
+  for(i=0;i<size;i++){setF(6,i,i%2===0);setF(i,6,i%2===0);}
+  function finder(cx,cy){for(var dy=-4;dy<=4;dy++)for(var dx=-4;dx<=4;dx++){var d=Math.max(Math.abs(dx),Math.abs(dy)),xx=cx+dx,yy=cy+dy;if(xx>=0&&xx<size&&yy>=0&&yy<size)setF(xx,yy,d!==2&&d!==4);}}
+  finder(3,3);finder(size-4,3);finder(3,size-4);
+  var al=QR_ALIGN[v];
+  al.forEach(function(ay,i1){al.forEach(function(ax,i2){
+    if((i1===0&&i2===0)||(i1===0&&i2===al.length-1)||(i1===al.length-1&&i2===0))return;
+    for(var dy=-2;dy<=2;dy++)for(var dx=-2;dx<=2;dx++)setF(ax+dx,ay+dy,Math.max(Math.abs(dx),Math.abs(dy))!==1);
+  });});
+  function formatBits(mask){var data=(0<<3)|mask,r=data;for(var i=0;i<10;i++)r=(r<<1)^((r>>>9)*0x537);return((data<<10)|r)^0x5412;}
+  function drawFormat(mask){var b=formatBits(mask),g=function(i){return((b>>>i)&1)===1;};
+    for(var i=0;i<=5;i++)setF(8,i,g(i));setF(8,7,g(6));setF(8,8,g(7));setF(7,8,g(8));
+    for(i=9;i<15;i++)setF(14-i,8,g(i));
+    for(i=0;i<8;i++)setF(size-1-i,8,g(i));
+    for(i=8;i<15;i++)setF(8,size-15+i,g(i));
+    setF(8,size-8,true);}
+  drawFormat(0);
+  if(v>=7){var rem=v;for(i=0;i<12;i++)rem=(rem<<1)^((rem>>>11)*0x1F25);var vb=(v<<12)|rem;
+    for(i=0;i<18;i++){var bit=((vb>>>i)&1)===1,a=size-11+i%3,bb=Math.floor(i/3);setF(a,bb,bit);setF(bb,a,bit);}}
+  var n=0;
+  for(var right=size-1;right>=1;right-=2){
+    if(right===6)right=5;
+    for(var vert=0;vert<size;vert++)for(var j=0;j<2;j++){
+      x=right-j;var up=((right+1)&2)===0;y=up?size-1-vert:vert;
+      if(!fn[y][x]&&n<out.length*8){mod[y][x]=((out[n>>>3]>>>(7-(n&7)))&1)===1;n++;}
+    }
+  }
+  var MASKS=[function(x,y){return(x+y)%2===0;},function(x,y){return y%2===0;},function(x,y){return x%3===0;},function(x,y){return(x+y)%3===0;},
+    function(x,y){return(Math.floor(x/3)+Math.floor(y/2))%2===0;},function(x,y){return x*y%2+x*y%3===0;},function(x,y){return(x*y%2+x*y%3)%2===0;},function(x,y){return((x+y)%2+x*y%3)%2===0;}];
+  function applyMask(m){for(var y=0;y<size;y++)for(var x=0;x<size;x++)if(!fn[y][x]&&MASKS[m](x,y))mod[y][x]=!mod[y][x];}
+  function penalty(){
+    var p=0,y,x,run,c;
+    for(var pass=0;pass<2;pass++){
+      for(y=0;y<size;y++){run=1;for(x=1;x<size;x++){var a=pass?mod[x][y]:mod[y][x],b=pass?mod[x-1][y]:mod[y][x-1];if(a===b){run++;if(run===5)p+=3;else if(run>5)p++;}else run=1;}}
+    }
+    for(y=0;y<size-1;y++)for(x=0;x<size-1;x++){c=mod[y][x];if(c===mod[y][x+1]&&c===mod[y+1][x]&&c===mod[y+1][x+1])p+=3;}
+    var dark=0;for(y=0;y<size;y++)for(x=0;x<size;x++)if(mod[y][x])dark++;
+    p+=Math.floor(Math.abs(dark*20-size*size*10)/(size*size))*10;
+    return p;
+  }
+  var best=0,bestP=1e9;
+  for(var m=0;m<8;m++){applyMask(m);drawFormat(m);var pp=penalty();if(pp<bestP){bestP=pp;best=m;}applyMask(m);}
+  applyMask(best);drawFormat(best);
+  return {size:size,mod:mod,version:v};
+}
+function qrSvg(text,opt){
+  opt=opt||{};var q=qrEncode(text),b=4,s=q.size+b*2,d='';
+  for(var y=0;y<q.size;y++)for(var x=0;x<q.size;x++)if(q.mod[y][x])d+='M'+(x+b)+' '+(y+b)+'h1v1h-1z';
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+s+' '+s+'" shape-rendering="crispEdges" role="img" aria-label="QR code"><rect width="'+s+'" height="'+s+'" fill="'+(opt.bg||'#fff')+'"/><path d="'+d+'" fill="'+(opt.fg||'#0E2A1C')+'"/></svg>';
+}
+
+/* ═══════ v4.1 : PROJETS PARTAGÉS ═══════ */
+var SH_KEY='tirelire.sharedcache',SH_PUSH='tirelire.sharedpush',JOIN_KEY='tirelire.join';
+var shContribs={},shMem={},shLastPoll=0,shOwned=[],shJoined=[],shCounts={},shLoading=false,shEdit=null,shSlugTouched=false,shSlugOk=false,shSlugTimer=null,shSlugSeq=0,shNew=false;
+try{const c=JSON.parse(localStorage.getItem(SH_KEY)||'null');if(c){shOwned=c.owned||[];shJoined=c.joined||[];shCounts=c.counts||{};}}catch(e){}
+function shAppUrl(){const u=String((window.TIRELIRE_CONFIG&&window.TIRELIRE_CONFIG.appUrl)||'').replace(/\/+$/,'');if(u)return u;return /^https?:/.test(location.origin)?location.origin:'https://tirelire-pi.vercel.app';}
+function shLink(slug){return shAppUrl()+'/p/'+slug;}
+function shLinkShort(slug){return shLink(slug).replace(/^https?:\/\//,'');}
+function shSave(){try{localStorage.setItem(SH_KEY,JSON.stringify({owned:shOwned,joined:shJoined,counts:shCounts}));}catch(e){}}
+function slugify(t){let s=srNrm(String(t||'')).replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40).replace(/-+$/,'');if(s.length<3)s=(s?s+'-':'')+'projet';return s;}
+function shPhone(v){let d=String(v||'').replace(/\D/g,'');if(d.length===12&&d.indexOf('237')===0)d=d.slice(3);return /^6\d{8}$/.test(d)?d:null;}
+function shPhoneFmt(d){return d.replace(/^(\d{3})(\d{2})(\d{2})(\d{2})$/,'$1 $2 $3 $4');}
+function shPct(a,g){return g>0?Math.min(100,Math.round(Math.max(0,a)/g*100)):0;}
+function shStatusChip(s){const m={active:['Actif','#2E7D52'],closed:['Clôturé','#64748B'],realized:['Réalisé','#D97706']}[s]||['Actif','#2E7D52'];return '<span class="sh-chip" style="background:'+hexAlpha(m[1],.14)+';color:'+m[1]+'">'+m[0]+'</span>';}
+function shLocalOf(row){return state.projects.find(p=>p.cloud&&p.cloud.id===row.id)||null;}
+function shAmountOf(row){const p=shLocalOf(row);return p?Math.max(0,Math.round(balance(p))):Math.max(0,Number(row.owner_amount)||0);}
+
+/* ── accès serveur ── */
+async function shRefresh(silent){
+  if(!cloudSess||!cloudOn())return;
+  if(!silent){shLoading=true;shRender();}
+  try{
+    const [o,j]=await Promise.all([
+      sb('/rest/v1/shared_projects?select=*&owner_id=eq.'+cloudSess.user.id+'&order=created_at.desc'),
+      sb('/rest/v1/rpc/my_joined_projects',{method:'POST',body:{}})
+    ]);
+    shOwned=Array.isArray(o.data)?o.data:[];shJoined=Array.isArray(j.data)?j.data:[];
+    shCounts={};
+    if(shOwned.length){
+      try{const m=await sb('/rest/v1/shared_members?select=project_id&project_id=in.('+shOwned.map(x=>x.id).join(',')+')');(m.data||[]).forEach(r=>{shCounts[r.project_id]=(shCounts[r.project_id]||0)+1;});}catch(e){}
+    }
+    for(const r of shOwned){try{const c=await sb('/rest/v1/rpc/owner_contributions',{method:'POST',body:{p_project:r.id}});shContribs[r.id]=Array.isArray(c.data)?c.data:[];}catch(e){if(e.code==='network')break;}}
+    shSave();
+    // projets locaux dont le partage n'existe plus côté serveur : on détache
+    let changed=false;state.projects.forEach(p=>{if(p.cloud&&p.cloud.id&&!shOwned.some(x=>x.id===p.cloud.id)){p.cloud=null;changed=true;}});
+    if(changed)save();
+    await shApplyValidated();
+  }catch(e){if(e.code!=='network')console.error(e);}
+  shLoading=false;shRender();try{renderHub();}catch(e){}
+  const dt=document.getElementById('shDetail');
+  if(dt&&dt.classList.contains('open')){const b=document.getElementById('shDetailBody');if(b&&b.dataset.id)shOpenDetail(b.dataset.kind,b.dataset.id);}
+}
+function shPoll(){if(cloudSess&&shOwned.length&&Date.now()-shLastPoll>60000){shLastPoll=Date.now();shRefresh(true);}}
+function shPending(id){return (shContribs[id]||[]).filter(c=>c.status==='pending');}
+function shPendingCount(){return shOwned.reduce((a,r)=>a+shPending(r.id).length,0);}
+var shApplying=false;
+/* Crédite la caisse puis le projet pour chaque versement validé : l'argent Mobile Money reçu entre en caisse puis va dans le projet */
+async function shApplyValidated(){
+  if(shApplying||!cloudSess)return;shApplying=true;
+  try{
+    let n=0,sum=0;const ids=[];
+    for(const r of shOwned){
+      const p=shLocalOf(r);if(!p)continue;if(!p.cloud.applied)p.cloud.applied=[];
+      const todo=(shContribs[r.id]||[]).filter(c=>c.status==='validated'&&!c.applied).sort((a,b)=>new Date(a.created_at)-new Date(b.created_at));
+      for(const c of todo){
+        if(!p.cloud.applied.includes(c.id)){
+          const amt=Math.round(Number(c.amount)||0);if(!(amt>0))continue;
+          const when=c.decided_at||new Date().toISOString(),note='Participation de @'+c.name+' ('+(c.operator==='mtn'?'MTN':'Orange')+' · '+c.txn_id+')';
+          addCash({kind:'in',amount:amt,source:'don',note,date:when});
+          if(!p.realized){const t={id:uid(),amount:amt,note,date:when,contributorId:null,payrollId:null,categoryId:null,realization:false,transferId:null,transferName:'',cashId:null,challengeIdx:null};p.transactions.push(t);linkTxToCash(p,t);}
+          p.cloud.applied.push(c.id);n++;sum+=amt;
+        }
+        ids.push(c.id);
+      }
+    }
+    if(n||ids.length){
+      if(n){save();try{renderList();renderHub();}catch(e){}}
+      try{await sb('/rest/v1/rpc/mark_contributions_applied',{method:'POST',body:{p_ids:ids}});}catch(e){return;}
+      ids.forEach(id=>{for(const k in shContribs)(shContribs[k]||[]).forEach(c=>{if(c.id===id)c.applied=true;});});
+      if(n){showToast(n+' versement'+(n>1?'s':'')+' crédité'+(n>1?'s':'')+' : '+money(sum));buzz([10,40,10]);try{await sharedPushOwned();}catch(e){}}
+    }
+  }finally{shApplying=false;}
+}
+async function sharedPushOwned(){
+  if(!cloudSess||!cloudOn())return;
+  const lp=state.projects.filter(p=>p.cloud&&p.cloud.id);if(!lp.length)return;
+  let cache={};try{cache=JSON.parse(localStorage.getItem(SH_PUSH)||'{}');}catch(e){}
+  let dirty=false;
+  for(const p of lp){
+    const amount=Math.max(0,Math.round(balance(p))),goal=Math.max(0,Math.round(Number(p.goal)||0)),real=!!p.realized;
+    const key=amount+'|'+goal+'|'+real;if(cache[p.cloud.id]===key)continue;
+    const body={owner_amount:amount,goal:goal};if(real)body.status='realized';
+    try{
+      const r=await sb('/rest/v1/shared_projects?select=id&id=eq.'+p.cloud.id,{method:'PATCH',headers:{Prefer:'return=representation'},body});
+      if(Array.isArray(r.data)&&r.data.length){cache[p.cloud.id]=key;dirty=true;}
+    }catch(e){if(e.code==='network')break;}
+  }
+  if(dirty)try{localStorage.setItem(SH_PUSH,JSON.stringify(cache));}catch(e){}
+}
+
+/* ── écran « Projets partagés » ── */
+function openShared(){
+  document.getElementById('sharedScreen').classList.add('open');
+  shRender();if(cloudSess)shRefresh();
+}
+function closeShared(){document.getElementById('sharedScreen').classList.remove('open');}
+function shCard(row,owned){
+  const color=row.color||'#2E7D52',amt=owned?shAmountOf(row):Math.max(0,Number(row.amount)||0),goal=Number(row.goal)||0,pct=shPct(amt,goal);
+  const n=owned?(shCounts[row.id]||0):0;
+  return '<button type="button" class="sh-card" data-sh="'+(owned?'o':'j')+':'+esc(row.id)+'"><span class="sh-ic" style="background:'+hexAlpha(color,.14)+';color:'+color+'">'+iconSvg(row.icon||'bag',22)+'</span><span class="sh-mid"><span class="sh-top"><b>'+esc(row.title)+'</b>'+shStatusChip(row.status)+'</span><span class="sh-bar"><i style="width:'+pct+'%;background:'+color+'"></i></span><span class="sh-meta">'+fmt(amt)+(goal?' / '+fmt(goal):'')+' FCFA · '+pct+' %'+(owned?' · '+n+' participant'+(n>1?'s':''):' · par @'+esc(row.owner||'?'))+'</span>'+(owned&&shPending(row.id).length?'<span class="sh-pend">'+shPending(row.id).length+' versement'+(shPending(row.id).length>1?'s':'')+' à valider</span>':'')+'</span></button>';
+}
+function shRender(){
+  const b=document.getElementById('shBody');if(!b)return;
+  const add=document.getElementById('shAddBtn');
+  if(!cloudOn()){add.style.display='none';b.innerHTML='<div class="sh-empty"><div class="sh-big">🛠️</div><b>Pas encore activé</b>Le partage de projets demande la configuration en ligne (voir le guide Supabase).</div>';return;}
+  if(!cloudSess){add.style.display='none';b.innerHTML='<div class="sh-empty"><div class="sh-big">🤝</div><b>Épargnez à plusieurs</b>Créez un compte pour partager un projet avec un lien et un QR code, ou rejoindre le projet d\'un proche.<button type="button" class="btn-primary btn-block" id="shLogin" style="margin-top:18px">Créer un compte / Se connecter</button></div>';return;}
+  add.style.display='';
+  let h='';
+  h+='<div class="sh-sec">Mes projets partagés'+(shLoading?'<span class="sh-spin"></span>':'')+'</div>';
+  if(shOwned.length)h+=shOwned.map(r=>shCard(r,true)).join('');
+  else h+='<div class="sh-none">Aucun projet partagé pour l\'instant.<button type="button" class="sh-link" id="shNewInline">+ Partager un projet</button></div>';
+  h+='<div class="sh-sec">Projets rejoints</div>';
+  if(shJoined.length)h+=shJoined.map(r=>shCard(r,false)).join('');
+  else h+='<div class="sh-none">Vous n\'avez rejoint aucun projet. Ouvrez le lien ou le QR code d\'un proche, puis touchez « Participer ».</div>';
+  b.innerHTML=h;
+}
+
+/* ── création / modification ── */
+function shLocalChoices(){return state.projects.filter(p=>!p.realized&&!(p.cloud&&p.cloud.id));}
+function shSetSw(id,on){const e=document.getElementById(id);e.classList.toggle('on',!!on);e.setAttribute('aria-checked',on?'true':'false');}
+function shFormMsg(t,cls){const e=document.getElementById('shfMsg');e.textContent=t||'';e.className='au-msg'+(cls?' '+cls:'');}
+function openShareForm(row){
+  if(!cloudSess){openAuth('login');return;}
+  shEdit=row||null;shSlugTouched=!!row;shSlugOk=!!row;shNew=false;
+  const ch=shLocalChoices(),sel=document.getElementById('shfProj');
+  document.getElementById('shfTitleH').textContent=row?'Modifier le partage':'Partager un projet';
+  document.getElementById('shfGo').textContent=row?'Enregistrer':'Créer le lien';
+  document.getElementById('shfProjF').style.display=row?'none':'block';
+  document.getElementById('shfSlugF').style.display=row?'none':'block';
+  sel.innerHTML=ch.map(p=>'<option value="'+esc(p.id)+'">'+esc(p.name)+'</option>').join('')+'<option value="__new">➕ Nouveau projet…</option>';
+  document.getElementById('shfName').value='';document.getElementById('shfGoal').value='';
+  document.getElementById('shfDesc').value=row?row.description:'';
+  document.getElementById('shfMtnNum').value='';document.getElementById('shfMtnName').value='';document.getElementById('shfOrNum').value='';document.getElementById('shfOrName').value='';
+  if(row){
+    document.getElementById('shfTitle').value=row.title;
+    (row.momo||[]).forEach(m=>{if(m.operator==='mtn'){document.getElementById('shfMtnNum').value=shPhoneFmt(m.number);document.getElementById('shfMtnName').value=m.holder||'';}if(m.operator==='orange'){document.getElementById('shfOrNum').value=shPhoneFmt(m.number);document.getElementById('shfOrName').value=m.holder||'';}});
+    shSetSw('shfPublic',row.is_public);
+  }else{
+    shSetSw('shfPublic',true);
+    if(!ch.length){sel.value='__new';}
+    shOnProjChange();
+  }
+  document.getElementById('shfSlug').value='';document.getElementById('shfSlugMsg').textContent='';
+  shFormMsg('');
+  if(!row)shAutoSlug();
+  openSheet('shForm');
+}
+function shOnProjChange(){
+  const sel=document.getElementById('shfProj'),isNew=sel.value==='__new';shNew=isNew;
+  document.getElementById('shfNewBox').style.display=isNew?'block':'none';
+  const p=isNew?null:getProject(sel.value);
+  const goalF=document.getElementById('shfGoalRO');
+  goalF.style.display=isNew?'none':'block';
+  if(p){document.getElementById('shfTitle').value=p.name;goalF.textContent='Objectif du projet : '+money(p.goal)+' (modifiable dans le projet)';}
+  if(!shSlugTouched)shAutoSlug();
+}
+function shAutoSlug(){
+  const sel=document.getElementById('shfProj'),isNew=sel.value==='__new';
+  const base=document.getElementById('shfTitle').value||(isNew?document.getElementById('shfName').value:'')||'';
+  document.getElementById('shfSlug').value=base.trim()?slugify(base):'';
+  shCheckSlug();
+}
+function shCheckSlug(){
+  const inp=document.getElementById('shfSlug'),msg=document.getElementById('shfSlugMsg'),v=inp.value.trim().toLowerCase();
+  document.getElementById('shfLinkPrev').textContent=shLinkShort(v||'votre-lien');
+  clearTimeout(shSlugTimer);shSlugOk=false;
+  if(!v){msg.textContent='';return;}
+  if(!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(v)||v.length<3||v.length>40){msg.textContent='3 à 40 caractères : lettres minuscules, chiffres et tirets.';msg.className='sh-slugmsg bad';return;}
+  msg.textContent='Vérification…';msg.className='sh-slugmsg';
+  const seq=++shSlugSeq;
+  shSlugTimer=setTimeout(async()=>{
+    try{
+      const r=await sb('/rest/v1/rpc/slug_available',{method:'POST',auth:false,body:{s:v}});
+      if(seq!==shSlugSeq)return;
+      shSlugOk=r.data===true;msg.textContent=shSlugOk?'✓ Ce lien est disponible':'✗ Ce lien est déjà pris ou réservé';msg.className='sh-slugmsg '+(shSlugOk?'good':'bad');
+    }catch(e){if(seq===shSlugSeq){msg.textContent='Vérification impossible (réseau)';msg.className='sh-slugmsg bad';}}
+  },350);
+}
+function shReadMomo(){
+  const out=[];let err='';
+  [['mtn','shfMtnNum','shfMtnName','MTN'],['orange','shfOrNum','shfOrName','Orange']].forEach(a=>{
+    const raw=document.getElementById(a[1]).value.trim(),holder=document.getElementById(a[2]).value.trim();
+    if(!raw&&!holder)return;
+    const ph=shPhone(raw);
+    if(!ph){err='Numéro '+a[3]+' invalide : 9 chiffres commençant par 6 (ex. 6 70 00 00 00).';return;}
+    if(holder.length<2){err='Indiquez le nom du titulaire du compte '+a[3]+'.';return;}
+    out.push({operator:a[0],number:ph,holder:holder.slice(0,40)});
+  });
+  return {out,err};
+}
+async function shSubmit(){
+  const go=document.getElementById('shfGo');
+  const title=document.getElementById('shfTitle').value.trim(),desc=document.getElementById('shfDesc').value.trim();
+  const mo=shReadMomo();
+  if(title.length<2||title.length>60)return shFormMsg('Le titre doit faire 2 à 60 caractères.','err');
+  if(desc.length>300)return shFormMsg('La description est trop longue (300 caractères maximum).','err');
+  if(mo.err)return shFormMsg(mo.err,'err');
+  if(!mo.out.length)return shFormMsg('Ajoutez au moins un compte Mobile Money (MTN ou Orange) pour recevoir les versements.','err');
+  const pub=document.getElementById('shfPublic').classList.contains('on');
+  go.disabled=true;
+  try{
+    if(shEdit){
+      shFormMsg('Enregistrement…');
+      const r=await sb('/rest/v1/shared_projects?select=*&id=eq.'+shEdit.id,{method:'PATCH',headers:{Prefer:'return=representation'},body:{title,description:desc,momo:mo.out,is_public:pub}});
+      const row=r.data&&r.data[0];if(!row)throw cloudErr('http','Projet introuvable');
+      const i=shOwned.findIndex(x=>x.id===row.id);if(i>-1)shOwned[i]=row;shSave();
+      closeSheet('shForm');shRender();showToast('Partage mis à jour ✓');shOpenDetail('o',row.id);return;
+    }
+    const slug=document.getElementById('shfSlug').value.trim().toLowerCase();
+    if(!shSlugOk)return shFormMsg('Choisissez un lien disponible.','err');
+    let p,created=false;
+    if(shNew){
+      const name=document.getElementById('shfName').value.trim(),goal=Math.round(parseAmount(document.getElementById('shfGoal').value));
+      if(name.length<2)return shFormMsg('Donnez un nom au nouveau projet.','err');
+      if(!(goal>0))return shFormMsg('Indiquez l\'objectif en FCFA.','err');
+      p=normalizeProject({id:uid(),name,goal,created:Date.now(),icon:'users',color:'#2E7D52',participants:[],transactions:[]});created=true;
+    }else{p=getProject(document.getElementById('shfProj').value);if(!p)return shFormMsg('Choisissez un projet.','err');}
+    if(!(Number(p.goal)>0))return shFormMsg('Ce projet n\'a pas d\'objectif chiffré : modifiez-le d\'abord (un objectif est nécessaire pour la page publique).','err');
+    shFormMsg('Création du lien…');
+    const body={owner_id:cloudSess.user.id,slug,title,description:desc,goal:Math.round(p.goal),owner_amount:Math.max(0,Math.round(balance(p))),icon:p.icon,color:p.color,momo:mo.out,is_public:pub,status:p.realized?'realized':'active'};
+    let row;
+    try{const r=await sb('/rest/v1/shared_projects?select=*',{method:'POST',headers:{Prefer:'return=representation'},body});row=r.data&&r.data[0];}
+    catch(e){if(e.status===409){shSlugOk=false;throw cloudErr('http','Ce lien vient d\'être pris : choisissez-en un autre.');}throw e;}
+    if(!row)throw cloudErr('http','Création impossible');
+    if(created){p.shared=true;state.projects.unshift(p);}
+    p.cloud={id:row.id,slug:row.slug,applied:[]};save();
+    shOwned.unshift(row);shSave();
+    closeSheet('shForm');try{renderList();}catch(e){}shRender();try{renderHub();}catch(e){}
+    buzz([10,40,10]);shOpenDetail('o',row.id);showToast('Projet partagé 🎉');
+  }catch(e){shFormMsg(cloudMsgFr(e),'err');}
+  finally{go.disabled=false;}
+}
+
+/* ── détail ── */
+function shOpenDetail(kind,id){
+  const row=(kind==='o'?shOwned:shJoined).find(x=>x.id===id);if(!row)return;
+  const body=document.getElementById('shDetailBody'),color=row.color||'#2E7D52';
+  const owned=kind==='o',amt=owned?shAmountOf(row):Math.max(0,Number(row.amount)||0),goal=Number(row.goal)||0,pct=shPct(amt,goal);
+  let h='<div class="sh-dh"><span class="sh-ic big" style="background:'+hexAlpha(color,.14)+';color:'+color+'">'+iconSvg(row.icon||'bag',26)+'</span><div style="min-width:0;flex:1"><div class="sh-dt">'+esc(row.title)+'</div><div class="sh-ds">'+(owned?'Votre projet partagé':'Par @'+esc(row.owner||'?'))+' '+shStatusChip(row.status)+'</div></div></div>';
+  if(row.description)h+='<div class="sh-desc">'+esc(row.description)+'</div>';
+  h+='<div class="sh-prog"><div class="sh-bar big"><i style="width:'+pct+'%;background:'+color+'"></i></div><div class="sh-pm"><b>'+fmt(amt)+' FCFA</b><span>'+pct+' %'+(goal?' · objectif '+fmt(goal):'')+'</span></div></div>';
+  const link=shLink(row.slug);
+  if(owned){
+    const n=shCounts[row.id]||0;
+    h+=shOwnerContribHtml(row,'top');
+    h+='<div class="sh-linkbox"><div class="sh-lk">'+esc(shLinkShort(row.slug))+'</div><div class="sh-lkb"><button type="button" data-sha="copy">Copier</button><button type="button" data-sha="share">Partager</button><button type="button" data-sha="open">Ouvrir</button></div></div>';
+    h+='<div class="sh-qrbox"><div class="sh-qr" id="shQr">'+qrSvg(link)+'</div><div class="sh-qrt"><b>QR code</b><span>À afficher ou à envoyer : il ouvre la page de votre projet.</span><button type="button" class="export-btn" data-sha="qr">Enregistrer / envoyer le QR</button></div></div>';
+    h+='<div class="sh-info"><div><b>'+n+'</b><span>participant'+(n>1?'s':'')+'</span></div><div><b>'+(row.is_public?'Publique':'Privée')+'</b><span>page du projet</span></div></div>';
+    if(!row.is_public)h+='<div class="sh-note">La page est privée : le lien affiche « Projet introuvable ». Rendez-la publique dans « Modifier ».</div>';
+    h+='<div class="sh-sec2">Comptes Mobile Money</div>'+((row.momo||[]).map(m=>'<div class="sh-momo"><span class="sh-op '+m.operator+'">'+(m.operator==='mtn'?'MTN':'Orange')+'</span><span class="sh-mn">'+esc(shPhoneFmt(m.number))+'</span><span class="sh-mh">'+esc(m.holder||'')+'</span></div>').join('')||'<div class="sh-none">Aucun compte renseigné.</div>');
+    h+='<div class="sh-note soft">Ces numéros ne s\'affichent pas sur la page publique : seuls les participants les voient dans l\'app, après avoir rejoint le projet.</div>';
+    h+=shOwnerContribHtml(row,'bottom');
+    h+='<div class="sh-acts">';
+    if(shLocalOf(row))h+='<button type="button" class="export-btn" data-sha="local">Voir le projet</button>';
+    h+='<button type="button" class="export-btn" data-sha="edit">Modifier</button>';
+    if(row.status!=='realized')h+='<button type="button" class="export-btn" data-sha="toggle">'+(row.status==='closed'?'Rouvrir les participations':'Clôturer les participations')+'</button>';
+    h+='<button type="button" class="export-btn danger" data-sha="stop">Arrêter le partage</button></div>';
+  }else{
+    h+='<div class="sh-linkbox"><div class="sh-lk">'+esc(shLinkShort(row.slug))+'</div><div class="sh-lkb"><button type="button" data-sha="copy">Copier</button><button type="button" data-sha="share">Partager</button><button type="button" data-sha="open">Page</button></div></div>';
+    h+=shMemberHtml(row);
+    h+='<div class="sh-acts"><button type="button" class="export-btn danger" data-sha="leave">Quitter ce projet</button></div>';
+  }
+  body.innerHTML=h;body.dataset.kind=kind;body.dataset.id=id;
+  openSheet('shDetail');
+}
+function shQrPng(slug){
+  const q=qrEncode(shLink(slug)),sc=14,b=4,n=(q.size+b*2)*sc,c=document.createElement('canvas');c.width=c.height=n;
+  const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,n,n);x.fillStyle='#0E2A1C';
+  for(let r=0;r<q.size;r++)for(let k=0;k<q.size;k++)if(q.mod[r][k])x.fillRect((k+b)*sc,(r+b)*sc,sc,sc);
+  return new Promise(res=>c.toBlob(res,'image/png'));
+}
+async function shAction(a){
+  if(a.indexOf(':')>0)return shSub(a);
+  if(a==='pay'){const b0=document.getElementById('shDetailBody');const r0=shJoined.find(x=>x.id===b0.dataset.id);if(r0)shOpenPay(r0);return;}
+  const body=document.getElementById('shDetailBody'),kind=body.dataset.kind,id=body.dataset.id;
+  const row=(kind==='o'?shOwned:shJoined).find(x=>x.id===id);if(!row)return;
+  const link=shLink(row.slug);
+  if(a==='copy'){
+    try{await navigator.clipboard.writeText(link);showToast('Lien copié ✓');}
+    catch(e){const t=document.createElement('textarea');t.value=link;document.body.appendChild(t);t.select();try{document.execCommand('copy');showToast('Lien copié ✓');}catch(e2){showToast(link);}t.remove();}
+  }else if(a==='share'){
+    const text='Rejoignez mon projet « '+row.title+' » sur Tirelire';
+    if(navigator.share){try{await navigator.share({title:row.title,text,url:link});}catch(e){}}
+    else{try{await navigator.clipboard.writeText(link);showToast('Lien copié ✓');}catch(e){showToast(link);}}
+  }else if(a==='open'){window.open(link,'_blank','noopener');}
+  else if(a==='qr'){
+    const blob=await shQrPng(row.slug);if(!blob)return;
+    const file=new File([blob],'Tirelire-QR-'+row.slug+'.png',{type:'image/png'});
+    try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:row.title,text:'QR code du projet « '+row.title+' »'});return;}}catch(e){if(e&&e.name==='AbortError')return;}
+    const u=URL.createObjectURL(blob),el=document.createElement('a');el.href=u;el.download=file.name;document.body.appendChild(el);el.click();el.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);showToast('QR code enregistré ✓');
+  }else if(a==='local'){const p=shLocalOf(row);if(p){closeSheet('shDetail');openDetail(p.id);}}
+  else if(a==='edit'){closeSheet('shDetail');setTimeout(()=>openShareForm(row),220);}
+  else if(a==='toggle'){
+    const to=row.status==='closed'?'active':'closed';
+    try{const r=await sb('/rest/v1/shared_projects?select=*&id=eq.'+row.id,{method:'PATCH',headers:{Prefer:'return=representation'},body:{status:to}});const nr=r.data&&r.data[0];if(nr){const i=shOwned.findIndex(x=>x.id===nr.id);shOwned[i]=nr;shSave();shRender();shOpenDetail('o',nr.id);showToast(to==='closed'?'Participations clôturées':'Participations rouvertes');}}
+    catch(e){showToast(cloudMsgFr(e));}
+  }else if(a==='stop'){
+    const r=await askModal({title:'Arrêter le partage ?',msg:'Le lien et le QR code cesseront de fonctionner et les participants perdront l\'accès. Votre projet reste dans l\'app, avec son épargne.',okLabel:'Arrêter le partage',okTone:'danger'});
+    if(!r||!r.ok)return;
+    try{
+      await sb('/rest/v1/shared_projects?id=eq.'+row.id,{method:'DELETE'});
+      const p=shLocalOf(row);if(p){p.cloud=null;save();}
+      shOwned=shOwned.filter(x=>x.id!==row.id);shSave();closeSheet('shDetail');shRender();try{renderList();renderHub();}catch(e){}showToast('Partage arrêté');
+    }catch(e){showToast(cloudMsgFr(e));}
+  }else if(a==='leave'){
+    const r=await askModal({title:'Quitter ce projet ?',msg:'Il disparaîtra de vos projets partagés. Vous pourrez le rejoindre de nouveau avec le lien.',okLabel:'Quitter',okTone:'danger'});
+    if(!r||!r.ok)return;
+    try{
+      await sb('/rest/v1/shared_members?project_id=eq.'+row.id+'&user_id=eq.'+cloudSess.user.id,{method:'DELETE'});
+      shJoined=shJoined.filter(x=>x.id!==row.id);shSave();closeSheet('shDetail');shRender();try{renderHub();}catch(e){}showToast('Vous avez quitté le projet');
+    }catch(e){showToast(cloudMsgFr(e));}
+  }
+}
+
+
+/* ── versements : vue créateur ── */
+function shOpName(o){return o==='mtn'?'MTN':'Orange';}
+function shCtStat(c){const m={pending:['En attente','#D97706'],validated:['Validé','#2E7D52'],rejected:['Refusé','#C0392B']}[c.status]||['?','#64748B'];return '<span class="sh-chip" style="background:'+hexAlpha(m[1],.14)+';color:'+m[1]+'">'+m[0]+'</span>';}
+function shOwnerContribHtml(row,mode){
+  const all=shContribs[row.id]||[],pend=all.filter(c=>c.status==='pending'),hist=all.filter(c=>c.status!=='pending').slice(0,8);
+  if(mode==='top'&&!pend.length)return '';
+  let h=(mode==='bottom'&&pend.length)?'':'<div class="sh-sec2">Versements à valider'+(pend.length?' ('+pend.length+')':'')+'</div>';
+  if(mode==='bottom'&&pend.length)return shHistHtml(hist);
+  if(!pend.length)h+='<div class="sh-none">Aucun versement en attente. Quand un participant déclare un versement, il apparaît ici.</div>';
+  pend.forEach(c=>{h+='<div class="sh-ct"><div class="sh-ctt"><b>@'+esc(c.name)+'</b><span>'+fmt(c.amount)+' FCFA</span></div><div class="sh-ctm"><span class="sh-op '+c.operator+'">'+shOpName(c.operator)+'</span> ID <b>'+esc(c.txn_id)+'</b> · '+esc(dShort(c.created_at))+'</div>'+(c.note?'<div class="sh-ctn">« '+esc(c.note)+' »</div>':'')+'<div class="sh-cta"><button type="button" class="sh-ok" data-sha="validate:'+esc(c.id)+'">Valider</button><button type="button" class="sh-no" data-sha="reject:'+esc(c.id)+'">Refuser</button></div></div>';});
+  if(pend.length)h+='<div class="sh-note soft">Vérifiez d\'abord le SMS de votre opérateur : l\'ID et le montant doivent correspondre. Un versement validé est ajouté à votre caisse puis au projet.</div>';
+  if(mode==='top')return h;
+  return h+shHistHtml(hist);
+}
+function shHistHtml(hist){let h='';if(hist.length){h+='<div class="sh-sec2">Derniers versements</div>';hist.forEach(c=>{h+='<div class="sh-hist"><span>@'+esc(c.name)+' · '+fmt(c.amount)+' F</span>'+shCtStat(c)+'</div>';});}return h;}
+/* ── versements : vue participant ── */
+async function shLoadMember(id){
+  if(shMem[id]&&shMem[id].loading)return;
+  shMem[id]=Object.assign(shMem[id]||{},{loading:true});
+  try{
+    const [mo,ct]=await Promise.all([
+      sb('/rest/v1/rpc/project_momo',{method:'POST',body:{p_project:id}}),
+      sb('/rest/v1/shared_contributions?select=*&project_id=eq.'+id+'&user_id=eq.'+cloudSess.user.id+'&order=created_at.desc&limit=20')
+    ]);
+    shMem[id]={momo:Array.isArray(mo.data)?mo.data:[],list:Array.isArray(ct.data)?ct.data:[]};
+  }catch(e){shMem[id]={momo:[],list:[],err:cloudMsgFr(e)};}
+  const b=document.getElementById('shDetailBody');
+  if(document.getElementById('shDetail').classList.contains('open')&&b.dataset.id===id&&b.dataset.kind==='j')shOpenDetail('j',id);
+}
+function shMemberHtml(row){
+  const m=shMem[row.id];
+  if(!m||m.loading){if(!m)shLoadMember(row.id);return '<div class="sh-note soft">Chargement des comptes Mobile Money…</div>';}
+  if(m.err)return '<div class="sh-note">'+esc(m.err)+'</div>';
+  let h='<div class="sh-sec2">Où verser ?</div>';
+  if(!m.momo.length)h+='<div class="sh-none">Le créateur n\'a pas renseigné de compte.</div>';
+  m.momo.forEach(x=>{h+='<div class="sh-momo"><span class="sh-op '+x.operator+'">'+shOpName(x.operator)+'</span><span class="sh-mn">'+esc(shPhoneFmt(x.number))+'</span><span class="sh-mh">'+esc(x.holder||'')+'</span><button type="button" class="sh-cp" data-sha="copynum:'+esc(x.number)+'">Copier</button></div>';});
+  if(row.status==='active'&&m.momo.length){
+    h+='<div class="sh-note soft">1. Envoyez l\'argent par Mobile Money au numéro ci-dessus.<br>2. Notez l\'<b>ID de transaction</b> du SMS de confirmation.<br>3. Déclarez votre versement : le créateur le valide.</div>';
+    h+='<button type="button" class="btn-primary btn-block" data-sha="pay" style="margin-top:6px">J\'ai versé : déclarer mon versement</button>';
+  }else if(row.status!=='active')h+='<div class="sh-note">Ce projet n\'accepte plus de versements.</div>';
+  const mine=Number(row.mine)||m.list.filter(c=>c.status==='validated').reduce((a,c)=>a+Number(c.amount),0);
+  if(mine>0)h+='<div class="sh-info" style="margin-top:12px"><div><b>'+fmt(mine)+' FCFA</b><span>votre part validée</span></div></div>';
+  if(m.list.length){h+='<div class="sh-sec2">Mes versements</div>';m.list.forEach(c=>{h+='<div class="sh-hist"><span>'+fmt(c.amount)+' F · '+shOpName(c.operator)+' · '+esc(c.txn_id)+(c.status==='rejected'&&c.reason?'<small>Motif : '+esc(c.reason)+'</small>':'')+'</span>'+(c.status==='pending'?'<button type="button" class="sh-cp" data-sha="cancelc:'+esc(c.id)+'">Annuler</button>':'')+shCtStat(c)+'</div>';});}
+  return h;
+}
+function shOpenPay(row){
+  const m=shMem[row.id];if(!m||!m.momo.length)return;
+  document.getElementById('shpProj').value=row.id;
+  document.getElementById('shpOp').innerHTML=m.momo.map(x=>'<option value="'+x.operator+'">'+shOpName(x.operator)+' · '+esc(shPhoneFmt(x.number))+'</option>').join('');
+  document.getElementById('shpAmt').value='';document.getElementById('shpTxn').value='';document.getElementById('shpNote').value='';
+  document.getElementById('shpMsg').textContent='';document.getElementById('shpMsg').className='au-msg';
+  openSheet('shPay');
+}
+function shPayMsg(t,c){const e=document.getElementById('shpMsg');e.textContent=t||'';e.className='au-msg'+(c?' '+c:'');}
+async function shPaySubmit(){
+  const id=document.getElementById('shpProj').value,op=document.getElementById('shpOp').value,amt=Math.round(parseAmount(document.getElementById('shpAmt').value)),txn=document.getElementById('shpTxn').value.trim(),note=document.getElementById('shpNote').value.trim();
+  if(!(amt>=100))return shPayMsg('Indiquez le montant versé (100 FCFA minimum).','err');
+  if(!/^[A-Za-z0-9._-]{4,30}$/.test(txn))return shPayMsg('ID de transaction : 4 à 30 caractères, sans espace (ex. MP240101.1234.A56789).','err');
+  const go=document.getElementById('shpGo');go.disabled=true;shPayMsg('Envoi…');
+  try{
+    await sb('/rest/v1/rpc/submit_contribution',{method:'POST',body:{p_project:id,p_amount:amt,p_operator:op,p_txn:txn,p_note:note}});
+    closeSheet('shPay');delete shMem[id];showToast('Versement déclaré ✓ En attente de validation');buzz([10,40,10]);
+    shLoadMember(id);
+  }catch(e){shPayMsg(cloudMsgFr(e),'err');}
+  finally{go.disabled=false;}
+}
+async function shSub(a){
+  const i=a.indexOf(':'),k=a.slice(0,i),v=a.slice(i+1);
+  if(k==='copynum'){try{await navigator.clipboard.writeText(v);showToast('Numéro copié ✓');}catch(e){showToast(v);}return;}
+  if(k==='cancelc'){
+    const r=await askModal({title:'Annuler ce versement ?',msg:'Il ne sera plus proposé au créateur pour validation.',okLabel:'Annuler le versement',okTone:'danger',cancelLabel:'Garder'});
+    if(!r||!r.ok)return;
+    try{await sb('/rest/v1/rpc/cancel_contribution',{method:'POST',body:{p_id:v}});const b=document.getElementById('shDetailBody'),id=b.dataset.id;delete shMem[id];shLoadMember(id);showToast('Versement annulé');}catch(e){showToast(cloudMsgFr(e));}
+    return;
+  }
+  if(k==='validate'||k==='reject'){
+    let reason='';
+    if(k==='reject'){
+      const r=await askModal({title:'Refuser ce versement ?',msg:'Indiquez un motif (facultatif) : le participant le verra.',input:true,placeholder:'Ex : ID introuvable dans mes SMS',okLabel:'Refuser',okTone:'danger'});
+      if(!r||!r.ok)return;reason=(r.input||'').trim().slice(0,140);
+    }else{
+      let c=null;for(const id in shContribs){const f=(shContribs[id]||[]).find(x=>x.id===v);if(f)c=f;}
+      if(c){const r=await askModal({title:'Valider ce versement ?',msg:'@'+c.name+' : '+fmt(c.amount)+' FCFA ('+shOpName(c.operator)+', ID '+c.txn_id+'). Avez-vous bien reçu cet argent ?',okLabel:'Oui, valider'});if(!r||!r.ok)return;}
+    }
+    try{
+      await sb('/rest/v1/rpc/decide_contribution',{method:'POST',body:{p_id:v,p_decision:k==='validate'?'validated':'rejected',p_reason:reason}});
+      showToast(k==='validate'?'Versement validé ✓':'Versement refusé');buzz(12);
+      await shRefresh(true);
+    }catch(e){showToast(cloudMsgFr(e));await shRefresh(true);}
+  }
+}
+
+/* ── lien « Participer » ── */
+function shReadJoinParam(){
+  let j=null;try{j=new URLSearchParams(location.search).get('join');}catch(e){}
+  if(!j)return;
+  try{const u=new URL(location.href);u.searchParams.delete('join');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}catch(e){}
+  j=String(j).toLowerCase();
+  if(/^[a-z0-9]+(-[a-z0-9]+)*$/.test(j)&&j.length>=3&&j.length<=40){try{localStorage.setItem(JOIN_KEY,j);}catch(e){}}
+}
+function shOverlaysBusy(){return ['splash','onboarding','whatsnew','lock'].some(i=>{const e=document.getElementById(i);if(!e)return false;const s=getComputedStyle(e);return s.visibility==='visible'&&Number(s.opacity)>0.05&&s.display!=='none';});}
+async function shProcessJoin(){
+  let slug=null;try{slug=localStorage.getItem(JOIN_KEY);}catch(e){}
+  if(!slug)return;
+  if(!cloudOn()){try{localStorage.removeItem(JOIN_KEY);}catch(e){}showToast('Le partage de projets n\'est pas activé sur cette installation');return;}
+  if(shOverlaysBusy()){setTimeout(shProcessJoin,800);return;}
+  if(!cloudSess){openAuth('signup','Pour participer à ce projet, créez un compte gratuit ou connectez-vous.');return;}
+  try{
+    const r=await sb('/rest/v1/rpc/join_project',{method:'POST',body:{p_slug:slug}});
+    try{localStorage.removeItem(JOIN_KEY);}catch(e){}
+    const title=r.data&&r.data.title?r.data.title:'ce projet';
+    if(currentView!=='home')setView('home');
+    openShared();showToast('Vous avez rejoint « '+title+' » 🎉');buzz([10,40,10]);
+  }catch(e){
+    if(e.code==='network'){showToast('Pas de connexion : réessayez plus tard');return;}
+    try{localStorage.removeItem(JOIN_KEY);}catch(x){}
+    const m=String(e.message||'');
+    infoModal('Impossible de rejoindre',/introuvable/i.test(m)?'Ce projet n\'existe pas ou n\'est plus public.':(/n'accepte plus/i.test(m)?'Ce projet n\'accepte plus de nouveaux participants.':cloudMsgFr(e)));
+  }
+}
+function initShared(){
+  shReadJoinParam();
+  const g=id=>document.getElementById(id);
+  g('hubShared').addEventListener('click',()=>{buzz(8);openShared();});
+  g('shBack').addEventListener('click',closeShared);
+  g('shAddBtn').addEventListener('click',()=>openShareForm(null));
+  g('shBody').addEventListener('click',e=>{
+    if(e.target.closest('#shLogin')){openAuth('signup');return;}
+    if(e.target.closest('#shNewInline')){openShareForm(null);return;}
+    const c=e.target.closest('[data-sh]');if(c){const p=c.dataset.sh.split(':');shOpenDetail(p[0],p.slice(1).join(':'));}
+  });
+  g('shDetailBody').addEventListener('click',e=>{const b=e.target.closest('[data-sha]');if(b)shAction(b.dataset.sha);});
+  g('shfProj').addEventListener('change',shOnProjChange);
+  g('shfTitle').addEventListener('input',()=>{if(!shSlugTouched)shAutoSlug();});
+  g('shfName').addEventListener('input',()=>{if(!shSlugTouched&&shNew&&!g('shfTitle').value.trim()){g('shfTitle').value=g('shfName').value;}if(!shSlugTouched){if(shNew)g('shfTitle').value=g('shfName').value;shAutoSlug();}});
+  g('shfSlug').addEventListener('input',()=>{shSlugTouched=true;g('shfSlug').value=g('shfSlug').value.toLowerCase().replace(/[^a-z0-9-]/g,'');shCheckSlug();});
+  g('shfPublic').addEventListener('click',()=>shSetSw('shfPublic',!g('shfPublic').classList.contains('on')));
+  g('shfGo').addEventListener('click',shSubmit);
+  g('shpGo').addEventListener('click',shPaySubmit);
+  ['shfMtnNum','shfOrNum'].forEach(i=>g(i).addEventListener('blur',()=>{const p=shPhone(g(i).value);if(p)g(i).value=shPhoneFmt(p);}));
+  renderHub();
+  if(cloudSess)shRefresh();
+  shProcessJoin();
+}
+
 function hubAction(id){
   buzz(8);
   if(id==='projects'){homeTab='active';setView('projects');}
@@ -3774,6 +4425,7 @@ function hubAction(id){
 function initHub(){
   try{initCloud();}catch(e){console.error(e);}
   try{initSearch();}catch(e){console.error(e);}
+  try{initShared();}catch(e){console.error(e);}
   document.body.classList.add('view-home');
   renderHub();
   document.getElementById('hubGrid').addEventListener('click',e=>{const b=e.target.closest('[data-hub]');if(b)hubAction(b.dataset.hub);});

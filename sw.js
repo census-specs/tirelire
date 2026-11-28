@@ -1,11 +1,12 @@
 /* Tirelire — service worker (v3.2)
    Stratégie : cache d'abord + mise à jour en arrière-plan, pour un lancement
    instantané et fonctionnel sans réseau. Les nouveautés s'appliquent au lancement suivant. */
-const VERSION = 'tirelire-v4.0';
+const VERSION = 'tirelire-v4.2';
 const SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './config.js',
   './icon.svg',
   './icon-180.png',
   './icon-192.png',
@@ -37,6 +38,9 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
+
+  // Pages publiques des projets partagés : toujours le réseau (jamais la copie de l'app).
+  if (url.pathname.startsWith('/p/') || url.pathname.endsWith('/projet.html')) return;
 
   // Page principale : on sert la copie en cache, on la rafraîchit en arrière-plan.
   if (req.mode === 'navigate') {
